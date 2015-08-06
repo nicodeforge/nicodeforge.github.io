@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+   		<meta name="description" content="WIP">
+   		<title>WIP</title>
+
+    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<style type="text/css">
+	#commit{
+		margin-top: 150px;
+	}
+	
+	.navbar-header{
+	  color : blue;
+	}
+	</style>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body id="pagetop">
+		<header class="row">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+				<div class="navbar-header">
+					<a href="#pagetop" class="navbar-brand">Apprendre github</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="#commit">Le Commit</a></li>
+					<li><a href="#gitlog">Le Git Log</a></li>
+					<li><a href="#branch">La Branche</a></li>
+				</ul>
+			</nav>
+		</header>
+
+
+		<div class="container">
+			<section class="jumbotron inline" id="commit" >
+				<h2>Le commit avec github</h2>
+					<h3>Qu'est ce qu'un commit</h3>
+					<p>
+						Le mot <em>commit</em> est un mot anglais. On peut le traduire en Français par <em>commettre</em>, <em>engager</em> ou encore <em>investir</em>.<br />
+						Dans le domaine du codage, on peut définir le commit comme "La déclaration d'une modification apportée au code". Faire un commit, c'est donc dire que l'on a modifié tout ou partie du code à l'ensemble de l'équipe.
+
+					</p>
+					<h3>Pourquoi faire un commit</h3>
+					<p>
+						La raison principale qui vous motivera à faire des commits, c'est de conserver une trace des modifications apportées dans le temps. Vous aurez donc un historique des modifications et la possibilité de revenir dans le temps.
+					</p>
+					<h3>Comment faire un commit</h3>
+					<p>
+						Pour faire un commit, vous devez préalablement installer un logiciel de versionnage comme git par exemple. Ensuite, je ne peux que vous conseiller de suivre le cours d'Openclassroom sur le sujet. Après quoi, vous comprendrez mieux ce qui suit.<br />
+						vous venez d'apporter une modification à un fichier, vous l'avez sauvegardé puis fermé. Vous voulez maintenant faire un commit de vos modifications. 2 possibilités :
+						<h4>Le commit version puriste</h4>
+						<blockquote>Dans votre console "git bash" entrez la commande <span>git status</span>. Vous constatez qu'un fichier a été modifié. Vous commitez ce changement en entrant la commande <span>git commit -am "Je décris les modifications apportées"</span>. Git a donc enregistré le fait que vous aviez modifié le fichier et y a associé le message que vous avez tapé.</blockquote>
+						<h4>Le commit en mode graphique</h4>
+						<blockquote>A partir de votre compte GitHub, ouvrez le fichier que vous souhaitez modifier dnas l'éditeur de git. En dessous, entrez la description de vos modification et cliquez sur le gros bouton vert commit.</blockquote>
+					</p>
+			</section>
+			<section class="jumbotron inline" id="gitlog">
+
+				<h2>La commande git log</h2>
+					<p>
+						Nous venons de voir dans la partie précédente que chaque commit s'ajoute à un historique de modification. En mode console, vous pouvez visualiser cet historique avec la commande git log.
+						Cette commande affichera l'ensemble des commit effectués sur une branche.
+					</p>
+			</section>
+			<section class="jumbotron inline" id="branch">
+				<h2>Le concept de branche</h2>
+				<p>
+					Dans un projet de codage, il arrive que vous souhaitiez tester une idée, une fonctionnalité. Vous n'êtes pas sûr ni du résultat ni de l'impact potentiel sur le reste du code. Pour diminuer le risque, github vous permet de créer des branches de codes secondaires. Vous pourrez donc effectuer des commit sur une branche secondaire plutôt que sur la branche principale (la branche "master") et vous pouvez créer autant de branches que vous le souhaitez.<br /> Lorsque le code d'une branche secondaire a été testé et validé, vous pouvez fusionner cette branche avec la branche principale puis supprimer votre branche secondaire ou la conserver pour effectuer d'autres expérimentations.
+				</p>
+			</section>
+		</div>
+
+		<footer class="rox text-center">
+			<a href="#pagetop">Retour en haut</a>
+		</footer>
+
+		<!-- jQuery -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    	<!-- Javascript de Bootstrap -->
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    	<!--Script personnalisés-->
+    	<script>
+      // Scrollspy fluide
+      $(function () {
+        $('header a').on('click', function(e) {
+          e.preventDefault();
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(this.hash).offset().top
+          }, 1000, function(){
+            window.location.hash = hash;
+          });
+        });
+      });
+    </script>
+	</body>
+</html>
