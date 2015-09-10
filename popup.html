@@ -47,7 +47,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#myModal").modal('hide').delay(5000).modal('show');
+         $("#myModal").modal('hide');
+        setTimeout(
+        function() 
+        {
+            $("#myModal").modal('show');
+        }, 3000);
     });
 </script>
 </body>
