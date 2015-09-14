@@ -41,27 +41,83 @@
 
 
 		<div class="container">
-			<section class="jumbotron inline" id="commit" >
+			<section class="row" id="commit" >
+				<article class="col-md-8 col-md-offset-2">
 				<h2>Le commit avec github</h2>
-					<h3>Qu'est ce qu'un commit</h3>
-					<p>
-						Le mot <em>commit</em> est un mot anglais. On peut le traduire en Français par <em>commettre</em>, <em>engager</em> ou encore <em>investir</em>.<br />
-						Dans le domaine du codage, on peut définir le commit comme "La déclaration d'une modification apportée au code". Faire un commit, c'est donc dire que l'on a modifié tout ou partie du code à l'ensemble de l'équipe.
 
-					</p>
-					<h3>Pourquoi faire un commit</h3>
-					<p>
-						La raison principale qui vous motivera à faire des commits, c'est de conserver une trace des modifications apportées dans le temps. Vous aurez donc un historique des modifications et la possibilité de revenir dans le temps.
-					</p>
-					<h3>Comment faire un commit</h3>
-					<p>
-						Pour faire un commit, vous devez préalablement installer un logiciel de versionnage comme git par exemple. Ensuite, je ne peux que vous conseiller de suivre le cours d'Openclassroom sur le sujet. Après quoi, vous comprendrez mieux ce qui suit.<br />
-						vous venez d'apporter une modification à un fichier, vous l'avez sauvegardé puis fermé. Vous voulez maintenant faire un commit de vos modifications. 2 possibilités :
-						<h4>Le commit version puriste</h4>
-						<blockquote>Dans votre console "git bash" entrez la commande <span>git status</span>. Vous constatez qu'un fichier a été modifié. Vous commitez ce changement en entrant la commande <span>git commit -am "Je décris les modifications apportées"</span>. Git a donc enregistré le fait que vous aviez modifié le fichier et y a associé le message que vous avez tapé.</blockquote>
-						<h4>Le commit en mode graphique</h4>
-						<blockquote>A partir de votre compte GitHub, ouvrez le fichier que vous souhaitez modifier dnas l'éditeur de git. En dessous, entrez la description de vos modification et cliquez sur le gros bouton vert commit.</blockquote>
-					</p>
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					  <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingOne">
+					      <h4 class="panel-title">
+					        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					          Qu'est ce qu'un commit ?
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					      <div class="panel-body">
+					        Le mot <em>commit</em> est un mot anglais. On peut le traduire en Français par <em>commettre</em>, <em>engager</em> ou encore <em>investir</em>.<br />
+					        Dans le domaine du codage, on peut définir le commit comme "La déclaration d'une modification apportée au code".<br> Faire un commit, c'est donc <strong>dire que l'on a modifié tout ou partie du code à l'ensemble de l'équipe.</strong>
+					      </div>
+					    </div>
+					  </div>
+					  <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingTwo">
+					      <h4 class="panel-title">
+					        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					          Pourquoi faire un commit ?
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					      <div class="panel-body">
+					        La raison principale qui vous motivera à faire des commits, c'est de conserver une trace des modifications apportées dans le temps. Vous aurez donc un historique des modifications et la possibilité de revenir dans le temps.
+					      </div>
+					    </div>
+					  </div>
+					  <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingThree">
+					      <h4 class="panel-title">
+					        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					          Comment faire un commit ?
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					      <div class="panel-body">
+					        Pour faire un commit, vous devez préalablement installer un logiciel de versionnage comme git par exemple. Ensuite, je ne peux que vous conseiller de suivre le cours d'Openclassroom sur le sujet. Après quoi, vous comprendrez mieux ce qui suit.<br />
+					        vous venez d'apporter une modification à un fichier, vous l'avez sauvegardé puis fermé. Vous voulez maintenant faire un commit de vos modifications. 2 possibilités :
+					        <h4>Le commit version puriste</h4>
+					        <blockquote>Dans votre console "git bash" entrez la commande <span>git status</span>. Vous constatez qu'un fichier a été modifié. Vous commitez ce changement en entrant la commande <span>git commit -am "Je décris les modifications apportées"</span>. Git a donc enregistré le fait que vous aviez modifié le fichier et y a associé le message que vous avez tapé.</blockquote>
+					        <h4>Le commit en mode graphique</h4>
+					        <blockquote>A partir de votre compte GitHub, ouvrez le fichier que vous souhaitez modifier dnas l'éditeur de git. En dessous, entrez la description de vos modification et cliquez sur le gros bouton vert commit.</blockquote>
+					      </div>
+					    </div>
+					  </div>
+
+					  <!-- <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingThree">
+					      <h4 class="panel-title">
+					        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+					          Comment faire un commit ?
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					      <div class="panel-body">
+					        Pour faire un commit, vous devez préalablement installer un logiciel de versionnage comme git par exemple. Ensuite, je ne peux que vous conseiller de suivre le cours d'Openclassroom sur le sujet. Après quoi, vous comprendrez mieux ce qui suit.<br />
+					        vous venez d'apporter une modification à un fichier, vous l'avez sauvegardé puis fermé. Vous voulez maintenant faire un commit de vos modifications. 2 possibilités :
+					        <h4>Le commit version puriste</h4>
+					        <blockquote>Dans votre console "git bash" entrez la commande <span>git status</span>. Vous constatez qu'un fichier a été modifié. Vous commitez ce changement en entrant la commande <span>git commit -am "Je décris les modifications apportées"</span>. Git a donc enregistré le fait que vous aviez modifié le fichier et y a associé le message que vous avez tapé.</blockquote>
+					        <h4>Le commit en mode graphique</h4>
+					        <blockquote>A partir de votre compte GitHub, ouvrez le fichier que vous souhaitez modifier dnas l'éditeur de git. En dessous, entrez la description de vos modification et cliquez sur le gros bouton vert commit.</blockquote>
+					      </div>
+					    </div>
+					  </div>
+ -->
+					</div>
+
+				</article>
 			</section>
 			<section class="jumbotron inline" id="gitlog">
 
