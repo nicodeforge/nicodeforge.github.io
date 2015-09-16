@@ -20,16 +20,17 @@
 /*
 	 a{text-decoration: none; color: blue;}
 	.panel-title a:hover{text-decoration: none; text-shadow: 1px 1px solid #333;}
-*/
 .navbar-default .navbar-nav>li>a,
 .navbar-default .navbar-brand{color: #337ab7;}
+*/
 .panel-title a{color: #337ab7;}
 .logo{max-width: 150px; margin-bottom: 35px;}
-section article h2,
+
 .thumbnail h4 {color : #F05033;}
 .padding-right{margin-right: 5px;}
 /*.thumbnail{background-color: #eeefff;}*/
 .label a{color: #eee;}
+#backtotop{margin-bottom: 3px;}
 
 	</style>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,26 +40,40 @@ section article h2,
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 	</head>
+	<!--RESTE A FAIRE-->
+	<!-- Ancre de la nav - Sup lien footer-->
 	<body id="pagetop">
 		<div class="container">
 		<header class="row">
 			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class ="container-fluid">
 				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        				<span class="sr-only">Toggle navigation</span>
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+      </button>
 					<a href="#pagetop" class="navbar-brand link">Apprendre github</a>
 				</div>
+				<div class="collapse navbar-collapse" id="navbar">
+
 				<ul class="nav navbar-nav">
 					<li><a href="#git" class="link">Git</a></li>
 					<li><a href="#commit" class="link">Le Commit</a></li>
 					<li><a href="#gitlog" class="link">Le Git Log</a></li>
 					<li><a href="#branch" class="link">La Branche</a></li>
 				</ul>
+				</div>
+				</div>
 			</nav>
 		</header>
 
-
+			<p id="git">&nbsp;</p>
 			<img src="https://git-scm.com/images/logos/downloads/Git-Logo-1788C.png" class="logo col-md-offset-1">
-			<section class="row" id="git" >
-				<article class="col-sm-6 col-md-6 col-md-offset-1 thumbnail">
+
+			<section class="row">
+				<article class="col-sm-10 col-md-10 col-md-offset-1 thumbnail">
 					
 						<blockquote>
 							<h4>Qu'est ce que Git ?</h4>
@@ -70,12 +85,7 @@ section article h2,
 								<span class="pull-right label label-info">Source : <a href="http://www.git-scm.com">git-scm.com</a></span>
 					
 				</article>
-			<div class="row text-center">
-				<div class="col-md-2">
-					<img src="https://git-scm.com/images/branching-illustration.png">
-				</div>
-			</div>	
-
+			
 				<article class="col-md-5 col-md-offset-1 thumbnail padding-right">
 					<h4>Pourquoi utiliser Git ?</h4>
 
@@ -176,8 +186,16 @@ label label-info"><a href="https://try.github.io/levels/1/challenges/1">#pratiqu
 			<!--<div class="row">
 				<a role="button" class="btn btn-lg btn-success" href="#commit"> En savoir un peu plus <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>   
 			</div>-->
-			<section class="row" id="commit" >
-				<article class="col-md-8 col-md-offset-2">
+			<p id="commit">&nbsp;</p>
+				<div class="col-md-10 col-md-offset-1">
+					<p>&nbsp;</p>
+					<img src="http://www.breizh-info.com/wp-content/uploads/2015/04/github-logo-text-horizontal.png" width="350px">
+					<p>&nbsp;</p>
+				</div>
+			<section class="row">
+
+			
+				<article class="col-md-10 col-md-offset-1">
 				<h2>Le commit avec github</h2>
 
 					<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -254,9 +272,9 @@ label label-info"><a href="https://try.github.io/levels/1/challenges/1">#pratiqu
 
 				</article>
 			</section>
-
-			<section class="row" id="gitlog">
-				<article class="col-md-8 col-md-offset-2">
+			<p id="gitlog">&nbsp;</p>
+			<section class="row">
+				<article class="col-md-10 col-md-offset-1">
 				<h2>La commande git log</h2>
 					<p>
 						Nous venons de voir dans la partie précédente que chaque commit s'ajoute à un historique de modification. En mode console, vous pouvez visualiser cet historique avec la commande git log.
@@ -265,16 +283,27 @@ label label-info"><a href="https://try.github.io/levels/1/challenges/1">#pratiqu
 				</article>
 			</section>
 			<section class="row" id="branch">
-				<article class="col-md-8 col-md-offset-2">
+				<article class="col-md-6 col-md-offset-1 inline">
 				<h2>Le concept de branche</h2>
 				<p>
 					Dans un projet de codage, il arrive que vous souhaitiez tester une idée, une fonctionnalité. Vous n'êtes pas sûr ni du résultat ni de l'impact potentiel sur le reste du code. Pour diminuer le risque, github vous permet de créer des branches de codes secondaires. Vous pourrez donc effectuer des commit sur une branche secondaire plutôt que sur la branche principale (la branche "master") et vous pouvez créer autant de branches que vous le souhaitez.<br /> Lorsque le code d'une branche secondaire a été testé et validé, vous pouvez fusionner cette branche avec la branche principale puis supprimer votre branche secondaire ou la conserver pour effectuer d'autres expérimentations.
 				</p>
 			</article>
+				<div class="inline col-md-3">
+					<p>&nbsp;</p>
+					<figure>
+						<img src="https://git-scm.com/images/branching-illustration.png" class="inline" width="300px">
+						<figcaption>Illustration du concept de branche</figcaption>
+					</figure>
+				</div>
 			</section>
 		<footer class="row text-center">
-			<a href="#pagetop">Retour en haut</a>
-			<a href="popup.html">Devs pro</a>
+			<p>&nbsp;</p>
+			<a href="#pagetop" class="btn btn-info" id="backtotop">
+				 Retour en haut 
+				<span class="badge"><span class="glyphicon glyphicon-arrow-up"></span></span>
+			</a>
+			<!--<a href="popup.html">Devs pro</a>-->
 		</footer>
 		</div>
 
@@ -295,6 +324,17 @@ label label-info"><a href="https://try.github.io/levels/1/challenges/1">#pratiqu
             window.location.hash = hash;
           });
         });
+
+        $('footer a').on('click', function(e) {
+          e.preventDefault();
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(this.hash).offset().top
+          }, 1000, function(){
+            window.location.hash = hash;
+          });
+        });
+
       });
     </script>
 	</body>
