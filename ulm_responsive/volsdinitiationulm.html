@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+   		<meta name="description" content="Site du club d'ULM FOLAIRVANNE">
+   		<title>Vols d'initiation de Folairvanne Etoile ULM</title>
+
+    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="gray.min.css">
+
+    	<link rel="stylesheet" type="text/css" href="main.css">
+		<style type="text/css">
+			body{padding-top: 70px;}
+			header{margin-bottom: 70px;}
+			.carousel-inner{z-index: 100;}
+			
+			footer{background: #ddd;}
+			
+		</style>
+	<body>
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+							<div class ="container-fluid">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+			        				<span class="sr-only">Toggle navigation</span>
+			        				<span class="icon-bar"></span>
+			        				<span class="icon-bar"></span>
+			        				<span class="icon-bar"></span>
+			      </button>
+								<a href="index.htm" class="navbar-brand link"><span class="glyphicon glyphicon-send"> </span> ULM Folairvanne Etoile</a>
+							</div>
+							<div class="collapse navbar-collapse" id="navbar">
+
+							<ul class="nav navbar-nav">
+								<li><a href="clubulmfolairvanneetoile.html" class="link">Le Club</a></li>
+								<li><a href="#content" class="link">Vols d'initiation</a></li>
+								<li><a href="http://nicodeforge.github.io/ulm_responsive/ecoleulm.html" class="link">L'Ecole</a></li>
+								<li><a href="http://nicodeforge.github.io/ulm_responsive/terrainetmeteo.html" class="link">Terrain &amp; Météo</a></li>
+								<li><a href="http://nicodeforge.github.io/ulm_responsive/forum.html" class="link">Forum</a></li>
+							</ul>
+								<ul class="nav navbar-nav navbar-right">
+									<li class="pull-right"><a href="#"><span class="glyphicon glyphicon-phone-alt"></span>  04.75.60.76.95</a></li>
+								</ul>
+							</div>
+							</div>
+			</nav>
+		<div class="container">
+		<h1>Venez découvrir et goûtez aux joies du vol libre :</h1>
+		<p id="content">&nbsp;</p>
+			<div class="row">
+			  <div class="col-sm-6 col-md-4">
+			    <div class="thumbnail">
+			      <img src="http://folairvanne.free.fr/IMAGES/APPAREIL/IMG_0015-MiNi.JPG" alt="Un ULM se prépare à décoller">
+			      <div class="caption">
+			        <h3>Baptême 20 minutes</h3>
+			        <p>Un vol d'initiation de 20 min qui vous fera découvrir les joies du vol libre !</p>
+			        <p><a href="#" class="btn btn-primary" role="button">En savoir plus</a></p>
+			      </div>
+			    </div>
+			  </div>
+			
+			  <div class="col-sm-6 col-md-4">
+			    <div class="thumbnail">
+			    
+			      <img src="http://folairvanne.free.fr/IMAGES/storch%20au%20sol%202.jpg" alt="Un ULM a attéri">
+			      <div class="caption">
+			        <h3>Baptême de 30 minutes</h3>
+			        <p>D'une durée intermédiaire, ce type de vol fera durer votre sentiment de liberté absolue un petit peu plus longtemps !</p>
+			        <p><a href="#" class="btn btn-primary" role="button">En savoir plus</a></p>
+			      </div>
+			    </div>
+			  </div>
+			
+
+			
+			  <div class="col-sm-6 col-md-4">
+			    <div class="thumbnail">
+			      <img src="http://folairvanne.free.fr/IMAGES/APPAREIL/IMG_0013-MiNi.JPG" alt="Avion léger 3 axes">
+			      <div class="caption">
+			        <h3>Baptême de 60 minutes</h3>
+			        <p>Le Graal. 1 heure entière de sensations uniques. Découvrez votre région comme vous ne l'avez jamais vu !</p>
+			        <p><a href="#" class="btn btn-primary" role="button">En savoir plus</a></p>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<p class="alert alert-info"> <span class="glyphicon glyphicon-ok-circle"></span> Les vols d'initiation vous sont proposés sur des ULM pendulaires ou multiaxes selon votre choix et vos envies</p>
+			
+		</div>
+		
+			
+		<div class="text-center">
+    	  	<p>&nbsp;</p>
+			<a href="#content" class="btn btn-primary" id="backtotop">
+				 Retour en haut 
+				<span class="badge"><span class="glyphicon glyphicon-arrow-up"></span></span>
+			</a>
+    	</div>
+		</footer>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Javascript de Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+    
+    <script type="text/javascript">
+    $(function(){
+    	$('.text-center a').on('click', function(e) {
+          e.preventDefault();
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(this.hash).offset().top
+          }, 1000, function(){
+            window.location.hash = hash;
+          });
+        });
+    });
+    </script>
+	</body>
+</html>
