@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+   		<meta name="description" content="Site du club d'ULM FOLAIRVANNE">
+   		<title>La météo &amp; le terrain</title>
+
+    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="gray.min.css">
+
+    	<link rel="stylesheet" type="text/css" href="main.css">
+		<style type="text/css">
+			body{padding-top: 70px;}
+			header{margin-bottom: 70px;}
+			.carousel-inner{z-index: 100;}
+			
+			footer{background: #ddd;}
+			
+		</style>
+	<body>
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+							<div class ="container-fluid">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+			        				<span class="sr-only">Toggle navigation</span>
+			        				<span class="icon-bar"></span>
+			        				<span class="icon-bar"></span>
+			        				<span class="icon-bar"></span>
+			      </button>
+								<a href="index.htm" class="navbar-brand link"><span class="glyphicon glyphicon-send"> </span> ULM Folairvanne Etoile</a>
+							</div>
+							<div class="collapse navbar-collapse" id="navbar">
+
+							<ul class="nav navbar-nav">
+								<li><a href="index.htm" class="link">Le Club</a></li>
+								<li><a href="volsdinitiationulm.html" class="link">Vols d'initiation</a></li>
+								<li><a href="ecoleulm.html" class="link">L'Ecole</a></li>
+								<li><a href="terrainetmeteo.html" class="link">Terrain &amp; Météo</a></li>
+								<li><a href="http://folairvanne.lebonforum.com/" class="link">Forum</a></li>
+							</ul>
+								<ul class="nav navbar-nav navbar-right">
+									<li class="pull-right"><a href="#"><span class="glyphicon glyphicon-phone-alt"></span>  04.75.60.76.95</a></li>
+								</ul>
+							</div>
+							</div>
+			</nav>
+		<p id="content">&nbsp;</p>
+		<div class="container">
+		<section class="row">
+			<article class="col-md-3 col-md-offset-4">
+			<div style="font-family: Arial;background-color: #fbfbfb;border: 1px solid #e7e7e7;width: 255px;height: 335px;-moz-box-shadow: 0 0 2px 1px #e7e7e7;-webkit-box-shadow: 0 0 2px 1px #e7e7e7;box-shadow: 0 0 2px 1px #e7e7e7;overflow: hidden; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;"><div style="width: 255px;height: 335px;"><div style="margin:7px 10px;"><div style="color: #222222;font-family: Arial;font-size: 12px;font-weight: bold;margin: 0px 0px 7px 0px;line-height: 14px;">Prévisions météorologiques<br/><span style="font-weight:normal;">Etoile-sur-Rhône</span></div><iframe id="widget-frame" src="http://www.meteovista.fr/Go/ExternalWidgetsNew/ThreeDaysCity?gid=4283448&sizeType=1&temperatureScale=Celsius&defaultSettings=False" width="235" height="216" frameborder="0" scrolling="no" style="border: none;" allowtransparency="true"></iframe><a href="http://www.meteovista.fr/Europe/France/Etoile-sur-Rhone/4283448" style="background: url(http://www.meteovista.fr/Shared/Images/list_icon_blue_trans.png) no-repeat scroll left 1px transparent;color: #0160b2;font-family: Arial;font-size: 12px;font-weight: normal;padding-left: 14px;margin: 7px 0px 5px 0px;line-height: 12px;outline: none;text-decoration: none;display: inline-block;" target="_blank">Météo à Etoile-sur-Rhône</a><a href="http://www.meteovista.fr/" style="display: block;height: 25px;width: 113px;margin: 0px 10px 8px 0px;outline: none;text-decoration: none;" title="Meteovista.fr la météo autrement" target="_blank"><img src="http://www.meteovista.fr/Shared/Images/variations/fr-FR/new-widget-logo-FR-color.png" width="113" height="25" alt="Meteovista.fr la météo autrement" style="border: none;background-color: transparent;box-shadow: none;" /></a></div></div></div>
+			</article>
+		</section>
+		</div>
+		
+			
+		<div class="text-center">
+    	  	<p>&nbsp;</p>
+			<a href="#content" class="btn btn-primary" id="backtotop">
+				 Retour en haut 
+				<span class="badge"><span class="glyphicon glyphicon-arrow-up"></span></span>
+			</a>
+    	</div>
+		</footer>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Javascript de Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+    
+    <script type="text/javascript">
+    $(function(){
+    	$('.text-center a').on('click', function(e) {
+          e.preventDefault();
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(this.hash).offset().top
+          }, 1000, function(){
+            window.location.hash = hash;
+          });
+        });
+    });
+    </script>
+	</body>
+</html>
