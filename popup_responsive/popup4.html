@@ -12,7 +12,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
-
+    <style type="text/css">
+        .modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+    opacity: 0.5;}
+    #myModal{display: block;}
+    </style>
   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +34,7 @@
 
 </head>
 <body>
-<div id="myModal" class="modal fade">
+<div id="myModal" class="modal" style="opacity : 0;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -40,16 +51,68 @@
         </div>
     </div>
 </div>
+<!--For testing purpose-->
+<div class="conatainer">
+    <button class="btn btn default">Test</button>
+</div>
+<!--End of testing-->
+<div class="modal-backdrop" style="opacity : 0;"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-         $("#myModal").modal('hide');
+         
         setTimeout(
         function() 
         {
-            $("#myModal").modal('show');
-        }, 3000);
+            $(".modal-backdrop").css({
+                "opacity":"0.5",
+                "transition":"opacity 2s"
+
+            });
+            $("#myModal").css({
+                "opacity":"1",
+                "transition":"opacity 2s"
+                           });
+
+
+        }, 1000);
+        
+
+        $(".close").click(function(){
+            $("#myModal").css({
+                "opacity":"0",
+                "transition":"opacity 2s"
+            });
+
+            $(".modal-backdrop").css({
+                "opacity":"0",
+                "transition":"opacity 2s"
+            });
+
+            setTimeout(
+        function()
+        {
+            $('#myModal').css({
+                "display":"none"
+            });
+            $('.modal-backdrop').css({
+                "display":"none"
+            });
+        }, 1000);
+        });
+
+        $(".modal-backdrop").click(function(){
+            $("#myModal").css({
+                "opacity":"0",
+                "transition":"opacity 1s"
+            });
+
+            $(".modal-backdrop").css({
+                "opacity":"0",
+                "transition":"opacity 1s"
+            });
+        });
     });
 </script>
 </body>
