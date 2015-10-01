@@ -38,12 +38,14 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<!-- Javascript de Bootstrap -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  
+
   <script>
         (function(w,d,s,g,js,fs){
           g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
           js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
-          js.src='https://apis.google.com/js/platform.js?output=embed';
+          js.src='https://apis.google.com/js/platform.js';
+          var url = data.url + "&output=embed";
+          window.location.replace(url);
           fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
         }(window,document,'script'));
    </script>
@@ -58,7 +60,7 @@
       */
      gapi.analytics.auth.authorize({
        container: 'embed-api-auth-container',
-       clientid: '16452625'
+       clientid: 'UA-16452625-1'
      });
 
 
