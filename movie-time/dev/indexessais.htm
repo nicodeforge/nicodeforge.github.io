@@ -1,0 +1,134 @@
+<?
+session_start();
+// On affiche une phrase résumant les infos sur l'utilisateur courant
+$droitdoda=$_SESSION['DROIT'];
+$LOGIN    =$_SESSION['LOGIN'];
+$couleur=0;
+$coul_ligne1 ="#CCCCBB";
+$coul_ligne2 ="#CCCCCC";  
+$couleur="#FFFFCC";
+if ($droitdoda <= 0) 
+{
+echo '<b>DENIED!</b>';
+exit;
+}
+?>
+
+
+<html><!-- #BeginTemplate "/Templates/modelepage.dwt" --><!-- DW6 -->
+<head>
+<title>restauration moto terrot bsa yamaha motobecane</title>
+<meta name="Description" content="restauration 125 terrot 350 terrot 250 bsa<">
+<meta name="Keywords" content="motorcycle restauration, terrot, 350 hlg, 125 terrot , 350 terrot, hlg, yas1, yas2, 125 yamaha, bsa, 250cc bsa, moto, bsa C11, C11, restauration, réservoir, moteur, boîte de vitesses, motorcycle,250, 250 cc, 350, 125, TERROT, BSA 250 C11">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<style type="text/css"> 
+<!--
+
+.menumoto {	border-top: 1px none #333333;
+	border-right: thin none #333333;
+	border-bottom: 1px none #333333;
+	border-left: 1pt none #333333;
+	font-size: 9pt;
+	font-style: normal;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+.thumbnail_border {
+border: thin solid #514c39;
+}
+.photo_boder {
+border-top-color: #333333;
+	border-right-color: #333333;
+	border-bottom-color: #333333;
+	border-left-color: #333333;
+}
+.thumbnail_caption {
+font-family: Arial, Helvetica, sans-serif; font-size: 9pt; color: #FFFFFF;
+}
+
+
+-->
+</style>
+
+
+<body bgcolor="514c39" text="#000000" bordercolor="dccdac">
+<div align="center">
+  <table width="960" border="0" bordercolor="dccdac" cellspacing="0">
+    <tr bgcolor="dccdac" bordercolor="dccdac"> 
+      <td colspan="3"><a href="album.htm"><img src="img/bandeau-haut.jpg" width="950" height="150" border="0"></a></td>
+    </tr>
+    <tr bgcolor="514c39" bordercolor="514c39"> 
+      <td width="151" height="18" bordercolor="514c39">
+        <div align="center"><a href="index.php"><font face="Arial, Helvetica, sans-serif" size="2" color="dccdac"><b>Retour 
+          accueil</b></font></a></div>
+      </td>
+      <td colspan="2" height="18" bgcolor="514c39"> 
+        <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF">Des 
+          histoires de pistons, de t&ocirc;les et de boulons qui finissent bien 
+          ! <img src="img/btnmail.gif" width="200" height="19" align="absmiddle"></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="dccdac" bordercolor="dccdac"> 
+      <td width="151" height="668"> 
+        
+      </td>
+      <td width="642" height="668">
+        <table width="100%" border="0" cellspacing="0">
+          <tr>
+            <td><!-- #BeginEditable "zone_centrale" --> 
+<title>Motos et passions !</title>
+ <bgsound src="images/vroum.wav" loop=1> 
+                  <p align="left">&nbsp;</p>
+                  <p align="center"> <font face="Comic Sans MS" color="#0000FF"><i><font face="Comic Sans MS" color="#0000FF"><i><font size="+3">Essais 
+                    Motos</font></i></font></i></font></p>
+                  <blockquote> 
+                    <div align="left"> 
+                      <p><font face="Comic Sans MS">Vous trouverez ici une liste 
+                        d'essai issus de diverses revues collectionn&eacute;es 
+                        au fil des ann&eacute;es.</font><font face="Comic Sans MS">Une 
+                        grande partie des essais concernent des motos de 1975 
+                        &agrave; 1985, mais il y en &agrave; aussi d'apr&eacute;s 
+                        2000.</font></p>
+                      
+                      <p><font face="Comic Sans MS">Pour trouver un essai, faite 
+                        une recherche par marque, par cylindr&eacute;e ou par 
+                        type.</font></p>
+                      <p align="center"><a href="essais_form.htm">Ajouter</a></p>
+                      <form method="post" name="form1" action="essaiselect.php" >
+                        <p align="center"><font face="Comic Sans MS">Marque 
+                          <input type="text" name="marque">
+                          Cylindr&eacute;e 
+                          <input type="text" name="cylindree">
+                          </font></p>
+                        <p align="center"><font face="Comic Sans MS">Mod&eacute;le 
+                          <input type="text" name="modele">
+                          </font></p>
+                        <p align="center"> 
+                          <input type="submit" name="Submit" value="Envoyer">
+                          <input type="reset" name="Submit2" value="Raz">
+                        </p>
+                      </form>
+                      <p>&nbsp;</p>
+                    </div>
+                  </blockquote>
+                  <!-- #EndEditable --></td>
+          </tr>
+        </table>
+      </td>
+      <td width="153" height="668">&nbsp; </td>
+    </tr>
+    
+  
+      <tr bgcolor="dccdac" bordercolor="dccdac"> 
+      <td colspan="3" height="17"><img src="img/damierbas.jpg" width="960" height="20"></td>
+    </tr>
+	</table>
+</div>
+</body>
+<!-- #EndTemplate --></html>

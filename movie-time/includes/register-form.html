@@ -1,0 +1,86 @@
+<div class="row">
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Pour créer un compte, dites-nous en un peu plus sur vous :)</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+
+                    <div class="row">
+                      <form class="form" id="register" action="functions/register-service.php" method="POST">
+                        <div class="form-group m-10">
+
+                          <div class="input-group">
+                              <span class="input-group-btn" id="basic-addon1">
+                                <button class="btn btn-default" type="button">
+                                  <span class="glyphicon glyphicon-star"></span>
+                                </button>
+                              </span>
+                              <input type="text" class="form-control" id="name" name="name" placeholder="Votre prénom" aria-describedby="name"><br />
+                          </div><!--Fin de INPUT GROUP-->
+
+                          <div class="input-group m-10">
+                              <span class="input-group-btn" id="basic-addon1">
+                                <button class="btn btn-default" type="button">
+                                  <span class="glyphicon glyphicon-user"></span>
+                                </button>
+                              </span>
+                              <input type="text" class="form-control" id="surname" name="surname" placeholder="Votre nom" aria-describedby="surname"><br />
+                          </div><!--Fin de INPUT GROUP-->
+
+                          <div class="input-group m-10"> 
+                              <span class="input-group-btn" id="basic-addon1">
+                                <button class="btn btn-default" type="button">
+                                  <span class="glyphicon glyphicon-envelope"></span>
+                                </button>
+                              </span> 
+                              <input type="text" class="form-control" id="email" name="email" placeholder="Votre email"><br />
+                          </div>
+
+                          <div class="input-group m-10"> 
+                              <span class="input-group-btn" id="basic-addon1">
+                                <button class="btn btn-default" type="button">
+                                  <span class="glyphicon glyphicon-lock"></span>
+                                </button>
+                              </span> 
+                              <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe"><br />
+                          </div>
+
+
+                          <div class="input-group m-10"> 
+                              <span class="input-group-btn" id="basic-addon1">
+                                <button class="btn btn-default" type="button">
+                                  <span class="glyphicon glyphicon-map-marker"></span>
+                                </button>
+                              </span> 
+                              <input type="text" class="form-control" id="localisation" name="localisation" placeholder="Où habitez-vous ?"><br />
+                          </div>
+
+                          <div class="input-group m-10"> 
+                              <span class="input-group-btn" id="basic-addon1">
+                                <button class="btn btn-default" type="button">
+                                  <span class="glyphicon glyphicon-cutlery"></span>
+                                </button>
+                              </span> 
+                              <input type="text" class="form-control" id="pasta" name="pasta" placeholder="Quel est votre plat préféré ?"><br />
+                          </div>
+
+                          
+                            <button class="btn btn-danger
+                             m-10" type="submit"><strong> Créer mon compte</strong></button>
+                          
+                        </div>
+                      </form>  
+                </div>
+              </div>
+            </div>
+            
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
+    </div>

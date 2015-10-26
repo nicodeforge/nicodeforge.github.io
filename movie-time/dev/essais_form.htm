@@ -1,0 +1,227 @@
+<?
+session_start();
+// On affiche une phrase résumant les infos sur l'utilisateur courant
+$droitdoda=$_SESSION['DROIT'];
+$LOGIN    =$_SESSION['LOGIN'];
+$couleur=0;
+$coul_ligne1 ="#CCCCBB";
+$coul_ligne2 ="#CCCCCC";  
+$couleur="#FFFFCC";
+if ($droitdoda <= 0) 
+{
+echo "<b>DENIED!</b>";
+exit;
+}
+?>
+
+
+<html><!-- #BeginTemplate "/Templates/modelepage.dwt" --><!-- DW6 -->
+<head>
+<title>restauration moto terrot bsa yamaha motobecane</title>
+<meta name="Description" content="restauration 125 terrot 350 terrot 250 bsa<">
+<meta name="Keywords" content="motorcycle restauration, terrot, 350 hlg, 125 terrot , 350 terrot, hlg, yas1, yas2, 125 yamaha, bsa, 250cc bsa, moto, bsa C11, C11, restauration, réservoir, moteur, boîte de vitesses, motorcycle,250, 250 cc, 350, 125, TERROT, BSA 250 C11">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+
+
+<link href="stk_formulaire.css" rel="stylesheet" type="text/css" />
+		<title>Gestion Rebuts XD</title>
+		<script type='text/javascript'>
+ 
+			function getXhr(){
+                var xhr = null; 
+				if(window.XMLHttpRequest) // Firefox et autres
+				   xhr = new XMLHttpRequest(); 
+				else if(window.ActiveXObject){ // Internet Explorer 
+				   try {
+			                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			            } catch (e) {
+			                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			            }
+				}
+				else { // XMLHttpRequest non supporté par le navigateur 
+				   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
+				   xhr = false; 
+				} 
+                                return xhr;
+			}
+ 
+			/**
+			* Méthode qui sera appelée sur le click du bouton
+			*/
+			function go(){
+			   
+				var xhr = getXhr();
+				// On défini ce qu'on va faire quand on aura la réponse
+				xhr.onreadystatechange = function(){
+					// On ne fait quelque chose que si on a tout reçu et que le serveur est ok
+					if(xhr.readyState == 4 && xhr.status == 200){
+						leselect = xhr.responseText;
+						// On se sert de innerHTML pour rajouter les options a la liste
+						document.getElementById('resultat').innerHTML = leselect;
+						document.getElementById('marque').focus(); 
+						
+					}
+				}
+ 
+				// Ici on va voir comment faire du post
+				xhr.open("POST","do_insertessai.php",true);
+				// ne pas oublier ça pour le post
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				// ne pas oublier de poster les arguments
+				// ici, cbarre et quantite
+				sel1 = document.getElementById('marque');
+				marque = sel1.value;
+				
+				 sel2 = document.getElementById('modele');
+				modele= sel2.value;
+				
+				 sel3 = document.getElementById('cylindree');
+				cylindree= sel3.value;
+				
+				sel4 = document.getElementById('doc');
+				doc= sel4.value;
+				
+				sel5 = document.getElementById('annee');
+				annee= sel5.value;
+				
+				sel6 = document.getElementById('classement');
+				classement= sel6.value;
+				
+				// xhr.send("quantite="+quantite);
+				xhr.send("marque="+marque+"&modele="+modele+"&cylindree="+cylindree+"&doc="+doc+"&annee="+annee+"&classement="+classement);	
+				
+				
+				
+			}
+		</script>
+
+</head>
+<style type="text/css"> 
+<!--
+
+.menumoto {	border-top: 1px none #333333;
+	border-right: thin none #333333;
+	border-bottom: 1px none #333333;
+	border-left: 1pt none #333333;
+	font-size: 9pt;
+	font-style: normal;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+.thumbnail_border {
+border: thin solid #514c39;
+}
+.photo_boder {
+border-top-color: #333333;
+	border-right-color: #333333;
+	border-bottom-color: #333333;
+	border-left-color: #333333;
+}
+.thumbnail_caption {
+font-family: Arial, Helvetica, sans-serif; font-size: 9pt; color: #FFFFFF;
+}
+
+
+-->
+</style>
+
+
+<body bgcolor="514c39" text="#000000" bordercolor="dccdac">
+<div align="center">
+  <table width="960" border="0" bordercolor="dccdac" cellspacing="0">
+    <tr bgcolor="dccdac" bordercolor="dccdac"> 
+      <td colspan="3"><a href="album.htm"><img src="img/bandeau-haut.jpg" width="950" height="150" border="0"></a></td>
+    </tr>
+    <tr bgcolor="514c39" bordercolor="514c39"> 
+      <td width="151" height="18" bordercolor="514c39">
+        <div align="center"><a href="index.php"><font face="Arial, Helvetica, sans-serif" size="2" color="dccdac"><b>Retour 
+          accueil</b></font></a></div>
+      </td>
+      <td colspan="2" height="18" bgcolor="514c39"> 
+        <div align="center"><font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF">Des 
+          histoires de pistons, de t&ocirc;les et de boulons qui finissent bien 
+          ! <img src="img/btnmail.gif" width="200" height="19" align="absmiddle"></font></div>
+      </td>
+    </tr>
+    <tr bgcolor="dccdac" bordercolor="dccdac"> 
+      <td width="151" height="668"> 
+        
+      </td>
+      <td width="642" height="668">
+        <table width="100%" border="0" cellspacing="0">
+          <tr>
+            <td><!-- #BeginEditable "zone_centrale" --> 
+<title>Motos et passions !</title>
+ <bgsound src="images/vroum.wav" loop=1> 
+                  <p align="left">&nbsp;</p>
+                  <p align="center"> <font face="Comic Sans MS" color="#0000FF"><i><font face="Comic Sans MS" color="#0000FF"><i><font size="+3">Essais 
+                    Motos</font></i></font></i></font></p>
+                  <blockquote> 
+                    <div align="left"> 
+                      <form  id="formulaire_pp">
+						<div id="titreForm">Nouvel essai</div>
+							<div id="corpForm">
+							<fieldset id="entete_form ">
+							<legend>Ajoute un essai</legend>
+							<br />
+							<p>
+							<label for="marque"" title="Marque" class="oblig">Marque :</label>
+							<input type="text" name="marque" id="marque"  value=""  tabindex="1" />
+							</p>
+							<p>
+							<label for="modele" title="modele" class="oblig">Modele:</label>
+							<input type="text" name="modele" id="modele" value="0"  tabindex="3" />
+							</p>
+							<p>
+							<label for="cylindree" title="Cylindree" class="oblig">Cylindree:</label>
+							<input type="text" name="cylindree" id="cylindree" value="0"  tabindex="3" />
+							</p>
+				             <p>
+							<label for="doc" title="doc" class="oblig">Doc:</label>
+							<input type="text" name="doc" id="doc" value="0"  tabindex="4" />
+							</p>
+							 <p>
+							<label for="classement" title="classement" class="oblig">Classement:</label>
+							<input type="text" name="classement" id="classement" value="0"  tabindex="5" />
+							</p>
+							<p>
+							<label for="annee" title="annee" class="oblig">annee:</label>
+							<input type="text" name="annee" id="annee" value="0"  tabindex="6" />
+							</p>
+							</fieldset>
+			
+						</div>
+						<div id="piedForm">
+						<input   type='button' id="btnvalid" value='VALIDER!' onclick='go()' tabindex="7" />
+						</div>
+					</form>
+	
+					<div id="z_resultat">
+		
+					<!-- Nous allons afficher un retour en jQuery au visiteur -->
+					<TEXTAREA id="resultat"  COLS=42 ROWS=6></TEXTAREA>
+					</div>
+                </div>
+             </blockquote>
+                  <!-- #EndEditable --></td>
+          </tr>
+        </table>
+      </td>
+      <td width="153" height="668">&nbsp; </td>
+    </tr>
+    
+  
+      <tr bgcolor="dccdac" bordercolor="dccdac"> 
+      <td colspan="3" height="17"><img src="img/damierbas.jpg" width="960" height="20"></td>
+    </tr>
+	</table>
+</div>
+</body>
+<!-- #EndTemplate --></html>
