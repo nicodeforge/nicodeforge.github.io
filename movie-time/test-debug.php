@@ -1,9 +1,15 @@
 <?php 
-        
-$a = sha1("john@doo.foo");
-
-$b = "d659c10e27d52b00987b65e85d99bce5480adcae";
-echo $a;
-
-        
+session_start();
+include('functions/get-session.php');
+echo "Ca marche docteur ?";
+if (isset($_SESSION['prenom'])) {
+	# code...
+echo $_SESSION['prenom'];
+echo "<br>";
+echo $_SESSION['nom'];   
+}else{
+	echo "<br> NON! FUCK THAT.";
+	echo '<br>Mais je sais que tu te prenome '.$prenom .'';
+	echo '<a href="functions/close-session.php">TRY AGAIN!</a>';
+}
 ?>

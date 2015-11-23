@@ -1,8 +1,8 @@
 
 <?php
 echo '<div id="test-list" class="col-sm-10 col-xs-12 col-md-8">
-       <input type="text"class="fuzzy-search text-info form-control form-control-lg" placeholder="Trouver un film" />
-        <ul class="list list-group container">';
+       <input type="text"class="fuzzy-search text-info form-control form-control-lg" placeholder="Trouver un film" id="test-input" />
+        <ul class="list list-group container" id="film-list">';
 include('db.inc.php');
 $query_produit = $bdd -> query("SELECT * FROM produit ORDER BY `titre`");
 if ($query_produit -> num_rows >0) {

@@ -1,4 +1,5 @@
 <?php
+session_start();
 	//Traitement des variable email et pass
 	$email = htmlspecialchars($_POST['email']);
 	$pwd = htmlspecialchars($_POST['pwd']);
@@ -25,12 +26,12 @@
 	    exit;
 	  }
 	  else {
-	    session_start();
-	    include('functions/get-user.php');
-	    include('functions/get-session.php');
+	    
+	    
+	    include('get-user.php');
 
 
-	    header("Location : ../espaceprive.php");
+	    header("Location : ../test-debug.php");
 	    // ici vous pouvez afficher un lien pour renvoyer
 	    // vers la page d'accueil de votre espace membres 
 	  }    

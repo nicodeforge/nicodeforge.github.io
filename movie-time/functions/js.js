@@ -52,5 +52,17 @@ $(".name").click(function(){
 
 });
 
+$('#test-input').keydown(function(){
+  if ( $( "ul" ).has( "li" ) ) {
+    console.log('Cest bon, ya des films');
+  }
+  else
+  {
+    $('#film-list').append('<li><a href="#">Ce film nexiste pas encore, mais vous pouvez lajouter !</a></li>');
+  };
+});
+
+
+
 //NO CODE SHOULD GO BELLOW
 });
