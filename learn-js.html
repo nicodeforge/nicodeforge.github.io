@@ -24,13 +24,146 @@
 
 	<!-- ################### My pretty JS Code Starts ################### -->
 	<script type="text/javascript">
-		document.ready(function(
-			var a = 5;
-			var b = 8;
-			var c = a+b;
 
-			alert(c);
-		));
+		/*(function(){
+			var myArray = ['Jon','doo','Bar','Foo'],
+				valueToAdd = prompt("Quelle valeur souhaitez-vous ajouter ? ");
+				position = parseInt(prompt("Quelle valeur souhaitez-vous connaitre ?"));
+
+			myArray.push(valueToAdd);
+			if (typeof(myArray[position]) === String) {
+				alert("La position "+position+" est occupée par la valeur "+myArray[position]+". Pour connaitre toutes les valeurs du tableau, réferrez-vous à la console.");	
+				console.log(myArray);
+			}	
+
+			else{
+				alert("La position "+position+" n'est pas occupée. Pour connaitre toutes les valeurs du tableau, réferrez-vous à la console.");	
+			}
+			
+			console.log(myArray);
+
+		}());*/
+
+		/*(function(){
+
+			var family = {
+				father : "Xavier",
+				mother : "Françoise",
+				brother : "Benjamin"
+			},
+				input = prompt("De quel membre de la famille souhaitez-vous connaitre le prenom ?"), String;
+
+			console.log(family[input]);
+
+		}());*/
+
+		/*############## TP ##############
+
+		L'utilisateur est invité à entrer un nombre entre 0 et 999.
+		Ce nombre doit être envoyé à une fonction qui se charge de le convertir en toutes lettres.
+		Cette même fonction doit contenir un système permettant de séparer les centaines, les dizaines et les unités. Ainsi, la fonction doit être capable de voir que dans le nombre 365 il y a trois centaines, six dizaines et cinq unités. Pour obtenir ce résultat, pensez bien à utiliser le modulo. Exemple : 365 % 10 = 5.
+		Une fois le nombre découpé en trois chiffres, il ne reste plus qu'à convertir ces derniers en toutes lettres.
+		Lorsque la fonction a fini de s'exécuter, elle renvoie le nombre en toutes lettres.
+		Une fois le résultat de la fonction obtenu, il est affiché à l'utilisateur.
+		Lorsque l'affichage du nombre en toutes lettres est terminé, on redemande un nouveau nombre à l'utilisateur.*/
+
+		(function(){
+
+			//Invite l'utilisateur à indiquer un nombre
+			var userInput = prompt("Veuillez indiquer en chiffres, un nombre entre 0 et 999."),
+			//Conversion de string vers integer pour valider l'Input
+				correctedInput = parseInt(userInput,10);
+			//Vérifie que la variable input est bien un nombre
+
+			if (!isNaN(correctedInput)) {
+				//Si l'input est bien un nombre, on convertit en toutes lettre
+
+				function numberToString (){
+					var stringInput = correctedInput.toString(),
+						length = stringInput.length,
+						associativeTable = {
+						1 : "un",
+						2 : "deux",
+						3 : "trois",
+						4 : "quatre",
+						5 : "cinq",
+						6 : "six",
+						7 : "sept",
+						8 : "huit",
+						9 : "neuf",
+						10 : "dix",
+						11 : "onze",
+						12 : "douze",
+						13 : "treize",
+						14 : "quatorze",
+						15 : "quinze",
+						16 : "seize",
+						20 : "vingt",
+						30 : "trente",
+						40 : "quarante",
+						50 : "cinquante",
+						60 : "soixante",
+
+						},
+						stringInput = stringInput.split('');
+
+
+					for (var i = 0; i < stringInput.length; i++) {
+						console.log(stringInput[i]);
+
+
+					}
+
+					var centaines = stringInput[0],
+						dixaines = stringInput[1],
+						unités = stringInput[2];
+
+					console.log(associativeTable[unités]);
+					console.log(associativeTable[dixaines]);
+					console.log(associativeTable[centaines]);
+					if (correctedInput < 16) {
+							alert(associativeTable[centaines],String);
+						}
+
+					if (stringInput.length > 2) {
+						// cas des centaines
+						console.log("centaine");
+						
+					} 
+					else if (stringInput.length >1) {
+							//cas des dixaines
+							console.log("dixaine");
+						}
+					else{
+						//cas des unités
+						console.log("unité");
+						
+					}
+
+					
+
+				}
+
+			 numberToString();
+
+
+			}
+
+			else{
+				alert("En CHIFFRES on a dit ! Maintenez ctrl+r pour recommencer.");
+			}
+
+
+		}());
+
+
+		
+		// Code externe
+		
+
+
+		// Code externe
+		
 	</script>
 		
 
