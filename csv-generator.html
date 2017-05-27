@@ -108,7 +108,7 @@
     </form>
     
     <div class="generated text-center">
-      <p><strong id="csvMessage">Une fois tous les champs renseignés, votre CSV apparaitra dans le cadre juste en dessous ;)</strong></p>
+      <p><strong id="csvMessage">Une fois tous les champs renseignés, ton CSV apparaitra dans le cadre juste en dessous ;)</strong></p>
       <div class="well well-success" id="generated-csv"></div>
     </div>
     
@@ -158,7 +158,7 @@
 
 
         if (typeExpedition == "reexpe") {
-          var billId = parseInt(prompt("Veuillez indiquer le numéro de Bill Item de la marchandise à réexpédier")); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
+          var billId = parseInt(prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier")); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
         }else{
               billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
         }   
@@ -170,8 +170,8 @@
           
         }else{
               sep = "|",
-              user_id = parseInt(prompt("Veuillez indiquer le numéro d'utilisateur du client concerné")),
-              code_relai = prompt("Veuillez indiquer le code relai de destiantion");
+              user_id = parseInt(prompt("Merci d'indiquer le numéro d'utilisateur du client concerné")),
+              code_relai = prompt("Merci d'indiquer le code relai de destiantion");
               csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
 
         }
