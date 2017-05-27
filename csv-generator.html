@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+   		<meta name="description" content="WIP">
+   		<title>CSV Generator</title>
+
+    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+<body>
+	<div class="container col-md-8">
+		<!--Main content goes here-->
+    <h1>Genère ton CSV proprement</h1>
+    <form name="general">
+      <div class="form-group">
+        <h2>Type d'expédition</h2>
+          <select class="form-control" name="transporteur">
+            <option value="colissimo">Colissimo</option>
+            <option value="relai">Relai</option>
+          </select>
+          
+
+          <select class="form-control" name="typeExpedition">
+            <option value="new">Nouvelle expédition</option>
+            <option value="reexpe">Réexpédition</option>
+          </select>
+          <div class="bill-input">
+            <label for="inputBill" class="control-label">Bill Id de l'expédition originale</label>
+            <div>
+              <input type="number" class="form-control" id="inputBill" name="inputBill" placeholder="Ex: 437428">
+            </div>
+          </div>
+
+      </div>
+      <div class="form-group">
+        <h2>Coordonnées du destinataire</h2>
+        
+        <label for="inputFirst" class="control-label">Prénom</label>
+          <div>
+            <input type="text" class="form-control" id="inputFirst" name="inputFirst" placeholder="Prénom">
+          </div>
+        
+        <label for="inputLast" class="control-label">Nom</label>
+          <div>
+            <input type="text" class="form-control" id="inputLast" placeholder="Nom">
+          </div>
+
+        <label for="inputAdress1" class="control-label">Adresse 1</label>
+          <div>
+            <input type="text" class="form-control" id="inputAdress1" placeholder="Adresse 1">
+          </div>
+
+        <label for="inputAdress2" class="control-label">Adresse 2</label>
+          <div>
+            <input type="text" class="form-control" id="inputAdress2" placeholder="Adresse 2">
+          </div>
+
+        <label for="inputCity" class="control-label">Ville</label>
+          <div>
+            <input type="text" class="form-control" id="inputCity" placeholder="Ville">
+          </div>
+
+        <label for="inputZipCode" class="control-label">Code Postal</label>
+          <div>
+            <input type="text" class="form-control" id="inputZipCode" placeholder="Code Postal">
+          </div>
+
+        <label for="inputEmail" class="control-label">Email</label>
+          <div>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+          </div>
+
+        <label for="inputTel" class="control-label">Téléphone</label>
+          <div>
+            <input type="number" class="form-control" id="inputTel" placeholder="Téléphone">
+          </div>
+
+      </div>
+
+      <div class="form-group">
+        <h2>Que souhaitez-vous expédier ?</h2>
+        <label for="inputMarchandise" class="control-label">Marchandise</label>
+          <div>
+            <input type="text" class="form-control" id="inputMarchandise" placeholder="Marchandise">
+          </div>
+
+        <label for="inputPoids" class="control-label">Poids (en grammes)</label>
+          <div>
+            <input type="number" class="form-control" id="inputPoids" placeholder="Poids (en grammes)">
+          </div>
+      </div>
+      <button class="btn btn-large btn-success" id="go" onClick="getFormElements();">Générer mon csv</button>
+      <p>&nbsp;</p>
+    </form>
+    
+    <div class="generated text-center well well-success">
+      <span id="generated-csv"></span>
+    </div>
+    
+    <p>&nbsp;</p>
+	</div>
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- Javascript de Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+        $(".bill-input").hide();
+
+    });
+
+      
+      function getFormElements(){
+        event.preventDefault();
+        var transporteur = document.forms["general"].elements["transporteur"].value,
+            typeExpedition = document.forms["general"].elements["typeExpedition"].value,
+            first = document.forms["general"].elements["inputFirst"].value.toUpperCase(),
+            last = document.forms["general"].elements["inputLast"].value.toUpperCase(),
+            adress1 = document.forms["general"].elements["inputAdress1"].value.toUpperCase(),
+            adress2 = document.forms["general"].elements["inputAdress2"].value.toUpperCase(),
+            city = document.forms["general"].elements["inputCity"].value.toUpperCase(),
+            zipCode = document.forms["general"].elements["inputZipCode"].value,
+            email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
+            tel = parseInt(document.forms["general"].elements["inputTel"].value),
+            marchandise = document.forms["general"].elements["inputMarchandise"].value.toUpperCase(),
+            poids = parseInt(document.forms["general"].elements["inputPoids"].value);
+
+        console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);
+        
+        if (typeExpedition == "reexpe") {
+          var billId = parseInt(prompt("Veuillez indiquer le numéro de Bill Item de la marchandise à réexpédier"));
+        }else{
+              billId = "000000";
+        }   
+
+        if (transporteur == "colissimo") {
+          var sep = ";",
+              csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
+
+          
+        }else{
+              sep = "|",
+              user_id = parseInt(prompt("Veuillez indiquer le numéro d'utilisateur du client concerné")),
+              code_relai = prompt("Veuillez indiquer le code relai de destiantion");
+              csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
+
+        }
+
+        document.getElementById('generated-csv').innerHTML = csv;
+        
+
+        
+
+
+        return false;
+         
+      }
+
+
+
+      /*
+      Relai : 253631|PM|1|1|8400|8400|7143|BOUVIER ANTHONY|195 ROUTE DE PITEGNY|||01170||CESSY|0647885626||pommquipik@hotmail.com|REL|G2202||||
+              billItem|PM|1|1|poids|poids|user_id|NOM PRENOM|Adresse 1 personne|Adresse 2 personne|Adress3|ZipCode|?|City|Tel||email|REL|Code Relai||||
+
+      Colissimo : 01;256180;;M.;BAUDOUIN;VILLEMAIN;54 RUE DE MONTREUIL;;78000;VERSAILLES;;villepied@hotmail.fr;0
+                  01;billItem;;M.;first;last;adress1;adress2;zip;city;tel;email;poids
+      */
+
+    
+  </script>
+</body>
+</html>
