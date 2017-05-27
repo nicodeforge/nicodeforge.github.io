@@ -37,17 +37,17 @@
             <option value="relai">Relai</option>
           </select>
           
-
           <select class="form-control m-5-top" name="typeExpedition">
             <option value="new">Nouvelle expédition</option>
             <option value="reexpe">Réexpédition</option>
           </select>
-          <div class="bill-input">
-            <label for="inputBill" class="control-label">Bill Id de l'expédition originale</label>
-            <div>
-              <input type="number" class="form-control" id="inputBill" name="inputBill" placeholder="Ex: 437428">
-            </div>
-          </div>
+
+          <select class="form-control m-5-top" name="fraisExpedition">
+            <option value="new">Frais d'expédition offerts</option>
+            <option value="reexpe">Frais d'expédition réglés par le client</option>
+          </select>
+          
+
 
       </div>
       <div class="form-group">
@@ -130,14 +130,13 @@
           $('[data-toggle="popover"]').popover()
         })
 
-        $(".bill-input").hide();
-
     });
 
       
       function getFormElements(){ 
         event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
         var transporteur = document.forms["general"].elements["transporteur"].value, //Récupère tous les champs du formulaire et les stocks dans des variables
+            fraisExpedition = document.forms["general"].elements["fraisExpedition"].value, 
             typeExpedition = document.forms["general"].elements["typeExpedition"].value,
             first = document.forms["general"].elements["inputFirst"].value.toUpperCase(),
             last = document.forms["general"].elements["inputLast"].value.toUpperCase(),
