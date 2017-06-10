@@ -59,10 +59,12 @@
           <div>
             <input type="text" class="form-control" id="inputBillId" name="inputBillId" placeholder="000000" required="true">
           </div>
-        <label for="inputUserId" class="control-label" required="true">User ID</label>
-          <div>
-            <input type="text" class="form-control" id="inputUserId" name="inputUserId" placeholder="000000" required="true">
-          </div>
+        <div id="user-id">
+          <label for="inputUserId" class="control-label" required="true">User ID</label>
+            <div>
+              <input type="text" class="form-control" id="inputUserId" name="inputUserId" placeholder="000000" required="true">
+            </div>
+        </div>
         <label for="inputFirst" class="control-label" id="prenom" required="true">Prénom</label>
           <div>
             <input type="text" class="form-control" id="inputFirst" name="inputFirst" placeholder="Une Petite" required="true">
@@ -108,9 +110,11 @@
             <input type="number" class="form-control" id="inputPoids" placeholder="4200">
           </div>
 
-          <label for="inputDestination" class="control-label">Code du relai de destination</label>
-          <div>
-            <input type="text" class="form-control" id="inputDestination" placeholder="O2195">
+          <div id="code-relai">
+            <label for="inputDestination" class="control-label">Code du relai de destination</label>
+            <div>
+              <input type="text" class="form-control" id="inputDestination" placeholder="O2195">
+            </div>
           </div>
 
       </div>
@@ -142,6 +146,8 @@
     });
       
 
+     
+
       function parseCSV(){
         event.preventDefault();
         var inputCSV = document.forms["specific"].elements["inputCSV"].value,
@@ -153,6 +159,9 @@
             delimiter = meta.delimiter;
 
         function setValuesColissimo(data){
+          $('#user-id').hide();
+          $('#code-relai').hide();
+          
           document.forms["general"].elements["inputTransporteur"].value = transporteur,
           document.forms["general"].elements["inputBillId"].value = data[1],
           document.forms["general"].elements["inputFirst"].value = data[4],
@@ -164,6 +173,14 @@
           document.forms["general"].elements["inputTel"].value = data[10],
           document.forms["general"].elements["inputEmail"].value = data[11],
           document.forms["general"].elements["inputPoids"].value = data[12];
+          if (!data[5]) {
+            $('#inputLast').css({
+              "border-color": "#a94442",
+              "color": "red",
+              "box-shadow":"3px 3px 5px 0px #fe0000"
+            }
+            );
+          }
         }
 
         function setValuesRelai(data){

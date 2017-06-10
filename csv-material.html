@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <title>WIP</title>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <!-- Content goes here-->
+        <div class="container">
+          <h1>Genère ton CSV proprement</h1>
+          <form name="general">
+            <div class="row">
+              <h2>Type d'expédition</h2>
+                <div class="input-field col s8">
+                  <select multiple name="transporteur">
+                    <option value="colissimo">Colissimo</option>
+                    <option value="relai">Relai</option>
+                    <label>Service de transport</label>
+                  </select>
+                </div>
+                <div class="input-field col s8">
+                  <select multiple="" name="typeExpedition">
+                    <option value="new">Nouvelle expédition</option>
+                    <option value="reexpe">Réexpédition</option>
+                    <label>test</label>
+                  </select>
+                </div>
+
+                <!--<select class="input-field m-5-top" name="fraisExpedition">
+                  <option value="new">Frais d'expédition offerts</option>
+                  <option value="reexpe">Frais d'expédition réglés par le client</option>
+                </select>-->
+
+                <div class="checkbox well text-info">
+                       <label>
+                         <input type="checkbox" name="fraisExpedition"> Cochez la case si les frais d'expédition ont été <strong>réglés par le client</strong>
+                       </label>
+                     </div>
+                
+
+
+            </div>
+            <div class="form-group">
+              <h2>Coordonnées du destinataire</h2>
+              
+              <label for="inputFirst" class="control-label" required="true">Prénom</label>
+                <div>
+                  <input type="text" class="input-field" id="inputFirst" name="inputFirst" placeholder="Une Petite" required="true">
+                </div>
+              
+              <label for="inputLast" class="control-label">Nom</label>
+                <div>
+                  <input type="text" class="input-field" id="inputLast" placeholder="Mousse">
+                </div>
+
+              <label for="inputAdress1" class="control-label">Adresse 1</label>
+                <div>
+                  <input type="text" class="input-field" id="inputAdress1" placeholder="32 Rue de Comboire">
+                </div>
+
+              <label for="inputAdress2" class="control-label">Adresse 2</label>
+                <div>
+                  <input type="text" class="input-field" id="inputAdress2" placeholder="Bâtiment H3 ">
+                </div>
+
+              <label for="inputCity" class="control-label">Ville</label>
+                <div>
+                  <input type="text" class="input-field" id="inputCity" placeholder="Echirolles">
+                </div>
+
+              <label for="inputZipCode" class="control-label">Code Postal</label>
+                <div>
+                  <input type="text" class="input-field" id="inputZipCode" placeholder="38130">
+                </div>
+
+              <label for="inputEmail" class="control-label">Email</label>
+                <div>
+                  <input type="email" class="input-field" id="inputEmail" placeholder="question@unepetitemousse.fr">
+                </div>
+
+              <label for="inputTel" class="control-label">Téléphone</label>
+                <div>
+                  <input type="number" class="input-field" id="inputTel" placeholder="0606060606 (indiques aussi ça si tu n'as pas son 06 ;) )">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+              <h2>Que souhaitez-vous expédier ?</h2>
+              <label for="inputMarchandise" class="control-label">Marchandise</label>
+                <div>
+                  <input type="text" class="input-field" id="inputMarchandise" placeholder="Exemple : box bienvenue mois 1, box mai, calendrier houblonnier,...">
+                </div>
+
+              <label for="inputPoids" class="control-label">Poids (en grammes)</label><span>&nbsp;</span><button type="button" class="btn btn-xs btn-info" data-toggle="popover" data-container="body" title="Poids des marchandises les plus fréquentes" data-content="Box mensuelle : 4200, Calendrier : 17000, 1 bière : 400">?</button>
+                <div>
+                  <input type="number" class="input-field" id="inputPoids" placeholder="4200">
+                </div>
+            </div>
+            <button class="btn btn-lg btn-success" id="go" onClick="getFormElements();">Générer mon csv</button>
+            <p>&nbsp;</p>
+          </form>
+          
+          <div class="generated text-center">
+            <p><strong id="csvMessage">Une fois tous les champs renseignés, ton CSV apparaitra dans le cadre juste en dessous ;)</strong></p>
+            <div class="well well-success" id="generated-csv"></div>
+          </div>
+          
+          <p>&nbsp;</p>
+        </div>
+      <!-- End of content-->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    </body>
+  </html>

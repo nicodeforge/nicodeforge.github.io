@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <meta charset="utf-8">
+      <meta lang="fr">
+      <title>WIP</title>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <style type="text/css">
+        .tagline{
+          position: absolute;
+          top : 10%;
+          width: 100%;
+        }
+      </style>
+    </head>
+
+    <body>
+      <!-- Content goes here-->
+      <div class="parallax-container">
+        <div class="parallax">
+          <img src="icat-header.jpg">   
+         </div>
+      </div>
+      <div class="tagline center-align s12">
+        <h1 class="center-align white-text">Téléphonez... à votre chat</h1>
+        <a class="waves-effect waves-light btn btn-large white red-text">Voir une démo</a>
+      </div>
+      
+      <div class="container">
+        <p>&nbsp;</p>
+        <div class="row">
+          <div class="col s4">
+            <i class="material-icons large">dialer_sip</i>
+            Feature 1
+          </div>
+          <div class="col s4">Feature 2</div>
+          <div class="col s4">Feature 3</div>
+        </div>
+      </div>
+
+      <!-- End of content-->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+      <!--Custom scripts -->
+      <script type="text/javascript">
+        //Initialize parallax
+        $(document).ready(function(){
+            var h = $(window).height();
+              $('.parallax').parallax();
+              $('.parallax-container').css(
+                "height",h
+                );
+        });
+      </script>
+    </body>
+  </html>

@@ -81,30 +81,8 @@
 				function numberToString (){
 					var stringInput = correctedInput.toString(),
 						length = stringInput.length,
-						associativeTable = {
-						1 : "un",
-						2 : "deux",
-						3 : "trois",
-						4 : "quatre",
-						5 : "cinq",
-						6 : "six",
-						7 : "sept",
-						8 : "huit",
-						9 : "neuf",
-						10 : "dix",
-						11 : "onze",
-						12 : "douze",
-						13 : "treize",
-						14 : "quatorze",
-						15 : "quinze",
-						16 : "seize",
-						20 : "vingt",
-						30 : "trente",
-						40 : "quarante",
-						50 : "cinquante",
-						60 : "soixante",
-
-						},
+						associativeTableUnits = ["","un","deux","trois","quatre","cinq","six","sept","huit","neuf"],
+						associativeTableTens = ["dix","onze","douze","treize","quatorze","qunize","seize","dix-sept","dix-huit","dix-neuf"],
 						stringInput = stringInput.split('');
 
 

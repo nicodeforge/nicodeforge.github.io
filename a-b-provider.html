@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <title>WIP</title>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style type="text/css">
+        .display-none{
+          display: none;
+        }
+      </style>
+      <script type="text/javascript">
+        function setVariant() {
+          // body...
+          var variant = Math.round((Math.random()*2));
+          console.log(variant);
+
+          if (variant === 1) {
+            var disapear = document.getElementById("v1");
+            disapear.className += " display-none";
+              
+          }
+
+          else if (variant === 2) {
+            var disapear = document.getElementById("v2");
+            disapear.className += " display-none";
+             
+              
+          } else {
+             var disapear = document.getElementById("v2");
+            disapear.className += " display-none";
+          }
+
+          function suiviAB(variant){
+            var suivi = "La version "+variant+" du code a été chargée"
+
+            /// write to file
+            var txtFile = "suivi-ab.txt",
+                file = new File([""],txtFile),
+                str = suivi;
+
+            file.open("w"); // open file with write access
+            file.writeln("First line of text");
+            file.writeln("Second line of text " + str);
+            file.write(str);
+            file.close();
+
+            /// read from file
+
+            var txtFile = "c:/test.txt"
+            var file = new File(txtFile);
+
+            file.open("r"); // open file with read access
+            var str = "";
+            while (!file.eof) {
+              // read each line of text
+              str += file.readln() + "\n";
+            }
+            file.close();
+            alert(str);
+          }
+
+          suiviAB(variant);
+
+          
+        }
+      </script>
+
+    </head>
+
+    <body onload="setVariant();">
+      <!-- Content goes here-->
+        <div class="container" id="v1">
+          <h1>I am Variant 1 of the code</h1>
+        </div>
+
+        <div class="container" id="v2">
+          <h1>I am Variant 2 of the code</h1>
+        </div>
+      <!-- End of content-->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+      <script type="text/javascript">
+
+      </script>
+
+    </body>
+  </html>
