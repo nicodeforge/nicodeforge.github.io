@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+   		<meta name="description" content="WIP">
+   		<title>CSV Validator</title>
+
+    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    	<!-- HTML5 Shim and Respond.js IE8 support ofHTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+    <style type="text/css">
+      label{
+        margin-top : 5px;
+      }
+
+      .m-5-top{
+        margin-top: 5px;
+      }
+    </style>
+<body>
+	<div class="container col-md-8 col-md-offset-2">
+		<!--Main content goes here-->
+    <h1>Vérifie ton CSV</h1>
+    <form name="specific">          
+        <div>
+          <input type="text" class="form-control" id="inputCSV" name="inputcSV" placeholder="Colle ton CSV ici" required="true">
+        </div>
+        <button class="btn btn-lg btn-success" onClick="parseCSV();">Vérifier mon csv</button>
+
+    </form>
+    <form name="general">
+      <div class="form-group">
+      
+        <h2>Type d'expédition</h2>
+          <select class="form-control" name="inputTransporteur">
+            <option value="unknown"></option>
+            <option value="colissimo">Colissimo</option>
+            <option value="relai">Relai</option>
+          </select>
+
+          <!--<select class="form-control m-5-top" name="fraisExpedition">
+            <option value="new">Frais d'expédition offerts</option>
+            <option value="reexpe">Frais d'expédition réglés par le client</option>
+          </select>-->
+
+      </div>
+      <div class="form-group">
+        <h2>Coordonnées du destinataire</h2>
+        
+        <label for="inputBillId" class="control-label" required="true">Bill ID</label>
+          <div>
+            <input type="text" class="form-control" id="inputBillId" name="inputBillId" placeholder="000000" required="true">
+          </div>
+        <label for="inputFirst" class="control-label" id="prenom" required="true">Prénom</label>
+          <div>
+            <input type="text" class="form-control" id="inputFirst" name="inputFirst" placeholder="Une Petite" required="true">
+          </div>
+        <div id="last">
+          <label for="inputLast" class="control-label">Nom</label>
+            <div>
+              <input type="text" class="form-control" id="inputLast" placeholder="Mousse">
+            </div>
+        </div>
+        <label for="inputAdress1" class="control-label">Adresse 1</label>
+          <div>
+            <input type="text" class="form-control" id="inputAdress1" placeholder="32 Rue de Comboire">
+          </div>
+
+        <label for="inputAdress2" class="control-label">Adresse 2</label>
+          <div>
+            <input type="text" class="form-control" id="inputAdress2" placeholder="Bâtiment H3 ">
+          </div>
+
+        <label for="inputCity" class="control-label">Ville</label>
+          <div>
+            <input type="text" class="form-control" id="inputCity" placeholder="Echirolles">
+          </div>
+
+        <label for="inputZipCode" class="control-label">Code Postal</label>
+          <div>
+            <input type="text" class="form-control" id="inputZipCode" placeholder="38130">
+          </div>
+
+        <label for="inputEmail" class="control-label">Email</label>
+          <div>
+            <input type="email" class="form-control" id="inputEmail" placeholder="question@unepetitemousse.fr">
+          </div>
+
+        <label for="inputTel" class="control-label">Téléphone</label>
+          <div>
+            <input type="number" class="form-control" id="inputTel" placeholder="0606060606 (indiques aussi ça si tu n'as pas son 06 ;) )">
+          </div>
+
+        <label for="inputPoids" class="control-label">Poids (en grammes)</label><span>&nbsp;</span><button type="button" class="btn btn-xs btn-info" data-toggle="popover" data-container="body" title="Poids des marchandises les plus fréquentes" data-content="Box mensuelle : 4200, Calendrier : 17000, 1 bière : 400">?</button>
+          <div>
+            <input type="number" class="form-control" id="inputPoids" placeholder="4200">
+          </div>
+      </div>
+      <button class="btn btn-lg btn-success" id="go" onClick="getFormElements();">Générer mon csv</button>
+      <p>&nbsp;</p>
+    </form>
+    
+    <div class="generated text-center">
+      <p><strong id="csvMessage">Une fois tous les champs renseignés, ton CSV apparaitra dans le cadre juste en dessous ;)</strong></p>
+      <div class="well well-success" id="generated-csv"></div>
+    </div>
+    
+    <p>&nbsp;</p>
+	</div>
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- Javascript de Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+  <!-- Papa Parse -->
+  <script enctype="text/javascript" src="https://rawgit.com/nicodeforge/PapaParse/master/papaparse.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        })
+
+    });
+      
+
+      function parseCSV(){
+        event.preventDefault();
+        var inputCSV = document.forms["specific"].elements["inputCSV"].value,
+        parsedCSV = Papa.parse(inputCSV);
+
+        var data = parsedCSV.data[0],
+            cName = data[4],
+            meta = parsedCSV.meta,
+            delimiter = meta.delimiter;
+
+        function setValuesColissimo(data){
+          document.forms["general"].elements["inputTransporteur"].value = transporteur,
+          document.forms["general"].elements["inputBillId"].value = data[1],
+          document.forms["general"].elements["inputFirst"].value = data[4],
+          document.forms["general"].elements["inputLast"].value = data[5],
+          document.forms["general"].elements["inputAdress1"].value = data[6],
+          document.forms["general"].elements["inputAdress2"].value = data[7],
+          document.forms["general"].elements["inputZipCode"].value = data[8],
+          document.forms["general"].elements["inputCity"].value = data[9],
+          document.forms["general"].elements["inputTel"].value = data[10],
+          document.forms["general"].elements["inputEmail"].value = data[11],
+          document.forms["general"].elements["inputPoids"].value = data[12];
+        }
+
+        function setValuesRelai(data){
+          document.getElementById("prenom").innerHTML = "Prénom & Nom";
+          $('#last').hide();
+          document.forms["general"].elements["inputTransporteur"].value = transporteur,
+          document.forms["general"].elements["inputBillId"].value = data[0],
+          document.forms["general"].elements["inputFirst"].value = data[7],
+          document.forms["general"].elements["inputAdress1"].value = data[8],
+          document.forms["general"].elements["inputAdress2"].value = data[9],
+          document.forms["general"].elements["inputZipCode"].value = data[11],
+          document.forms["general"].elements["inputCity"].value = data[13],
+          document.forms["general"].elements["inputTel"].value = data[14],
+          document.forms["general"].elements["inputEmail"].value = data[16],
+          document.forms["general"].elements["inputPoids"].value = data[6];
+
+
+        }
+
+
+        
+
+        if (delimiter === ";") {
+          var transporteur = "colissimo";
+          setValuesColissimo(data);
+        }
+        else if(delimiter === "|"){
+           var transporteur = "relai";
+           console.log(data);
+           setValuesRelai(data);
+        }
+        else{
+          var transporteur = "inconnu";
+        }
+
+        
+
+        console.log(cName);
+        return parsedCSV;
+
+      }
+
+
+
+      function getFormElements(){ 
+        event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
+        var transporteur = document.forms["general"].elements["inputTransporteur"].value, //Récupère tous les champs du formulaire et les stocks dans des variables 
+            billId = document.forms["general"].elements["inputBillId"].value, 
+            first = document.forms["general"].elements["inputFirst"].value.toUpperCase(),
+            last = document.forms["general"].elements["inputLast"].value.toUpperCase(),
+            adress1 = document.forms["general"].elements["inputAdress1"].value.toUpperCase(),
+            adress2 = document.forms["general"].elements["inputAdress2"].value.toUpperCase(),
+            city = document.forms["general"].elements["inputCity"].value.toUpperCase(),
+            zipCode = document.forms["general"].elements["inputZipCode"].value,
+            email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
+            tel = document.forms["general"].elements["inputTel"].value,
+            poids = parseInt(document.forms["general"].elements["inputPoids"].value);
+
+        /*console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);*/
+        
+
+        if (transporteur == "colissimo") {
+          var sep = ";",
+              csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
+
+          
+        }else if (transporteur == "relai"){
+              sep = "|",
+              user_id = parseInt(prompt("Merci d'indiquer le numéro d'utilisateur du client concerné")),
+              code_relai = prompt("Merci d'indiquer le code relai de destiantion");
+              csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
+
+        }
+        else{
+          alert("Tu as oublié d'indiquer le mode de livraison !");
+        }
+
+        document.getElementById('csvMessage').innerHTML = "Et voilà !";
+        document.getElementById('generated-csv').innerHTML = csv;
+        
+      }
+
+
+
+      /*
+      Relai : billItem|PM|1|1|poids|poids|user_id|NOM PRENOM|Adresse 1 personne|Adresse 2 personne|Adress3|ZipCode|?|City|Tel||email|REL|Code Relai||||
+      Colissimo : 01;billItem;;M.;first;last;adress1;adress2;zip;city;tel;email;poids
+
+      NUM_COMMANDE|ENSEIGNE|NB_PAQUETS|RNG_PAQUET|PAQUET_PDS|EXP_PDS|NUM_CLIENT|NOM_CLIENT|ADR1|ADR2|ADR3|CODE_POSTAL|CODE_INSEE|VILLE|TEL_FIXE|TEL_POR|EMAIL|ACTIVITE|CODSEC|EXP_PRS|CODFRN|TYPE_ART|INSLIV
+      */
+
+    
+  </script>
+</body>
+</html>
