@@ -59,6 +59,10 @@
           <div>
             <input type="text" class="form-control" id="inputBillId" name="inputBillId" placeholder="000000" required="true">
           </div>
+        <label for="inputUserId" class="control-label" required="true">User ID</label>
+          <div>
+            <input type="text" class="form-control" id="inputUserId" name="inputUserId" placeholder="000000" required="true">
+          </div>
         <label for="inputFirst" class="control-label" id="prenom" required="true">Prénom</label>
           <div>
             <input type="text" class="form-control" id="inputFirst" name="inputFirst" placeholder="Une Petite" required="true">
@@ -103,6 +107,12 @@
           <div>
             <input type="number" class="form-control" id="inputPoids" placeholder="4200">
           </div>
+
+          <label for="inputDestination" class="control-label">Code du relai de destination</label>
+          <div>
+            <input type="text" class="form-control" id="inputDestination" placeholder="O2195">
+          </div>
+
       </div>
       <button class="btn btn-lg btn-success" id="go" onClick="getFormElements();">Générer mon csv</button>
       <p>&nbsp;</p>
@@ -157,10 +167,11 @@
         }
 
         function setValuesRelai(data){
-          document.getElementById("prenom").innerHTML = "Prénom & Nom";
+          document.getElementById("prenom").innerHTML = "Nom & Prénom";
           $('#last').hide();
           document.forms["general"].elements["inputTransporteur"].value = transporteur,
           document.forms["general"].elements["inputBillId"].value = data[0],
+          document.forms["general"].elements["inputUserId"].value = data[6],
           document.forms["general"].elements["inputFirst"].value = data[7],
           document.forms["general"].elements["inputAdress1"].value = data[8],
           document.forms["general"].elements["inputAdress2"].value = data[9],
@@ -168,7 +179,8 @@
           document.forms["general"].elements["inputCity"].value = data[13],
           document.forms["general"].elements["inputTel"].value = data[14],
           document.forms["general"].elements["inputEmail"].value = data[16],
-          document.forms["general"].elements["inputPoids"].value = data[6];
+          document.forms["general"].elements["inputDestination"].value = data[18],
+          document.forms["general"].elements["inputPoids"].value = data[4];
 
 
         }
@@ -210,7 +222,9 @@
             zipCode = document.forms["general"].elements["inputZipCode"].value,
             email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
             tel = document.forms["general"].elements["inputTel"].value,
-            poids = parseInt(document.forms["general"].elements["inputPoids"].value);
+            poids = parseInt(document.forms["general"].elements["inputPoids"].value),
+            user_id = document.forms["general"].elements["inputUserId"].value,
+            code_relai = document.forms["general"].elements["inputDestination"].value;
 
         /*console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);*/
         
@@ -222,8 +236,6 @@
           
         }else if (transporteur == "relai"){
               sep = "|",
-              user_id = parseInt(prompt("Merci d'indiquer le numéro d'utilisateur du client concerné")),
-              code_relai = prompt("Merci d'indiquer le code relai de destiantion");
               csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
 
         }
