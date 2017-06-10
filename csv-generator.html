@@ -29,8 +29,10 @@
 	<div class="container col-md-8 col-md-offset-2">
 		<!--Main content goes here-->
     <h1>Genère ton CSV proprement</h1>
+    
     <form name="general">
       <div class="form-group">
+      
         <h2>Type d'expédition</h2>
           <select class="form-control" name="transporteur">
             <option value="colissimo">Colissimo</option>
@@ -128,6 +130,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<!-- Javascript de Bootstrap -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+  <!-- Papa Parse -->
+  <script enctype="text/javascript" src="https://rawgit.com/nicodeforge/PapaParse/master/papaparse.min.js" type="text/javascript"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
@@ -137,6 +141,7 @@
         })
 
     });
+      
 
       function postDataToWebhook(data){
         //get the values needed from the passed in json object
