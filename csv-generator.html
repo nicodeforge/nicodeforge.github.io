@@ -162,6 +162,7 @@
       
       function getFormElements(){ 
         event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
+        //console.log("Get form elements");
         var transporteur = document.forms["general"].elements["transporteur"].value, //Récupère tous les champs du formulaire et les stocks dans des variables
             fraisExpedition = document.forms["general"].elements["fraisExpedition"].value, 
             typeExpedition = document.forms["general"].elements["typeExpedition"].value,
@@ -174,40 +175,61 @@
             email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
             tel = document.forms["general"].elements["inputTel"].value,
             marchandise = document.forms["general"].elements["inputMarchandise"].value.toUpperCase(),
-            poids = parseInt(document.forms["general"].elements["inputPoids"].value);
+            poids = document.forms["general"].elements["inputPoids"].value;
 
-        /*console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);*/
+        //console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);
         
-        if (typeof tel == 'NaN' ) {
+        if (!tel) {
           tel = "0606060606";
         } else{}
 
-        if (typeof email == 'NaN' ) {
+        if (!email) {
           email = "email@email.com";
         }else{}
 
-
-        if (typeExpedition == "reexpe") {
-          var billId = parseInt(prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier")); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
-        }else{
-              billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
-        }   
-
-        if (transporteur == "colissimo") {
-          var sep = ";",
-              csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
-
+        //vérifie que tous les champs sont bien renseignés
+        if (!poids) {
           
+          alert("Héééé, on a dit que TOUS les champs étaient important ! Vas vite indiquer un poids ;)");
+        
         }else{
-              sep = "|",
-              user_id = parseInt(prompt("Merci d'indiquer le numéro d'utilisateur du client concerné")),
-              code_relai = prompt("Merci d'indiquer le code relai de destiantion");
-              csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
 
+          if (poids == "0") {
+          
+          alert("Tant qu'à envoyer un truc de 0 gramme.. autant rien envoyer non ..?");
+          console.log(poids);
+          } 
+          else{
+            if (typeExpedition == "reexpe") {
+            var billId = parseInt(prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier")); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
+            }else{
+                  billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
+            }   
+
+            if (transporteur == "colissimo") {
+              var sep = ";",
+                  csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
+
+              
+            }else{
+                  sep = "|",
+                  user_id = parseInt(prompt("Merci d'indiquer le numéro d'utilisateur du client concerné")),
+                  code_relai = prompt("Merci d'indiquer le code relai de destiantion");
+                  csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
+
+            }
+
+            document.getElementById('csvMessage').innerHTML = "Et voilà !";
+            document.getElementById('generated-csv').innerHTML = csv;
+          }
+
+            
         }
 
-        document.getElementById('csvMessage').innerHTML = "Et voilà !";
-        document.getElementById('generated-csv').innerHTML = csv;
+        
+
+
+        
          
       }
 

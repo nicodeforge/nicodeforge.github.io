@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <title>WIP</title>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <!-- Content goes here-->
+        <div class="container">
+          <h1>Track tests, get results</h1>
+          <div class="section">
+            <a class="waves-effect waves-light btn-large" href="#add_test"><i class="material-icons left">play_arrow</i>Créer un test</a>
+          </div>
+        </div>
+
+        <div id="add_test" class="modal">
+            <div class="modal-content">
+              <h4>Ajouter un test</h4>
+              <div class="row">
+                <form class="col s12" name="addTest">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Titre" name="titre" id="titre" type="text" class="validate">
+                        <label for="titre">Nom de l'expérience ?</label>
+                    </div>
+                  </div>
+                  <div class="input-field col s12">
+                    <select name="status">                        
+                      <option value="defined">Défini</option>
+                      <option value="to-define">A définir</option>
+                      <option value="running">En cours</option>
+                      <option value="over">Terminé</option>
+                    </select>
+                    <label>Statut :</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <select name="aarrrr">                        
+                        <option value="acq">Acquisition</option>
+                        <option value="act">Activation</option>
+                        <option value="rev">Revenue</option>
+                        <option value="ref">Referral</option>
+                        <option value="ret">Rétention</option>
+                        <option value="rea">Réactivation</option>
+                      </select>
+                      <label>Etape du framework AARRRR ?</label>
+                  </div>
+                  <hr>
+                  <h4>Hypothèse</h4>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea id="definition" class="materialize-textarea">Si c'est un succès XXX augmentera de XXX, parceque XXX</textarea>
+                      <label for="definition">Définition du test</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Metric" id="metric" type="text" class="validate">
+                        <label for="metric">Quelle metric faut-il suivre ?</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Prédiction" id="prediction" type="text" class="validate">
+                        <label for="prediction">Quelle est ta prédiction ?</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Hypothèse" id="hypothese" type="text" class="validate">
+                        <label for="hypothese">Quelle est ton hypothèse ?</label>
+                    </div>
+                  </div>
+                  
+                  <!--<div class="row">-->
+                    
+                  <!--</div>-->
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green waves-light btn-large" onclick="logElements();"><i class="material-icons left">add</i>Ajouter</a>
+            </div>
+          </div>
+
+      <!-- End of content-->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+      <!--Custom scripts-->
+      <script type="text/javascript">
+        $(document).ready(function(){
+           // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+           $('.modal').modal();
+           $('select').material_select();
+          
+         });
+
+        
+        
+        function getFormElements(testElements){
+              testElements.titre = document.forms["addTest"].elements["titre"].value,
+              testElements.hypothese = document.forms["addTest"].elements["hypothese"].value,
+              testElements.description = document.forms["addTest"].elements["description"].value,
+              testElements.stage = document.forms["addTest"].elements["aarrrr"].value;
+          
+          return testElements;
+        }
+
+        function logElements (){
+          var testElements;
+          getFormElements(testElements);
+          console.log(testElements);
+        }
+
+        
+
+      </script>
+      <!--<script type="text/javascript" src="js.js"></script>-->
+    </body>
+  </html>
