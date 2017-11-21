@@ -36,14 +36,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" style="color: #c29600;" href="#">Une Petite Mousse</a>
+        <a class="navbar-brand" style="color: #c29600;" href="index.htm">Une Petite Mousse</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Générer un CSV</a></li>
-          <li><a href="./csv-validator.html">Retoucher un CSV</a></li>
+          <li><a href="csv-validator.html">Retoucher un CSV</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -148,7 +148,7 @@
       </div>
 
       
-      <button class="btn btn-lg btn-success" id="go" onClick="getFormElements(e);">Générer mon csv</button>
+      <button class="btn btn-lg btn-success" id="go" onClick="getFormElements();">Générer mon csv</button>
       <p>&nbsp;</p>
     </form>
     
@@ -189,13 +189,16 @@
         $("#success-feedback").hide();
         $(".relai-only").hide();
         $(".btnToCopy").hide();
+    });
 
-        function postDataToWebhook(data){
+    function postDataToWebhook(data){
           //get the values needed from the passed in json object
           var created_at=data.created_at,
               csv=data.csv,
               transporteur = data.transporteur,
-              cout = data.cout;
+              cout = data.cout,
+              marchandise = data.marchandise;
+
           //url to your webhook
           var webHookUrl="https://hooks.zapier.com/hooks/catch/1160774/srbrju/";
           
@@ -219,78 +222,7 @@
             console.log(this.responseText);
           }
 
-          function getFormElements(event){ 
-            event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
-            //Récupère tous les champs du formulaire et les stocks dans des variables
-            var transporteur = document.forms["general"].elements["transporteur"].value, 
-                fraisExpedition = document.forms["general"].elements["fraisExpedition"].checked, 
-                typeExpedition = document.forms["general"].elements["typeExpedition"].value,
-                first = document.forms["general"].elements["inputFirst"].value.toUpperCase(),
-                last = document.forms["general"].elements["inputLast"].value.toUpperCase(),
-                adress1 = document.forms["general"].elements["inputAdress1"].value.toUpperCase(),
-                adress2 = document.forms["general"].elements["inputAdress2"].value.toUpperCase(),
-                city = document.forms["general"].elements["inputCity"].value.toUpperCase(),
-                zipCode = document.forms["general"].elements["inputZipCode"].value,
-                email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
-                tel = document.forms["general"].elements["inputTel"].value,
-                marchandise = document.forms["general"].elements["inputMarchandise"].value.toUpperCase(),
-                poids = parseInt(document.forms["general"].elements["inputPoids"].value),
-                user_id = document.forms["general"].elements["clientId"].value,
-                code_relai = document.forms["general"].elements["relayCode"].value;
-                created_at = Date.now();
-            
-            //Check si les champs tel et email sont OK
-
-                if (typeof tel == 'undefined'  ) {
-                  tel = "0606060606";
-                } else{}
-
-                if (typeof email == 'undefined' ) {
-                  email = "email@email.com";
-                }else{}
-
-
-                if (fraisExpedition === false) {
-                  if (transporteur == "colissimo"){
-                    var cout = (poids/100)*1.2;
-                    console.log(cout+" colissimo");
-                  }else{
-                        cout = (poids/100)*1.1;
-                        console.log(cout+" relai");
-                  }        
-                }else{
-                  cout = 0;
-                  console.log(cout+" no carrier");
-                }   
-
-            //Monte les CSV en fonction des valeurs associées aux champs du form    
-            if (transporteur == "colissimo") {
-              var sep = ";",
-                  csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
-
-              
-            }else{
-                  sep = "|",
-                  csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
-
-            }
-
-            document.getElementById('csvMessage').innerHTML = "Et voilà !";
-
-            $(".btnToCopy").show();
-
-            document.getElementById('generated-csv').innerHTML = csv;
-
-            data = {
-              "created_at" : created_at,
-              "csv" : csv,
-              "marchandise" : marchandise,
-              "transporteur" : transporteur
-            }
-
-            postDataToWebhook(data);
-            
-          }
+          
           
 
 
@@ -298,26 +230,93 @@
           Relai : billItem|PM|1|1|poids|poids|user_id|NOM PRENOM|Adresse 1 personne|Adresse 2 personne|Adress3|ZipCode|?|City|Tel||email|REL|Code Relai||||
           Colissimo : 01;billItem;;M.;first;last;adress1;adress2;zip;city;tel;email;poids
           */
-    });
+       
+    function getFormElements(){ 
+      event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
+      //Récupère tous les champs du formulaire et les stocks dans des variables
+      var transporteur = document.forms["general"].elements["transporteur"].value, 
+          fraisExpedition = document.forms["general"].elements["fraisExpedition"].checked, 
+          typeExpedition = document.forms["general"].elements["typeExpedition"].value,
+          first = document.forms["general"].elements["inputFirst"].value.toUpperCase(),
+          last = document.forms["general"].elements["inputLast"].value.toUpperCase(),
+          adress1 = document.forms["general"].elements["inputAdress1"].value.toUpperCase(),
+          adress2 = document.forms["general"].elements["inputAdress2"].value.toUpperCase(),
+          city = document.forms["general"].elements["inputCity"].value.toUpperCase(),
+          zipCode = document.forms["general"].elements["inputZipCode"].value,
+          email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
+          tel = document.forms["general"].elements["inputTel"].value,
+          marchandise = document.forms["general"].elements["inputMarchandise"].value.toUpperCase(),
+          poids = parseInt(document.forms["general"].elements["inputPoids"].value),
+          user_id = document.forms["general"].elements["clientId"].value,
+          code_relai = document.forms["general"].elements["relayCode"].value,
+          created_at = Date.now();
+      
+      //Check si les champs tel et email sont OK
 
+          if (typeof tel == 'undefined'  ) {
+            tel = "0606060606";
+          } else{}
+
+          if (typeof email == 'undefined' ) {
+            email = "email@email.com";
+          }else{}
+
+
+          if (fraisExpedition === false) {
+            if (transporteur == "colissimo"){
+              var cout = (poids/100)*1.2;
+              console.log(cout+" colissimo");
+            }else{
+                  cout = (poids/100)*1.1;
+                  console.log(cout+" relai");
+            }        
+          }else{
+            cout = 0;
+            console.log(cout+" no carrier");
+          }
+
+          if (typeExpedition == "reexpe") {
+                  var billId = prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier"); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
+                }else{
+                      billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
+                }   
+
+      //Monte les CSV en fonction des valeurs associées aux champs du form    
+      if (transporteur == "colissimo") {
+        var sep = ";",
+            csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
+
+        
+      }else{
+            sep = "|",
+            csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
+
+      }
+
+      document.getElementById('csvMessage').innerHTML = "Et voilà !";
+
+      $(".btnToCopy").show();
+
+      document.getElementById('generated-csv').innerHTML = csv;
+
+      data = {
+        "created_at" : created_at,
+        "csv" : csv,
+        "marchandise" : marchandise,
+        "transporteur" : transporteur
+      }
+
+      postDataToWebhook(data);
+      
+    }
 
     $(document).click(function(){
       // Add Field when document is clicked
       if (document.forms["general"].elements["transporteur"].value == "relai") {
           $(".relai-only").show();          
         }
-
-      if (typeExpedition == "reexpe") {
-              var billId = prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier"); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
-            }else{
-                  billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
-            }
     });
-      
 
-    
-
-    
   </script>
 </body>
 </html>
