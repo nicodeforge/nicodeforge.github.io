@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-   		<meta name="viewport" content="width=device-width, initial-scale=1">
-   		<meta name="description" content="WIP">
-   		<title>CSV Generator</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="WIP">
+      <title>CSV Generator</title>
 
-    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -48,16 +48,13 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-	<div class="container col-md-8 col-md-offset-2">
-		<!--Main content goes here-->
+  <div class="container col-md-8 col-md-offset-2">
+    <!--Main content goes here-->
     <h1>Genère ton CSV proprement</h1>
-    <div class="well">
-      <p class="text-warning">
-        <span class="glyphicon glyphicon-info-sign"></span> Chacun des champs ci-dessous est HYPER IMPORTANT, alors prends le temps de bien tous les remplir ;)
-      </p>
-    </div>
+    
     <form name="general">
       <div class="form-group">
+      
         <h2>Type d'expédition</h2>
           <select class="form-control" name="transporteur">
             <option value="colissimo">Colissimo</option>
@@ -69,20 +66,43 @@
             <option value="reexpe">Réexpédition</option>
           </select>
 
-          <select class="form-control m-5-top" name="fraisExpedition">
+          <!--<select class="form-control m-5-top" name="fraisExpedition">
             <option value="new">Frais d'expédition offerts</option>
             <option value="reexpe">Frais d'expédition réglés par le client</option>
-          </select>
+          </select>-->
+
+          <div class="checkbox well text-info">
+                 <label>
+                   <input type="checkbox" name="fraisExpedition"> Cochez la case si les frais d'expédition ont été <strong>réglés par le client</strong>
+                 </label>
+               </div>
           
 
 
       </div>
       <div class="form-group">
-        <h2>Coordonnées du destinataire</h2>
-        
-        <label for="inputFirst" class="control-label">Prénom</label>
+        <h2>Que souhaitez-vous expédier ?</h2>
+        <label for="inputMarchandise" class="control-label">Marchandise</label>
           <div>
-            <input type="text" class="form-control" id="inputFirst" name="inputFirst" placeholder="Une Petite">
+            <input type="text" class="form-control" id="inputMarchandise" placeholder="Exemple : box bienvenue mois 1, box mai, calendrier houblonnier,...">
+          </div>
+
+        <label for="inputPoids" class="control-label">Poids (en grammes)</label><span>&nbsp;</span><button type="button" class="btn btn-xs btn-info" data-toggle="popover" data-container="body" title="Poids des marchandises les plus fréquentes" data-content="Box mensuelle : 4200, Calendrier : 17000, 1 bière : 400">?</button>
+          <div>
+            <input type="number" class="form-control" id="inputPoids" placeholder="4200">
+          </div>
+      </div>
+      <div class="form-group">
+        <h2>Coordonnées du destinataire</h2>
+      
+        <label for="clientId" class="control-label relai-only" required="true">User ID</label>
+          <div class="relai-only">
+            <input type="text" class="form-control" id="clientId" name="clientId" placeholder="57280" required="true">
+          </div>
+
+        <label for="inputFirst" class="control-label" required="true">Prénom</label>
+          <div>
+            <input type="text" class="form-control" id="inputFirst" name="inputFirst" placeholder="Une Petite" required="true">
           </div>
         
         <label for="inputLast" class="control-label">Nom</label>
@@ -110,6 +130,11 @@
             <input type="text" class="form-control" id="inputZipCode" placeholder="38130">
           </div>
 
+        <label for="relayCode" class="control-label relai-only" required="true">Code du relai</label>
+          <div class="relai-only">
+            <input type="text" class="form-control" id="relayCode" name="relayCode" placeholder="CZ345" required="true">
+          </div>
+
         <label for="inputEmail" class="control-label">Email</label>
           <div>
             <input type="email" class="form-control" id="inputEmail" placeholder="question@unepetitemousse.fr">
@@ -122,49 +147,85 @@
 
       </div>
 
-      <div class="form-group">
-        <h2>Que souhaitez-vous expédier ?</h2>
-        <label for="inputMarchandise" class="control-label">Marchandise</label>
-          <div>
-            <input type="text" class="form-control" id="inputMarchandise" placeholder="Exemple : box bienvenue mois 1, box mai, calendrier houblonnier,...">
-          </div>
-
-        <label for="inputPoids" class="control-label">Poids (en grammes)</label><span>&nbsp;</span><button type="button" class="btn btn-xs btn-info" data-toggle="popover" data-container="body" title="Poids des marchandises les plus fréquentes" data-content="Box mensuelle : 4200, Calendrier : 17000, 1 bière : 400">?</button>
-          <div>
-            <input type="number" class="form-control" id="inputPoids" placeholder="4200">
-          </div>
-      </div>
+      
       <button class="btn btn-lg btn-success" id="go" onClick="getFormElements();">Générer mon csv</button>
       <p>&nbsp;</p>
     </form>
     
     <div class="generated text-center">
       <p><strong id="csvMessage">Une fois tous les champs renseignés, ton CSV apparaitra dans le cadre juste en dessous ;)</strong></p>
-      <div class="well well-success" id="generated-csv"></div>
+      <div class="well well-success"><span id="generated-csv"></span><button class="btn btn-default btnToCopy" data-clipboard-target="#generated-csv" style="margin-left: 5px;"><img src="clippy.svg" width="15"></button></div>
+      <span id="success-feedback" class="alert-success">Tout bon ! Le CSV a bien été copié, il ne te reste plus qu'à le coller où tu veux :)</span>
+      
     </div>
     
     <p>&nbsp;</p>
-	</div>
-	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<!-- Javascript de Bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+  </div>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Javascript de Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
+
+  <!-- Papa Parse -->
+  <script enctype="text/javascript" src="https://rawgit.com/nicodeforge/PapaParse/master/papaparse.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="https://rawgit.com/nicodeforge/clipboard.js/master/dist/clipboard.min.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
 
         $(function () {
           $('[data-toggle="popover"]').popover()
-        })
-
+        });
+        $("#success-feedback").hide();
+        $(".relai-only").hide();
+        $(".btnToCopy").hide();
+        var clipboard = new Clipboard('.btnToCopy');
+        clipboard.on('success', function(e) {
+            $("#success-feedback").show();
+            e.clearSelection();
+        });
+        
     });
 
+    $(document).click(function(){
+      if (document.forms["general"].elements["transporteur"].value == "relai") {
+          $(".relai-only").show();          
+        }
+    });
       
+
+      function postDataToWebhook(data){
+        //get the values needed from the passed in json object
+        var csv=data.csv,
+            transporteur = data.transporteur,
+            cout = data.cout;
+        //url to your webhook
+        var webHookUrl="https://hooks.zapier.com/hooks/catch/1160774/99obp0/";
+        
+        //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+        var oReq = new XMLHttpRequest();
+        var myJSONStr = payload={
+            "csv" : csv,
+            "transporteur" : transporteur,
+            "cout" : cout
+
+        };
+        
+      //register method called after data has been sent method is executed
+        oReq.addEventListener("load", reqListener);
+        oReq.open("POST", webHookUrl,true);
+        oReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        oReq.send(JSON.stringify(myJSONStr));
+      }
+      //callback method after webhook is executed
+      function reqListener () {
+        console.log(this.responseText);
+      }
+
       function getFormElements(){ 
         event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
-        //console.log("Get form elements");
         var transporteur = document.forms["general"].elements["transporteur"].value, //Récupère tous les champs du formulaire et les stocks dans des variables
-            fraisExpedition = document.forms["general"].elements["fraisExpedition"].value, 
+            fraisExpedition = document.forms["general"].elements["fraisExpedition"].checked, 
             typeExpedition = document.forms["general"].elements["typeExpedition"].value,
             first = document.forms["general"].elements["inputFirst"].value.toUpperCase(),
             last = document.forms["general"].elements["inputLast"].value.toUpperCase(),
@@ -175,62 +236,63 @@
             email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
             tel = document.forms["general"].elements["inputTel"].value,
             marchandise = document.forms["general"].elements["inputMarchandise"].value.toUpperCase(),
-            poids = document.forms["general"].elements["inputPoids"].value;
+            poids = parseInt(document.forms["general"].elements["inputPoids"].value),
+            user_id = document.forms["general"].elements["clientId"].value,
+            code_relai = document.forms["general"].elements["relayCode"].value;
+            created_at = Date.now();
 
-        //console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);
+        /*console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);*/
         
-        if (!tel) {
+        if (typeof tel == 'undefined'  ) {
           tel = "0606060606";
         } else{}
 
-        if (!email) {
+        if (typeof email == 'undefined' ) {
           email = "email@email.com";
         }else{}
 
-        //vérifie que tous les champs sont bien renseignés
-        if (!poids) {
-          
-          alert("Héééé, on a dit que TOUS les champs étaient important ! Vas vite indiquer un poids ;)");
-        
+
+        if (typeExpedition == "reexpe") {
+          var billId = prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier"); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
         }else{
-
-          if (poids == "0") {
-          
-          alert("Tant qu'à envoyer un truc de 0 gramme.. autant rien envoyer non ..?");
-          console.log(poids);
-          } 
-          else{
-            if (typeExpedition == "reexpe") {
-            var billId = parseInt(prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier")); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
-            }else{
-                  billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
-            }   
-
-            if (transporteur == "colissimo") {
-              var sep = ";",
-                  csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
-
-              
-            }else{
-                  sep = "|",
-                  user_id = parseInt(prompt("Merci d'indiquer le numéro d'utilisateur du client concerné")),
-                  code_relai = prompt("Merci d'indiquer le code relai de destiantion");
-                  csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
-
-            }
-
-            document.getElementById('csvMessage').innerHTML = "Et voilà !";
-            document.getElementById('generated-csv').innerHTML = csv;
-          }
-
-            
+              billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
         }
 
-        
+        if (fraisExpedition === false) {
+          if (transporteur == "colissimo"){
+            var cout = (poids/100)*1.2;
+            console.log(cout+" colissimo");
+          }else{
+                cout = (poids/100)*1.1;
+                console.log(cout+" relai");
+          }        
+        }else{
+          cout = 0;
+          console.log(cout+" no carrier");
+        }   
 
+        if (transporteur == "colissimo") {
+          var sep = ";",
+              csv = "01"+sep+billId+sep+sep+"M."+sep+first+sep+last+sep+adress1+sep+adress2+sep+zipCode+sep+city+sep+tel+sep+email+sep+poids;
 
+          
+        }else{
+              sep = "|",
+              csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
+
+        }
+
+        document.getElementById('csvMessage').innerHTML = "Et voilà !";
+        $(".btnToCopy").show();
+        document.getElementById('generated-csv').innerHTML = csv;
+        data = {
+          "created_at" : created_at,
+          "csv" : csv,
+          "marchandise" : marchandise,
+          "transporteur" : transporteur
+        }
+        postDataToWebhook(data);
         
-         
       }
 
 
