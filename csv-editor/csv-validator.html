@@ -42,6 +42,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+
           <li><a href="csv-generator.html">Générer un CSV</a></li>
           <li><a href="#">Retoucher un CSV</a></li>
         </ul>
@@ -52,6 +53,7 @@
 		<!--Main content goes here-->
     <h1>Vérifie ton CSV</h1>
     <form name="specific">          
+
         <div>
           <input type="text" class="form-control" id="inputCSV" name="inputcSV" placeholder="Colle ton CSV ici" required="true">
         </div>
@@ -133,6 +135,7 @@
     <div class="generated text-center">
       <p><strong id="csvMessage">Une fois tous les champs renseignés, ton CSV apparaitra dans le cadre juste en dessous ;)</strong></p>
       <div class="well well-success" id="generated-csv"></div>
+
     </div>
     
     <p>&nbsp;</p>
@@ -151,11 +154,15 @@
           $('[data-toggle="popover"]').popover()
         })
 
+
+        $('#general-form').hide();
+
     });
       
 
       function parseCSV(){
         event.preventDefault();
+
         var inputCSV = document.forms["specific"].elements["inputCSV"].value,
         parsedCSV = Papa.parse(inputCSV);
 
@@ -165,6 +172,12 @@
             delimiter = meta.delimiter;
 
         function setValuesColissimo(data){
+
+          $('#user-id').hide();
+          $('#code-relai').hide();
+          $('#general-form').show();
+          
+
           document.forms["general"].elements["inputTransporteur"].value = transporteur,
           document.forms["general"].elements["inputBillId"].value = data[1],
           document.forms["general"].elements["inputFirst"].value = data[4],
@@ -176,13 +189,34 @@
           document.forms["general"].elements["inputTel"].value = data[10],
           document.forms["general"].elements["inputEmail"].value = data[11],
           document.forms["general"].elements["inputPoids"].value = data[12];
+
+          
+          if (!data[5]) {
+            $('#inputLast').css({
+              "border-color": "#a94442",
+              "color": "red",
+              "box-shadow":"3px 3px 5px 0px #fe0000"
+            }
+            );
+          }
+
+          if (!data[12]) {
+            $('#inputPoids').css({
+              "border-color": "#a94442",
+              "color": "red",
+              "box-shadow":"3px 3px 5px 0px #fe0000"
+            }
+            );
+          }
         }
 
         function setValuesRelai(data){
-          document.getElementById("prenom").innerHTML = "Prénom & Nom";
+          document.getElementById("prenom").innerHTML = "Nom & Prénom";
+          $('#general-form').show();
           $('#last').hide();
           document.forms["general"].elements["inputTransporteur"].value = transporteur,
           document.forms["general"].elements["inputBillId"].value = data[0],
+          document.forms["general"].elements["inputUserId"].value = data[6],
           document.forms["general"].elements["inputFirst"].value = data[7],
           document.forms["general"].elements["inputAdress1"].value = data[8],
           document.forms["general"].elements["inputAdress2"].value = data[9],
@@ -190,7 +224,9 @@
           document.forms["general"].elements["inputCity"].value = data[13],
           document.forms["general"].elements["inputTel"].value = data[14],
           document.forms["general"].elements["inputEmail"].value = data[16],
-          document.forms["general"].elements["inputPoids"].value = data[6];
+          document.forms["general"].elements["inputDestination"].value = data[18],
+          document.forms["general"].elements["inputPoids"].value = data[4];
+
 
 
         }
@@ -232,7 +268,9 @@
             zipCode = document.forms["general"].elements["inputZipCode"].value,
             email = document.forms["general"].elements["inputEmail"].value.toLowerCase(),
             tel = document.forms["general"].elements["inputTel"].value,
-            poids = parseInt(document.forms["general"].elements["inputPoids"].value);
+            poids = parseInt(document.forms["general"].elements["inputPoids"].value),
+            user_id = document.forms["general"].elements["inputUserId"].value,
+            code_relai = document.forms["general"].elements["inputDestination"].value;
 
         /*console.log(transporteur+" "+typeExpedition+" "+first+" "+last+" "+adress1+" "+adress2+" "+city+" "+zipCode+" "+email+" "+tel+" "+marchandise+" "+poids);*/
         
@@ -244,8 +282,6 @@
           
         }else if (transporteur == "relai"){
               sep = "|",
-              user_id = parseInt(prompt("Merci d'indiquer le numéro d'utilisateur du client concerné")),
-              code_relai = prompt("Merci d'indiquer le code relai de destiantion");
               csv = billId+sep+"PM"+sep+"1"+sep+"1"+sep+poids+sep+poids+sep+user_id+sep+first+" "+last+sep+adress1+sep+adress2+sep+" "+sep+zipCode+sep+""+sep+city+sep+tel+sep+""+sep+email+sep+"REL"+sep+code_relai+sep+sep+sep+sep;
 
         }
