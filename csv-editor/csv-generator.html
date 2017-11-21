@@ -205,10 +205,10 @@
         //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
         var oReq = new XMLHttpRequest();
         var myJSONStr = payload={
+            "created_at" : created_at,
             "csv" : csv,
-            "transporteur" : transporteur,
-            "cout" : cout
-
+            "marchandise" : marchandise,
+            "transporteur" : transporteur
         };
         
       //register method called after data has been sent method is executed
