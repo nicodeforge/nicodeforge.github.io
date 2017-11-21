@@ -196,7 +196,8 @@
 
       function postDataToWebhook(data){
         //get the values needed from the passed in json object
-        var csv=data.csv,
+        var created_at=data.created_at,
+            csv=data.csv,
             transporteur = data.transporteur,
             cout = data.cout;
         //url to your webhook
