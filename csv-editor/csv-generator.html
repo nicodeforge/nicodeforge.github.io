@@ -249,6 +249,7 @@
           poids = parseInt(document.forms["general"].elements["inputPoids"].value),
           user_id = document.forms["general"].elements["clientId"].value,
           code_relai = document.forms["general"].elements["relayCode"].value,
+          billId = "000000",
           created_at = Date.now();
       
       //Check si les champs tel et email sont OK
@@ -275,11 +276,12 @@
             console.log(cout+" no carrier");
           }
 
-          if (typeExpedition == "reexpe") {
+         /* if (typeExpedition == "reexpe") {
                   var billId = prompt("Merci d'indiquer le numéro de Bill Item de la marchandise à réexpédier"); // S'il s'agit d'une reexpé, on a besoin de l'identifiant "Bill Item" de la précédente expédition
                 }else{
                       billId = "000000"; //S'il s'agit d'une nouvelle expé, on utilise simplement le billItem "000000"
                 }   
+          */
 
       //Monte les CSV en fonction des valeurs associées aux champs du form    
       if (transporteur == "colissimo") {
