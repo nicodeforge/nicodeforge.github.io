@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/css/materialize.min.css">
+    <title>UTM Builder</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style type="text/css">
+      #utm-to-share{
+        font-size: 0.9em;
+      }
+
+      .general.input-field label{
+        font-size: 1.5em;
+      }
+
+      .help:hover{
+        cursor:pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Content goes here-->
+      <div class="container">
+        <div class="row card grey lighten-5 yellow-text text-darken-4">
+          <div class="col s12">
+            <h1>Générer une url suivie</h1>
+          </div>
+          <div class="row">
+            <div class="col s12 grey-text text-darken-4">
+            <strong>❗️Rappels importants❗️</strong><br>
+            <ul>
+              <li>Toutes les informations doivent être saisies <strong>sans majuscule, sans accent, sans espace (utiliser un tiret : -)</strong></li>
+              <li>Seuls les  <strong>4 premiers champs sont obligatoires</strong></li>
+              <li>Penses à <strong>tester systématiquement le lien final</strong></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+      
+        <div class="row card">
+          <p>&nbsp;</p>
+          <form class="col m7 general" name="general">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="https://unepetitemousse.fr" id="base-url" type="url" class="validate autocomplete-base-url" >
+                    <label for="base-url" class="yellow-text text-darken-4">URL de Destination <i class="material-icons help" id="help-base-url">live_help</i></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="fete-des-peres-2018,noel-2018,complete-ta-box,box-expert" id="utm-campagne" type="text" class="validate" required>
+                    <label class="yellow-text text-darken-4" for="campagne">Nom de la campagne <i class="material-icons help" id="help-utm-campagne">live_help</i></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="mon-super-blog,facebook,google,backend,newsletter" id="utm-source" type="text" class="validate" required>
+                    <label class="yellow-text text-darken-4" for="utm-source">Source de la campagne <i class="material-icons help" id="help-utm-source">live_help</i></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="email,post,dark-post,referral,cpc" id="utm-support" type="text" class="validate" required>
+                    <label class="yellow-text text-darken-4" for="utm-support">Support de la campagne <i class="material-icons help" id="help-utm-support">live_help</i></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="janvier-2018,bonus-2verres-2bieres" id="utm-contenu" type="text" class="validate">
+                    <label class="yellow-text text-darken-4" for="utm-contenu">Contenu de la campagne <i class="material-icons help" id="help-utm-contenu">live_help</i></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="300x250,audience-acheteurs-box,audience-grenoblois,article,membres-unepetitemousse" id="utm-terme" type="text" class="validate">
+                    <label class="yellow-text text-darken-4" for="utm-terme">Terme de la campagne <i class="material-icons help" id="help-utm-terme">live_help</i></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                  <p>
+                    <label>
+                      <input type="checkbox" id="do-analyze" class="filled-in" />
+                      <span>Je veux que cette campagne soit analysée</span>
+                    </label>
+                  </p>
+                  <div class="row">
+                    <div class="input-field col s6 offset-s1 div-days-to-analysis">
+                      <input placeholder="1,3,5,10,30,..." id="days-to-analysis" type="number" class="validate">
+                      <label class="yellow-text text-darken-4" for="days-to-analysis">Dans combien de jours ?</label>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                <button class="btn waves-effect yellow darken-4 waves-light" onclick="getFormElements();">Obtenir mon lien
+                    <i class="material-icons left">link</i>
+                </button>
+                <p>&nbsp;</p>
+              </form>
+          <div class="col m5 grey-lighten-4">
+            <strong>Un doute sur l'une des valeur à renseigner ?</strong>
+            <!--Start answer for base-url-->
+            <div class="answer card" id="answer-base-url">
+              <div class="card-content">
+                L'<span class="yellow-text text-darken-4">URL de destination</span> correspond à l'url de la page sur laquelle tu souhaites diriger les visiteurs. <br><br>
+                Par exemple : <em>https://unepetitemousse.fr/</em> ou <em>https://unepetitemousse.fr/cadeau-biere</em>
+                <br><br>
+                Si tu as besoin d'ajouter des paramètres (?duree=3, ?coffret=mois,...), ajoutes-les dès maintenant !
+              </div>
+              <div class="card-action">
+                <button class="btn btn-flat waves-effect waves-green" id="close-answer-base-url">Compris !</button>  
+              </div>
+            </div>
+            <!--End answer for base-url-->
+            <!--Start answer for utm-campagne-->
+            <div class="answer card" id="answer-utm-campagne">
+              <div class="card-content">
+                Le<span class="yellow-text text-darken-4"> nom de la campagne</span> correspond à l'opération ou au produit concerné. Ce doit être le niveau le plus haut et le plus générique possible.<br><br>
+                Par exemple : <em>fete-des-peres-2018</em> ou <em>noel-2018</em> ou <em>complete-ta-box</em> ou encore <em>box-expert</em>
+                <br><br>
+                Si tu as un doute : demandes-moi :)
+              </div>
+              <div class="card-action">
+                <button class="btn btn-flat waves-effect waves-green" id="close-answer-utm-campagne">Compris !</button>  
+              </div>
+            </div>
+            <!--End answer for utm-campagne-->
+            <!--Start answer for utm-source-->
+            <div class="answer card" id="answer-utm-source">
+              <div class="card-content">
+                La<span class="yellow-text text-darken-4"> source de la campagne</span> correspond à la provenance de la campagne. En d'autre terme elle correspond à la source où vous allez déposer votre lien. Il peut s'agir du nom du site sur lequel le lien sera diffusé <br><br>
+                Par exemple : <em>mon-super-blog</em>,<em>facebook</em>,<em>google</em>,<em>backend</em> ou encore <em>newsletter</em>
+                <br><br>
+                Si tu as un doute : demandes-moi :)
+              </div>
+              <div class="card-action">
+                <button class="btn btn-flat waves-effect waves-green" id="close-answer-utm-source">Compris !</button>  
+              </div>
+            </div>
+            <!--End answer for utm-source-->
+            <!--Start answer for utm-support-->
+            <div class="answer card" id="answer-utm-support">
+              <div class="card-content">
+                Le<span class="yellow-text text-darken-4"> support de la campagne</span> correspond au moyen par lequel le lien est communiqué.<br><br>
+                Par exemple : <em>email</em>,<em>post</em>,<em>dark-post</em>,<em>cpc</em> ou encore <em>article</em>.
+                <br><br>
+                Si tu as un doute : demandes-moi :)
+              </div>
+              <div class="card-action">
+                <button class="btn btn-flat waves-effect waves-green" id="close-answer-utm-support">Compris !</button>  
+              </div>
+            </div>
+            <!--End answer for utm-support-->
+           <!--Start answer for utm-contenu-->
+           <div class="answer card" id="answer-utm-contenu">
+             <div class="card-content">
+               Le<span class="yellow-text text-darken-4"> contenu de la campagne</span> permet d'identifier plus précisément le produit mis en avant. On s'en sert par exemple pour préciser le mois de la box à promouvoir, la version d'un calendrier, etc... C'est un élément facultatif.<br><br>
+               Par exemple : <em>janvier-2018</em>,<em>bonus-2verres-2bieres</em>.
+               <br><br>
+               Si tu as un doute : demandes-moi :)
+             </div>
+             <div class="card-action">
+               <button class="btn btn-flat waves-effect waves-green" id="close-answer-utm-contenu">Compris !</button>  
+             </div>
+           </div>
+           <!--End answer for utm-contenu-->
+            <!--Start answer for utm-terme-->
+            <div class="answer card" id="answer-utm-terme">
+              <div class="card-content">
+                Le<span class="yellow-text text-darken-4"> terme de la campange</span> permet de différencier les éventuelles variations de la campagne. On s'en sert par exemple pour préciser l'audience ciblée, le format de publicité ou d'image utilisé, le mot-clé ciblé... C'est un élément facultatif.<br><br>
+                Par exemple : <em>300x250</em>,<em>audience-acheteurs-box</em>,<em>audience-grenoblois</em>,<em>cpc</em> ou encore <em>article</em>.
+                <br><br>
+                Si tu as un doute : demandes-moi :)
+              </div>
+              <div class="card-action">
+                <button class="btn btn-flat waves-effect waves-green" id="close-answer-utm-terme">Compris !</button>  
+              </div>
+            </div>
+            <!--End answer for utm-terme-->
+
+            <p id="help-text"><em>Clique sur le point d'interrogation à côté de l'item en question pour afficher l'aide ici ;)</em></p>
+          </div>
+          <p>&nbsp;</p>
+        </div>
+
+        <div id="urlModal" class="modal">
+            <div class="modal-content">
+              <h4>URL à utiliser</h4>
+              <p>Voici l'URL à utiliser pour ta campagne :</p>
+              <div class="flow-text"><strong id="utm-to-share"></strong></div>
+              <p id="success-feedback" class="alert-success"><em class="green-text">C'est good, l'URL est bien copiée dans ton presse-papier :)</em></p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" id="test-url" class="modal-action modal-close waves-effect waves-green btn green lighten-1">Tester</a>
+              <button class="btn btnToCopy yellow darken-4 text-white" data-clipboard-target="#utm-to-share" style="margin-left: 5px;">Copier</button>
+              <a href="http://bitly.com" target="_blank" class="waves-effect waves-green btn yellow darken-1">Bitlyser</a>
+            </div>
+          </div>
+      </div>
+    <!-- End of content-->
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/nicodeforge/clipboard.js/master/dist/clipboard.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('select').select();
+          $('.modal').modal();
+          $('#success-feedback').hide();
+          $('.answer').hide();
+          $('.div-days-to-analysis').hide();
+          $("#do-analyze").change(function() {
+             $('.div-days-to-analysis').toggle();
+          });
+
+        });
+
+      function postDataToWebhook(data){
+            //get the values needed from the passed in json object
+            var baseUrl=data.baseUrl,
+               utmCampagne=data.utmCampagne,
+               utmSource=data.utmSource,
+               utmSupport=data.utmSupport,
+               utmContenu=data.utmContenu,
+               utmTerme=data.utmTerme,
+               createdAt=data.createdAt,
+               analysisIn=data.analysisIn,
+               urlType=data.urlType;
+
+            //url to your webhook
+            var webHookUrl="https://hooks.zapier.com/hooks/catch/1160774/8cqrmx/";
+            
+            //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+            var oReq = new XMLHttpRequest();
+            var myJSONStr = payload={
+                "baseUrl" : baseUrl,
+               "utmCampagne" : utmCampagne,
+               "utmSource" : utmSource,
+               "utmSupport" : utmSupport,
+               "utmContenu" : utmContenu,
+               "utmTerme" : utmTerme,
+               "createdAt" : createdAt,
+               "analysisIn" : analysisIn,
+               "urlType" : urlType
+                };
+              
+            //register method called after data has been sent method is executed
+              oReq.addEventListener("load", reqListener);
+              oReq.open("POST", webHookUrl,true);
+              oReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+              oReq.send(JSON.stringify(myJSONStr));
+            }
+            //callback method after webhook is executed
+            function reqListener () {
+              console.log(this.responseText);
+            }
+
+      function getFormElements(){ 
+        event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
+        //Récupère tous les champs du formulaire et les stocks dans des variables
+        
+        var baseUrl = document.forms["general"].elements["base-url"].value, 
+            utmCampagne = document.forms["general"].elements["utm-campagne"].value, 
+            utmSource = document.forms["general"].elements["utm-source"].value,
+            utmSupport = document.forms["general"].elements["utm-support"].value,
+            utmContenu = document.forms["general"].elements["utm-contenu"].value,
+            utmTerme = document.forms["general"].elements["utm-terme"].value,
+            createdAt = Date.now(),
+            analysisIn = document.forms["general"].elements["days-to-analysis"].value,
+            urlType = "0";
+
+            //Vérifier les valeurs utmContenu & utmTerme qui ne sont pas mandatory
+            if (utmContenu == '' && utmTerme == '') {
+            urlType = "1";
+            } else{
+              if (utmContenu == '') {
+                urlType="2";
+              }else{
+                if (utmTerme == '') {
+                  urlType="3";
+                }else{
+                  urlType="4";
+                }
+              }
+            }
+
+            //Selon le type d'URL, on assemble l'url finale
+
+            switch (urlType){
+              case "1":
+              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
+              break;
+              case "2":
+              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_term="+utmTerme;
+              break;
+              case "3":
+              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu;
+              break;
+              case "4":
+              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu+"&utm_term="+utmTerme;
+              break;
+              default :
+              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
+            }
+        
+
+        document.getElementById('utm-to-share').innerHTML = sharableUrl;
+        
+        $('#urlModal').modal('open');
+
+        data = {
+          "baseUrl" : baseUrl,
+          "utmCampagne" : utmCampagne,
+          "utmSource" : utmSource,
+          "utmSupport" : utmSupport,
+          "utmContenu" : utmContenu,
+          "utmTerme" : utmTerme,
+          "createdAt" : createdAt,
+          "analysisIn" : analysisIn,
+          "urlType" : urlType
+        }
+
+      
+
+        postDataToWebhook(data);
+
+      }
+
+      //Start clipboard plugin init
+        var clipboard = new Clipboard('.btnToCopy');
+        clipboard.on('success', function(e) {
+            $("#success-feedback").show();
+            e.clearSelection();
+        });
+        //End clipboard plugin init
+
+
+        //Helpers
+        $('#help-base-url').click(function(){
+          $('.answer').hide();
+          $('#answer-base-url').show();
+        });
+        $('#help-utm-campagne').click(function(){
+          $('.answer').hide();
+          $('#answer-utm-campagne').show();
+        });
+        $('#help-utm-source').click(function(){
+          $('.answer').hide();
+          $('#answer-utm-source').show();
+        });
+        $('#help-utm-support').click(function(){
+          $('.answer').hide();
+          $('#answer-utm-support').show();
+        });
+        $('#help-utm-contenu').click(function(){
+          $('.answer').hide();
+          $('#answer-utm-contenu').show();
+        });
+        $('#help-utm-terme').click(function(){
+          $('.answer').hide();
+          $('#answer-utm-terme').show();
+        });
+        $('#close-answer-base-url').click(function(e){
+          e.preventDefault();
+          $('#answer-base-url').hide();
+        });
+        $('#close-answer-utm-campagne').click(function(e){
+          e.preventDefault();
+          $('#answer-utm-campagne').hide();
+        });
+        $('#close-answer-utm-source').click(function(e){
+          e.preventDefault();
+          $('#answer-utm-source').hide();
+        });
+        $('#close-answer-utm-support').click(function(e){
+          e.preventDefault();
+          $('#answer-utm-support').hide();
+        });
+        $('#close-answer-utm-terme').click(function(e){
+          e.preventDefault();
+          $('#answer-utm-terme').hide();
+        });
+        $('#close-answer-utm-contenu').click(function(e){
+          e.preventDefault();
+          $('#answer-utm-contenu').hide();
+        });
+
+      //Autocomplete Destination URL
+      $(document).ready(function(){
+          $('autocomplete-base-url').autocomplete({
+            data: {
+              "https://unepetitemousse.fr/": null,
+              "https://unepetitemousse.fr/cadeau-biere/": null,
+              "https://unepetitemousse.fr/box/abonnement": null
+            },
+          });
+        });
+        
+        //Tester l'URL
+        $('#test-url').click(function(){
+          window.open(encodeURI(document.getElementById('utm-to-share').innerText),'_blank');
+        });
+      
+    </script>
+  </body>
+</html>
