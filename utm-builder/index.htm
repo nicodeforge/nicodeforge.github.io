@@ -261,7 +261,7 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://rawgit.com/nicodeforge/clipboard.js/master/dist/clipboard.min.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/nicodeforge/moment/master/moment.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
           $('select').select();
@@ -338,7 +338,7 @@
             utmSupport = document.forms["general"].elements["utm-support"].value,
             utmContenu = document.forms["general"].elements["utm-contenu"].value,
             utmTerme = document.forms["general"].elements["utm-terme"].value,
-            createdAt = new Date(),
+            createdAt = moment(),
             analysisIn = document.forms["general"].elements["days-to-analysis"].value,
             analysisDate = new Date(), 
             optimizeIn = document.forms["general"].elements["days-to-optimize"].value,
@@ -348,18 +348,13 @@
             urlType = "0";
 
             //Traitement du temps d'analyse
-            analysisDate.setDate(analysisDate.getDate() + analysisIn);
-        var dd = analysisDate.getDate(),
-            mm = analysisDate.getMonth() + 1,
-            y = analysisDate.getFullYear(),
-            formatedAnalysisDate = dd + '/'+ mm + '/'+ y;
 
-                //Traitement du temps d'optimisation
-                optimizeDate.setDate(optimizeDate.getDate() + optimizeIn);
-            var odd = optimizeDate.getDate(),
-                omm = optimizeDate.getMonth() + 1,
-                oy = optimizeDate.getFullYear(),
-                formatedOptimizeDate = odd + '/'+ omm + '/'+ oy;
+           var formatedAnalysisDate = moment().add(analysisIn, 'days').format();
+            
+            //Traitement du temps d'optimisation
+
+            var formatedOptimizeDate = moment().add(optimizeIn, 'days').format();
+                
 
             //Vérifier si des paramètres ont été ajoutés à base-url
         var checkParam = "?",
