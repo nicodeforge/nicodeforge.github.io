@@ -277,6 +277,10 @@
             analysisIn = document.forms["general"].elements["days-to-analysis"].value,
             urlType = "0";
 
+            //Vérifier si des paramètres ont été ajoutés à base-url
+        var checkParam = "?",
+            hasParam = baseUrl.includes(checkParam); //Renvoi 1 si param ajouté, 0 sinon
+
             //Vérifier les valeurs utmContenu & utmTerme qui ne sont pas mandatory
             if (utmContenu == '' && utmTerme == '') {
             urlType = "1";
@@ -292,23 +296,46 @@
               }
             }
 
-            //Selon le type d'URL, on assemble l'url finale
 
-            switch (urlType){
-              case "1":
-              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
-              break;
-              case "2":
-              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_term="+utmTerme;
-              break;
-              case "3":
-              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu;
-              break;
-              case "4":
-              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu+"&utm_term="+utmTerme;
-              break;
-              default :
-              var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
+            //Selon le type d'URL et l'ajout de parametres de base, on assemble l'url finale
+            if (hasParam === false) {
+              switch (urlType){
+                case "1":
+                var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
+                break;
+                case "2":
+                var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_term="+utmTerme;
+                break;
+                case "3":
+                var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu;
+                break;
+                case "4":
+                var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu+"&utm_term="+utmTerme;
+                break;
+                default :
+                var sharableUrl = baseUrl+"?utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
+              }
+            } else{
+
+            if (hasParam === true) {
+              switch (urlType){
+                case "1":
+                var sharableUrl = baseUrl+"&utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
+                break;
+                case "2":
+                var sharableUrl = baseUrl+"&utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_term="+utmTerme;
+                break;
+                case "3":
+                var sharableUrl = baseUrl+"&utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu;
+                break;
+                case "4":
+                var sharableUrl = baseUrl+"&utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne+"&utm_content="+utmContenu+"&utm_term="+utmTerme;
+                break;
+                default :
+                var sharableUrl = baseUrl+"&utm_source="+utmSource+"&utm_medium="+utmSupport+"&utm_campaign="+utmCampagne;
+              }
+            }
+
             }
         
 
