@@ -210,6 +210,7 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://rawgit.com/nicodeforge/clipboard.js/master/dist/clipboard.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/nicodeforge/moment/master/moment.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
           $('select').select();
@@ -234,7 +235,8 @@
                createdAt=data.createdAt,
                analysisIn=data.analysisIn,
                analysedAccount=data.analysedAccount,
-               urlType=data.urlType;
+               urlType=data.urlType,
+               formatedAnalysisDate = formatedAnalysisDate;
 
             //url to your webhook
             var webHookUrl="https://hooks.zapier.com/hooks/catch/1160774/8cqrmx/";
@@ -248,10 +250,11 @@
                "utmSupport" : utmSupport,
                "utmContenu" : utmContenu,
                "utmTerme" : utmTerme,
-               "createdAt" : createdAt,
+               "createdAt" : moment().format("MMMM Do YYYY"),
                "analysisIn" : analysisIn,
                "analysedAccount" : analysedAccount,
-               "urlType" : urlType
+               "urlType" : urlType,
+               "formatedAnalysisDate" : formatedAnalysisDate
                 };
               
             //register method called after data has been sent method is executed
@@ -267,6 +270,7 @@
 
       function getFormElements(){ 
         event.preventDefault(); // Empêche le rechargement de la page et l'effacement des champs du formulaire après le clic du bouton Submit
+
         //Récupère tous les champs du formulaire et les stocks dans des variables
         
         var baseUrl = document.forms["general"].elements["base-url"].value, 
@@ -275,10 +279,18 @@
             utmSupport = document.forms["general"].elements["utm-support"].value,
             utmContenu = document.forms["general"].elements["utm-contenu"].value,
             utmTerme = document.forms["general"].elements["utm-terme"].value,
-            createdAt = Date.now(),
+            createdAt = new Date(),
             analysisIn = document.forms["general"].elements["days-to-analysis"].value,
+            analysisDate = new Date(), 
             analysedAccount = "inconnu",
             urlType = "0";
+
+            //Traitement du temps d'analyse
+            analysisDate.setDate(analysisDate.getDate() + analysisIn);
+        var dd = analysisDate.getDate(),
+            mm = analysisDate.getMonth() + 1,
+            y = analysisDate.getFullYear(),
+            formatedAnalysisDate = dd + '/'+ mm + '/'+ y;
 
             //Vérifier si des paramètres ont été ajoutés à base-url
         var checkParam = "?",
@@ -368,7 +380,8 @@
           "createdAt" : createdAt,
           "analysisIn" : analysisIn,
           "urlType" : urlType,
-          "analysedAccount" : analysedAccount
+          "analysedAccount" : analysedAccount,
+          "formatedAnalysisDate" : formatedAnalysisDate
         }
 
       
