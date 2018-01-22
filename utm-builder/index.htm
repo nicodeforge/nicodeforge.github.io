@@ -233,6 +233,7 @@
                utmTerme=data.utmTerme,
                createdAt=data.createdAt,
                analysisIn=data.analysisIn,
+               analysedAccount : data.analysedAccount,
                urlType=data.urlType;
 
             //url to your webhook
@@ -249,6 +250,7 @@
                "utmTerme" : utmTerme,
                "createdAt" : createdAt,
                "analysisIn" : analysisIn,
+               "analysedAccount" : analysedAccount,
                "urlType" : urlType
                 };
               
@@ -275,6 +277,7 @@
             utmTerme = document.forms["general"].elements["utm-terme"].value,
             createdAt = Date.now(),
             analysisIn = document.forms["general"].elements["days-to-analysis"].value,
+            analysedAccount = "inconnu",
             urlType = "0";
 
             //Vérifier si des paramètres ont été ajoutés à base-url
@@ -343,6 +346,18 @@
         
         $('#urlModal').modal('open');
 
+        // On récupère le nom du compte à analyser
+        if (baseUrl.includes("unepetitemousse")) {
+          
+          analysedAccount = "Une Petite Mousse";
+
+        } else{
+          if (baseUrl.includes("laboxfromage")) {
+            
+            analysedAccount = "La Box Fromage"
+          }
+        }
+
         data = {
           "baseUrl" : baseUrl,
           "utmCampagne" : utmCampagne,
@@ -352,7 +367,8 @@
           "utmTerme" : utmTerme,
           "createdAt" : createdAt,
           "analysisIn" : analysisIn,
-          "urlType" : urlType
+          "urlType" : urlType,
+          "analysedAccount" : analysedAccount
         }
 
       
