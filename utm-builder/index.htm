@@ -51,6 +51,11 @@
          color: #000;
        }
 
+       .dropdown-content,
+       .select-dropdown{
+        overflow: scroll;
+       }
+
        
     </style>
   </head>
@@ -70,6 +75,8 @@
               <li>Seuls les  <strong>4 premiers champs sont obligatoires</strong></li>
               <li>Penses à <strong>tester systématiquement le lien final</strong></li>
             </ul>
+            <p><em>Si le lien est diffusé de façon visible (Ex: "Rendez-vous sur unepetitemousse.fr?utm_source=xxx") => utilisez bitly pour le raccourcir et le brander. Sinon, s'il est caché derrière un texte d'ancrage, utilisez le tel-quel.</em></p>
+            <p class="center-align"><strong class="orange-text text-darken-4">Vous ne trouvez pas votre campagne, source ou support ? Slackez-moi !</strong></p>
           </div>
           </div>
         </div>
@@ -84,32 +91,107 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="input-field col s12">
-                    <input placeholder="fete-des-peres-2018,noel-2018,complete-ta-box,box-expert" id="utm-campagne" type="text" class="validate" required>
-                    <label class="yellow-text text-darken-4" for="campagne">Nom de la campagne <i class="material-icons help" id="help-utm-campagne">live_help</i></label>
-                  </div>
+                    <div class="input-field col s12">
+                      <select class="yellow-text text-darken-4" id="utm-campagne" required>
+                        <option class="yellow-text text-darken-4" value="" disabled selected>Choisissez votre campagne</option>
+                        <option class="yellow-text text-darken-4" value="avis">avis</option>
+                        <option class="yellow-text text-darken-4" value="blog">blog</option>
+                        <option class="yellow-text text-darken-4" value="boutique">boutique</option>
+                        <option class="yellow-text text-darken-4" value="box">box</option>
+                        <option class="yellow-text text-darken-4" value="brasserie">brasserie</option>
+                        <option class="yellow-text text-darken-4" value="cagnotte">cagnotte</option>
+                        <option class="yellow-text text-darken-4" value="calendrier-apres">calendrier-apres</option>
+                        <option class="yellow-text text-darken-4" value="calendrier-avent">calendrier-avent</option>
+                        <option class="yellow-text text-darken-4" value="calendrier-fdp">calendrier-fdp</option>
+                        <option class="yellow-text text-darken-4" value="carte-cadeau">carte-cadeau</option>
+                        <option class="yellow-text text-darken-4" value="clemity-beer">clemity-beer</option>
+                        <option class="yellow-text text-darken-4" value="gazette">gazette</option>
+                        <option class="yellow-text text-darken-4" value="guide-cadeau">guide-cadeau</option>
+                        <option class="yellow-text text-darken-4" value="kit-brassage">kit-brassage</option>
+                        <option class="yellow-text text-darken-4" value="kit-houblon">kit-houblon</option>
+                        <option class="yellow-text text-darken-4" value="mousse-a-4">mousse-a-4</option>
+                        <option class="yellow-text text-darken-4" value="mousse-a-vie">mousse-a-vie</option>
+                        <option class="yellow-text text-darken-4" value="parrainage">parrainage</option>
+                        <option class="yellow-text text-darken-4" value="vente-privee">vente-privee</option>
+                      </select>
+                      <label class="yellow-text text-darken-4">Nom de la campagne <i class="material-icons help" id="help-utm-campagne">live_help</i></label>
+                    </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input placeholder="mon-super-blog,facebook,google,backend,newsletter" id="utm-source" type="text" class="validate" required>
-                    <label class="yellow-text text-darken-4" for="utm-source">Source de la campagne <i class="material-icons help" id="help-utm-source">live_help</i></label>
+                    <select class="yellow-text text-darken-4" id="utm-source" required>
+                      <option class="yellow-text text-darken-4" value="" disabled selected>Choisissez la source</option>
+                      <option class="yellow-text text-darken-4" value="backend">backend</option>
+                      <option class="yellow-text text-darken-4" value="bing">bing</option>
+                      <option class="yellow-text text-darken-4" value="blog">blog</option>
+                      <option class="yellow-text text-darken-4" value="facebook">facebook</option>
+                      <option class="yellow-text text-darken-4" value="google">google</option>
+                      <option class="yellow-text text-darken-4" value="happybeertime.com">happybeertime.com</option>
+                      <option class="yellow-text text-darken-4" value="instagram">instagram</option>
+                      <option class="yellow-text text-darken-4" value="laboxdumois.fr">laboxdumois.fr</option>
+                      <option class="yellow-text text-darken-4" value="leetchi.com">leetchi.com</option>
+                      <option class="yellow-text text-darken-4" value="leparrainage.fr">leparrainage.fr</option>
+                      <option class="yellow-text text-darken-4" value="lepotcommun.fr">lepotcommun.fr</option>
+                      <option class="yellow-text text-darken-4" value="lesmondaines.com">lesmondaines.com</option>
+                      <option class="yellow-text text-darken-4" value="lesnouveauxfromagers.fr">lesnouveauxfromagers.fr</option>
+                      <option class="yellow-text text-darken-4" value="lexpress.fr">lexpress.fr</option>
+                      <option class="yellow-text text-darken-4" value="linkedin">linkedin</option>
+                      <option class="yellow-text text-darken-4" value="lokan.fr">lokan.fr</option>
+                      <option class="yellow-text text-darken-4" value="ma-reduc.com">ma-reduc.com</option>
+                      <option class="yellow-text text-darken-4" value="maddyness.com">maddyness.com</option>
+                      <option class="yellow-text text-darken-4" value="madmoizelle.com">madmoizelle.com</option>
+                      <option class="yellow-text text-darken-4" value="mautic">mautic</option>
+                      <option class="yellow-text text-darken-4" value="monbon.fr">monbon.fr</option>
+                      <option class="yellow-text text-darken-4" value="noeldelafrenchtech.fr">noeldelafrenchtech.fr</option>
+                      <option class="yellow-text text-darken-4" value="one-signal">one-signal</option>
+                      <option class="yellow-text text-darken-4" value="print">print</option>
+                      <option class="yellow-text text-darken-4" value="site">site</option>
+                      <option class="yellow-text text-darken-4" value="squadata">squadata</option>
+                      <option class="yellow-text text-darken-4" value="topito.com">topito.com</option>
+                      <option class="yellow-text text-darken-4" value="touteslesbox.fr">touteslesbox.fr</option>
+                      <option class="yellow-text text-darken-4" value="trucsdemec.fr">trucsdemec.fr</option>
+                      <option class="yellow-text text-darken-4" value="twitter">twitter</option>
+                      <option class="yellow-text text-darken-4" value="typeform">typeform</option>
+                      <option class="yellow-text text-darken-4" value="uncafemonblocnote.fr">uncafemonblocnote.fr</option>
+                      <option class="yellow-text text-darken-4" value="youtube">youtube</option>
+                      <option class="yellow-text text-darken-4" value="print">print</option>
+                      <option class="yellow-text text-darken-4" value="messenger">messenger</option>
+                    </select>
+                    <label class="yellow-text text-darken-4">Source de la campagne <i class="material-icons help" id="help-utm-source">live_help</i></label>
                   </div>
+
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input placeholder="email,post,dark-post,referral,cpc" id="utm-support" type="text" class="validate" required>
-                    <label class="yellow-text text-darken-4" for="utm-support">Support de la campagne <i class="material-icons help" id="help-utm-support">live_help</i></label>
+                    <select class="yellow-text text-darken-4" id="utm-support" required>
+                      <option class="yellow-text text-darken-4" value="" disabled selected>Choisissez le support</option>
+                      <option class="yellow-text text-darken-4" value="10-10">10-10</option>
+                      <option class="yellow-text text-darken-4" value="article">article</option>
+                      <option class="yellow-text text-darken-4" value="banner">banner</option>
+                      <option class="yellow-text text-darken-4" value="bio">bio</option>
+                      <option class="yellow-text text-darken-4" value="broadcast">broadcast</option>
+                      <option class="yellow-text text-darken-4" value="chatbot">chatbot</option>
+                      <option class="yellow-text text-darken-4" value="cpc">cpc</option>
+                      <option class="yellow-text text-darken-4" value="cta">cta</option>
+                      <option class="yellow-text text-darken-4" value="dark-post">dark-post</option>
+                      <option class="yellow-text text-darken-4" value="email">email</option>
+                      <option class="yellow-text text-darken-4" value="newsletter">newsletter</option>
+                      <option class="yellow-text text-darken-4" value="post">post</option>
+                      <option class="yellow-text text-darken-4" value="push">push</option>
+                    </select>
+                    <label class="yellow-text text-darken-4">Support de la campagne <i class="material-icons help" id="help-utm-support">live_help</i></label>
                   </div>
+
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input placeholder="janvier-2018,bonus-2verres-2bieres" id="utm-contenu" type="text" class="validate">
+                    <input placeholder="bonus-septembre-2018,french-days-2018," id="utm-contenu" type="text" class="validate">
                     <label class="yellow-text text-darken-4" for="utm-contenu">Contenu de la campagne <i class="material-icons help" id="help-utm-contenu">live_help</i></label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input placeholder="300x250,audience-acheteurs-box,audience-grenoblois,article,membres-unepetitemousse" id="utm-terme" type="text" class="validate">
+                    <input placeholder="janvier-2018,audience-acheteurs-box,audience-grenoblois,article,membres-unepetitemousse" id="utm-terme" type="text" class="validate">
                     <label class="yellow-text text-darken-4" for="utm-terme">Terme de la campagne <i class="material-icons help" id="help-utm-terme">live_help</i></label>
                   </div>
                 </div>
@@ -130,7 +212,7 @@
                   </div>
                   </div>
                 </div>
-
+                <!--
                 <div class="row">
                   <div class="input-field col s12">
                   <p>
@@ -151,7 +233,7 @@
                   </div>
                   </div>
                 </div>
-
+                -->
                 <button class="btn waves-effect yellow darken-4 waves-light" onclick="getFormElements();">Obtenir mon lien
                     <i class="material-icons left">link</i>
                 </button>
@@ -175,13 +257,13 @@
             <!--Start answer for utm-campagne-->
             <div class="answer card" id="answer-utm-campagne">
               <div class="card-content">
-                Le<span class="yellow-text text-darken-4"> nom de la campagne</span> correspond à la <strong>catégorie de produit</strong> sur laquelle tu souhaites communiquer. C'est donc le niveau le plus haut et le plus générique possible.<br><br>
+                Le<span class="yellow-text text-darken-4"> nom de la campagne</span> correspond à <strong>l'objectif</strong> poursuivit par la campagne. C'est donc le niveau le plus haut et le plus générique possible.<br><br>
                 Par exemple : <em>box</em> ou <em>calendrier-avent</em> ou <em>boutique</em> ou encore <em>brasserie</em>
                 <br><br>
                 Si tu as un doute : demandes-moi :)
               </div>
               <div class="card-action">
-                <button class="btn btn-flat waves-effect waves-green" id="close-answer-utm-campagne">Compris !</button>  
+                <button class="btn btn-flat waves-effect waves-orange" id="close-answer-utm-campagne">Compris !</button>  
               </div>
             </div>
             <!--End answer for utm-campagne-->
@@ -189,7 +271,7 @@
             <div class="answer card" id="answer-utm-source">
               <div class="card-content">
                 La<span class="yellow-text text-darken-4"> source de la campagne</span> correspond à la <strong>provenance de la campagne</strong>. En d'autre terme elle correspond à "l'endroit" où tu vas déposer ton lien. Il peut s'agir du nom du site sur lequel le lien sera diffusé <br><br>
-                Par exemple : <em>mon-super-blog</em>,<em>facebook</em>,<em>google</em>,<em>backend</em> ou encore <em>newsletter</em>
+                Par exemple : <em>mon-super-blog</em>,<em>facebook</em>,<em>google</em>,<em>backend</em> ou encore <em>mautic</em>
                 <br><br>
                 Si tu as un doute : demandes-moi :)
               </div>
@@ -215,7 +297,7 @@
            <div class="answer card" id="answer-utm-contenu">
              <div class="card-content">
                Le<span class="yellow-text text-darken-4"> contenu de la campagne</span> permet d'<strong>identifier plus précisément le message qui a été communiqué avec le lien</strong>. On s'en sert par exemple pour préciser la raison pour laquelle on contact un client par email ou pour préciser le contenu d'un post facebook. C'est un élément facultatif.<br><br>
-               Par exemple : <em>complement-boutique-kit</em>,<em>concours-x-y</em>.
+               Par exemple : <em>complement-boutique-octobre-2018</em>,<em>concours-x-y</em>,<em>french-days-2018</em>,<em>barrel-aged-day</em>.
                <br><br>
                Si tu as un doute : demandes-moi :)
              </div>
@@ -242,7 +324,11 @@
           </div>
           <p>&nbsp;</p>
         </div>
-
+        <div class="row card">
+          <div class="col s12">
+            <p><em>Ajouter des paramètres à un lien permet de modifier certaines informations de la page de destination ou dans certains cas, de simplement passer des informations à Google Analytics sur la provenance de l'utilisateur qui a cliqué sur le lien en question. On ajoute un paramètre à une URL en indiquant son nom (ex: "selection"), immédiatement précédé par un "?" (indiquant au navigateur que les élements suivants de l'url sont des parametres personalisés) ou un "&" si le "?" a déjà été indiqué. ON indique en suite la valeur que l'on souhaite donner au parametre ("=bieres-du-monde). Dans tous les cas, le signe "?" ne doit apparaitre qu'une seule fois dans le lien. Pour des soucis de formalisme, on privilégie les caractères minuscules, sans accents, sans caractères spécial,n en remplacant les espaces par des "-"</em></p>
+          </div>
+        </div>
         <div id="urlModal" class="modal">
             <div class="modal-content">
               <h4>URL à utiliser</h4>
@@ -269,6 +355,7 @@
     <script type="text/javascript">
       $(document).ready(function(){
           $('select').select();
+          //$('select').formSelect();
           $('.modal').modal();
           $('#success-feedback').hide();
           $('.answer').hide();
