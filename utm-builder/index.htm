@@ -365,6 +365,12 @@
     <script type="text/javascript" src="https://rawgit.com/nicodeforge/clipboard.js/master/dist/clipboard.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script type="text/javascript">
+      $('#mySelect').append($('<option>', {
+          value: 'test-1',
+          text: 'test-1'
+      }));
+
+
       $(document).ready(function(){
           $('select').select();
           //$('select').formSelect();
