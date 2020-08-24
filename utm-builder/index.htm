@@ -487,10 +487,10 @@
               //crossDomain : true,
               host = window.location.protocol +'//'+window.location.hostname,
               headers: {
-                'Access-Control-Allow-Headers': 'http://nicodeforge.github.io',
-                'Access-Control-Allow-Origin': 'http://nicodeforge.github.io'
+                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Origin': '*'
               },
-              url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZVr7Lno69w5J9QGiVij0xvTwINxgKyINd6v_bP6PXihsmm0JSOm2DZSRknzx_2SIW_beVoA32tmNF/pub?output=csv",
+              url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZVr7Lno69w5J9QGiVij0xvTwINxgKyINd6v_bP6PXihsmm0JSOm2DZSRknzx_2SIW_beVoA32tmNF/pub?output=csv&callback=doData",
               content : 'text/plain',
               crossDomain : true,
               dataType: "text",       
@@ -502,6 +502,10 @@
               console.log(data);
               }   
             });
+
+            function doData(responseData){
+              console.log(responseData);
+            }
 
 
         });
