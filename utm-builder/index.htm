@@ -371,14 +371,10 @@
     <script type="text/javascript" src="https://rawgit.com/nicodeforge/clipboard.js/master/dist/clipboard.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     
     
     <script type="text/javascript">
-      $('#mySelect').append($('<option>', {
-          value: 'test-1',
-          text: 'test-1'
-      }));
-
 
       $(document).ready(function(){
           
@@ -482,6 +478,27 @@
             
 
           });
+
+
+
+          var sourceData;
+            $.ajax({
+              type: "GET",
+              //crossDomain : true,
+              headers: {  'Access-Control-Allow-Origin': 'http://nicodeforge.github.io/utm-builder' },
+              url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZVr7Lno69w5J9QGiVij0xvTwINxgKyINd6v_bP6PXihsmm0JSOm2DZSRknzx_2SIW_beVoA32tmNF/pub?output=csv",
+              content : 'text/plain',
+              crossDomain : true,
+              dataType: "text",       
+              success: function(response)  
+              {
+              //data = $.csv.toArrays(response);
+              //generateHtmlTable(data);
+              data = $.csv.toArrays(response);
+              console.log(data);
+              }   
+            });
+
 
         });
 
