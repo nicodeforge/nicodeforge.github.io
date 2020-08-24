@@ -485,7 +485,10 @@
             $.ajax({
               type: "GET",
               //crossDomain : true,
-              headers: {  'Access-Control-Allow-Origin': 'http://nicodeforge.github.io' },
+              headers: {
+                'Access-Control-Allow-Origin': 'http://nicodeforge.github.io',
+                'Access-Control-Allow-Headers': 'http://nicodeforge.github.io'
+              },
               url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZVr7Lno69w5J9QGiVij0xvTwINxgKyINd6v_bP6PXihsmm0JSOm2DZSRknzx_2SIW_beVoA32tmNF/pub?output=csv",
               content : 'text/plain',
               crossDomain : true,
