@@ -82,7 +82,7 @@
 				<p><a href="https://open.spotify.com/embed/playlist/37i9dQZF1DXdxcBWuJkbcy">Debug spotify</a></p>
 			</div>
 		</div>
-				<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdxcBWuJkbcy" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+				
 		
 		
 	</div>
@@ -96,6 +96,40 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	<!--End Bootstrap libraries-->
+
+	<!--Spotify SDK-->
+	<script src="https://sdk.scdn.co/spotify-player.js"></script>
+	<script type="text/javascript">
+		window.onSpotifyWebPlaybackSDKReady = () => {
+		  const token = 'BQDkI_PaCpnQw3L35oLhJjo8OFTPf-mAw9xAaZdoxvGY6rSJR27jrnaJWtY12co1-PlDdm_HQXZfLT02Bqzk33hw86t3gRvnCtPktkrpj4uBCx29f1KB6p9fMmqPNxh5roSKfJud5FsH1iyuC5Z10k-llPLZh3a_oJzF';
+		  const player = new Spotify.Player({
+		    name: 'Web Playback SDK Quick Start Player',
+		    getOAuthToken: cb => { cb(token); }
+		  });
+
+		  // Error handling
+		  player.addListener('initialization_error', ({ message }) => { console.error(message); });
+		  player.addListener('authentication_error', ({ message }) => { console.error(message); });
+		  player.addListener('account_error', ({ message }) => { console.error(message); });
+		  player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+		  // Playback status updates
+		  player.addListener('player_state_changed', state => { console.log(state); });
+
+		  // Ready
+		  player.addListener('ready', ({ device_id }) => {
+		    console.log('Ready with Device ID', device_id);
+		  });
+
+		  // Not Ready
+		    player.addListener('not_ready', ({ device_id }) => {
+		      console.log('Device ID has gone offline', device_id);
+		    });
+
+		    // Connect to the player!
+		    player.connect();
+		  };
+	</script>
 	
 	<script type="text/javascript">
 		const soundEffect = new Audio();
