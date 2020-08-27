@@ -21,11 +21,10 @@
 		<div class="row">
 			<div class="col-sm text-center">
 				<h1>Renforcement musculaire 💪</h1>
-				<p>&nbsp;</p>
 			</div>
 		</div>
 		<div class="row program-choice">
-			<div class="card col-5">
+			<div class="card col-12 col-sm-5">
 			  <div class="card-body">
 			    <h5 class="card-title">Programme court</h5>
 			    <h6 class="card-subtitle mb-2 text-muted">25 minutes</h6>
@@ -34,7 +33,7 @@
 			  </div>
 			</div>
 
-			<div class="card col-5">
+			<div class="card col-12 col-sm-5">
 			  <div class="card-body">
 			    <h5 class="card-title">Programme long</h5>
 			    <h6 class="card-subtitle mb-2 text-muted">65 minutes</h6>
@@ -89,12 +88,14 @@
 	<!--End Bootstrap libraries-->
 	
 	<script type="text/javascript">
+		const soundEffect = new Audio();
 		var shortProgramContent = [];
 		
 		fetch('http://nicodeforge.github.io/renfo/short-program-content.json')
 		     .then(res => res.json())
 		     .then((out) => {
-		         console.log('Output: ', out); shortProgramContent=out;
+		         //console.log('Output: ', out);
+		         shortProgramContent=out;
 		 }).catch(err => console.error(err));
 
 		var currentExerciseId=0;
@@ -105,6 +106,8 @@
 
 			//Display the current and next exercise
 			$('#short-program-selected').click(function(){
+				soundEffect.play();
+				soundEffect.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3';
 				$('#short-program').show('fade');
 				$('.program-choice').hide();
 				exerciseShort(currentExerciseId);
@@ -163,7 +166,7 @@
 
 				    if (counter == 0) {
 				        // Display a login box
-				        document.getElementById('timer-beep').play();
+				        soundEffect.play();
 				        clearInterval(interval);
 				        currentExerciseId++;
 				        exerciseShort(currentExerciseId);
