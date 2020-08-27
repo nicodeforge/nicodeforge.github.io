@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Renforcement musculaire</title>
+	<meta name="charset" content="utf-8" /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	
+	<style type="text/css">
+		.program-choice .card{
+			margin-right: 30px;
+		}
+		#timer-beep {
+		  position: absolute;
+		  top: -100000em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm text-center">
+				<h1>Renforcement musculaire 💪</h1>
+				<p>&nbsp;</p>
+			</div>
+		</div>
+		<div class="row program-choice">
+			<div class="card col-5">
+			  <div class="card-body">
+			    <h5 class="card-title">Programme court</h5>
+			    <h6 class="card-subtitle mb-2 text-muted">25 minutes</h6>
+			    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+			    <a id="short-program-selected" href="#short-program" class="card-link btn btn-primary">Go</a>
+			  </div>
+			</div>
+
+			<div class="card col-5">
+			  <div class="card-body">
+			    <h5 class="card-title">Programme long</h5>
+			    <h6 class="card-subtitle mb-2 text-muted">65 minutes</h6>
+
+			    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+			    <a href="#long-program" class="card-link btn btn-primary">Go</a>
+			  </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm text-center">
+				<p>&nbsp;</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="short-program">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<div class="jumbotron">
+					<h2>Programme court</h2>
+					<p>&nbsp;</p>
+					<button id="start-short" class="btn btn-success">Démarrer</button>
+					<p class="test-counter"></p>
+					<p>&nbsp;</p>
+					<div class="container short-program-content">
+						<div class="row">
+							<div class="col-sm text-center">
+								<div class="container">
+									<div class="progress" style="height: 40px;">
+									  <div class="progress-bar progress-bar-animated bg-success" style="width: 100%;" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+									</div><br>
+								</div>
+								<h3><span class="exercise-name"></span><span class="exercise-timing"> : <span class="exercise-length"></span>s</span></h3>
+								<p class="next-short">A suivre : <span class="exercise-next"></span><span class="exercise-next-timing"> : <span class="exercise-next-length"></span>s</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<audio id="timer-beep">
+	  <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3"/>
+	  <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.ogg" />
+	</audio>
+	
+	<!--Bootstrap libraries-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<!--End Bootstrap libraries-->
+
+	<script type="text/javascript">
+		var shortProgramContent = (function() {
+		  var json = null;
+		  $.ajax({
+		    'async': false,
+		    'global': false,
+		    'Access-Control-Allow-Origin': '*',
+		    'url': "./short-program-content.json",
+		    'dataType': "json",
+		    'success': function(data) {
+		      json = data;
+		    }
+		  });
+		  return json;
+		})();
+
+		var currentExerciseId=0;
+
+		$(document).ready(function(){
+			$('#short-program').hide();
+			//Functions for short program
+
+			//Display the current and next exercise
+			$('#short-program-selected').click(function(){
+				$('#short-program').show('fade');
+				$('.program-choice').hide();
+				exerciseShort(currentExerciseId);
+				//console.log('short program selected');
+			});
+
+			function exerciseShort (id){
+				
+				if (id < shortProgramContent.length){
+					$('.short-program-content .exercise-name').text(shortProgramContent[id].name);
+					$('.short-program-content .exercise-length').text(shortProgramContent[id].length);
+					//$('.progress-bar').attr('aria-valuemax',shortProgramContent[id].length);
+					//$('.progress-bar').attr('aria-valuemax',(100-(100/shortProgramContent[id].length)));
+					//$('.progress-bar').css('width',(100-(100/shortProgramContent[id].length))+"%");
+				}else{
+					$('.short-program-content .exercise-name').text("Bien joué 💪 🎉");
+					$('.short-program-content .exercise-timing').hide();
+					$('.next-short').hide();
+					$('#start-short').removeClass("disabled");
+					$('.program-choice').show();
+
+				}
+				if (id < shortProgramContent.length-1) {
+					$('.short-program-content .exercise-next').text(shortProgramContent[(shortProgramContent[id].id+1)].name);
+					$('.short-program-content .exercise-next-length').text(shortProgramContent[(shortProgramContent[id].id+1)].length);
+				}else{
+					$('.short-program-content .exercise-next').text("FIN");
+					$('.short-program-content .exercise-next-timing').hide();
+				}
+				
+			};
+			//Display time elased
+			$('#start-short').click(function(){
+				timerShort();
+				$('#start-short').addClass("disabled");
+			});
+
+			function loadNextExercise(){
+				if (currentExerciseId < shortProgramContent.length){
+					timerShort(currentExerciseId);
+					$('.progress-bar').css('width',"100%");
+				}
+			};
+
+
+
+			function timerShort () {
+				var counter = $('.exercise-length').text()				
+				var interval = setInterval(function() {
+				    counter--;
+				    // Display 'counter' wherever you want to display it.
+				    $('.exercise-length').text(counter);
+				    //$('.progress-bar').attr('aria-valuenow',counter);
+				    var progress = counter*(100/(shortProgramContent[currentExerciseId].length)) + "%";
+				    $('.progress-bar').css('width',progress);
+
+				    if (counter == 0) {
+				        // Display a login box
+				        document.getElementById('timer-beep').play();
+				        clearInterval(interval);
+				        currentExerciseId++;
+				        exerciseShort(currentExerciseId);
+				        loadNextExercise();
+				    }
+				}, 1000);
+			};
+
+		});
+	</script>
+
+</body>
+</html>
+
+
