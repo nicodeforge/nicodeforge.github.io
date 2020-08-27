@@ -87,22 +87,15 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	<!--End Bootstrap libraries-->
-
+	
 	<script type="text/javascript">
-		var shortProgramContent = (function() {
-		  var json = null;
-		  $.ajax({
-		    'async': false,
-		    'global': false,
-		    'Access-Control-Allow-Origin': '*',
-		    'url': "./short-program-content.json",
-		    'dataType': "json",
-		    'success': function(data) {
-		      json = data;
-		    }
-		  });
-		  return json;
-		})();
+		var shortProgramContent = [];
+		
+		fetch('http://nicodeforge.github.io/renfo/short-program-content.json')
+		     .then(res => res.json())
+		     .then((out) => {
+		         console.log('Output: ', out); shortProgramContent=out;
+		 }).catch(err => console.error(err));
 
 		var currentExerciseId=0;
 
