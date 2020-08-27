@@ -12,7 +12,8 @@
 	"id":2,
 	"name": "Corde à sauter",
 	"length": "60"
-},{
+},
+{
 	"id":3,
 	"name": "Pause",
 	"length": "30"
@@ -30,17 +31,17 @@
 {
 	"id":6,
 	"name": "Gainage passif face",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":7,
 	"name": "Gainage côté droit",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":8,
 	"name": "Gainage côté gauche",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":9,
@@ -50,17 +51,17 @@
 {
 	"id":10,
 	"name": "Gainage passif face",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":11,
 	"name": "Gainage côté droit",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":12,
 	"name": "Gainage côté gauche",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":13,
@@ -70,17 +71,17 @@
 {
 	"id":14,
 	"name": "Gainage passif face",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":15,
 	"name": "Gainage côté droit",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":16,
 	"name": "Gainage côté gauche",
-	"length": "45",
+	"length": "45"
 },
 {
 	"id":17,
