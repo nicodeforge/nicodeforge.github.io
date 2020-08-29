@@ -10,7 +10,7 @@ if($mysqli === false){
 }
  
 // Attempt insert query execution
-$sql = "SELECT * FROM program WHERE user_id = ".$userId."";
+$sql = "SELECT * FROM renfo_program WHERE user_id = ".$userId."";
 
 if ($mysqli->connect_errno) {
     printf("Échec de la connexion : %s\n", $mysqli->connect_error);

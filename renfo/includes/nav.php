@@ -1,7 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+if ($_ENV['env']=='local'){
+  error_reporting(E_ALL);
+  ini_set('display_errors', TRUE);
+  ini_set('display_startup_errors', TRUE);
+}
 
 //$username = isset($_SESSION['user']) ? $_SESSION['user'] : NULL;
 ?>

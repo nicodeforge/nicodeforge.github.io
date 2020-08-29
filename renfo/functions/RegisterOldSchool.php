@@ -1,8 +1,10 @@
 <?php
 	session_start();
-	error_reporting(E_ALL);
-	ini_set('display_errors', TRUE);
-	ini_set('display_startup_errors', TRUE);	
+	if ($_ENV['env']=='local'){
+		error_reporting(E_ALL);
+		ini_set('display_errors', TRUE);
+		ini_set('display_startup_errors', TRUE);	
+	}
 
 	$accessKey = isset($_POST['access-key']) ? $_POST['access-key'] : NULL;
 
@@ -28,7 +30,7 @@
 			 	# code...
 			  
 				// Attempt insert query execution
-				$sql = "INSERT INTO user (login,password,email,permission_level) VALUES ('".$login."', '".$pwd."', '".$email."','standard')";
+				$sql = "INSERT INTO renfo_user (login,password,email,permission_level) VALUES ('".$login."', '".$pwd."', '".$email."','standard')";
 				if($mysqli->query($sql) === true){
 					//header('Location: http://www.daisylab.fr/dev/timekeeper/?q=success');
 					$_SESSION["user"] = $login;

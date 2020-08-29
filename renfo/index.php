@@ -64,7 +64,6 @@ include 'functions/functions.php';
 			</div>
 			<div class="col-2"></div>
 		</div>
-
 		<div id="signup-modal" class="modal" tabindex="-1">
 		  <div class="modal-dialog">
 		    <div class="modal-content">

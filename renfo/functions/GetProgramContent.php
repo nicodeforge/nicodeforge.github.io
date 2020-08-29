@@ -8,7 +8,7 @@ if($mysqli === false){
 }
  
 // Attempt insert query execution
-$sql = "SELECT content FROM program WHERE slug ='".$_POST['variant']."'  ";
+$sql = "SELECT content FROM renfo_program WHERE slug ='".$_POST['variant']."'  ";
 
 if ($mysqli->connect_errno) {
     printf("Échec de la connexion : %s\n", $mysqli->connect_error);

@@ -39,7 +39,7 @@ include 'functions/functions.php';
 				<p>&nbsp;</p>
 			</div>
 		</div>
-		<?php include "includes/Programs.php" ?> 
+		<?php include "./includes/programs.php" ?> 
 		<div class="row">
 			<div class="col-sm text-center">
 				<p>&nbsp;</p>

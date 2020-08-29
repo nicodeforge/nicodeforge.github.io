@@ -1,15 +1,17 @@
 <?php
 	session_start();
-	error_reporting(E_ALL);
-	ini_set('display_errors', TRUE);
-	ini_set('display_startup_errors', TRUE);	
+	if ($_ENV['env']=='local'){
+		error_reporting(E_ALL);
+		ini_set('display_errors', TRUE);
+		ini_set('display_startup_errors', TRUE);
+	}
 		
 		$login = isset($_POST['login']) ? $_POST['login'] : NULL;
 		$pass = isset($_POST['password']) ? $_POST['password'] : "unset";
 		$pwd = sha1($pass);
 		//echo "Pass ";
 		include "db.inc.local.php";
-		$sql = "SELECT * FROM user WHERE login = \"".$login."\"";
+		$sql = "SELECT * FROM renfo_user WHERE login = \"".$login."\"";
 
 		if ($mysqli->connect_errno) {
 		    printf("Échec de la connexion : %s\n", $mysqli->connect_error);

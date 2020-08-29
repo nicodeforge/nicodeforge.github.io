@@ -4,7 +4,7 @@ docker run -tid -p 3360:3306 --name mysql56 --restart=always -e MYSQL_ROOT_PASSW
 
 docker run -tid -p 3360:3306 --name mariadb --restart=always -v ~/Dev/nicodeforge.github.io/renfo/local/mysql56/data/mysql:/var/lib/mysql  -d mariadb:10.3
 
-docker run -tid --name project-renfo --restart=always --link mysql56:mysql -v $(pwd):/var/www/html -p 8888:80 richarvey/nginx-php-fpm:latest
+docker run -tid --name project-renfo --restart=always -e "env=local" --link mariadb:mysql -v $(pwd):/var/www/html -p 8888:80 richarvey/nginx-php-fpm:latest
 
 #Database
 
