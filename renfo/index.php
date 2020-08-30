@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (isset($_ENV['env']) && $_ENV['env'] ==='local'){
+	error_reporting(E_ALL);
+	ini_set('display_errors', TRUE);
+	ini_set('display_startup_errors', TRUE);	
+}
 include 'functions/functions.php';
 ?>
 <!--Dashboard Spotify : https://developer.spotify.com/dashboard/applications/27d9073503b54f019e6524c72038b3d9-->
@@ -22,6 +27,7 @@ include 'functions/functions.php';
 			include 'includes/nav.php';
 		?>
 	</div>
+	<?php include 'includes/user_feedback.php'; ?>
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-2"></div>
@@ -31,7 +37,7 @@ include 'functions/functions.php';
 				    Login
 				  </div>
 				  <div class="card-body">
-				    <form method="POST" action="functions/LogInOldSchool.php">
+				    <form method="POST" action="functions/log_in_old_school.php">
 				      <div class="form-group row">
 				        <label for="login" class="col-sm-4 col-form-label">Login</label>
 				        <div class="col-sm-8">
@@ -76,7 +82,7 @@ include 'functions/functions.php';
 		      <div class="modal-body">
 		        
 		      
-					<form method="POST" action="functions/RegisterOldSchool.php">
+					<form method="POST" action="functions/register_old_school.php">
 				      <div class="form-group row">
 				        <label for="login" class="col-sm-4 col-form-label">Login</label>
 				        <div class="col-sm-8">
@@ -136,11 +142,9 @@ include 'functions/functions.php';
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+		$('.alert').alert();
 			
-			
-		$('#signup-modal').modal('hide');	
-			
-			
+		$('#signup-modal').modal('hide');				
 			/*
 			$('#submit').click(function(){
 				//e.preventDefault;
@@ -167,6 +171,7 @@ include 'functions/functions.php';
 
 		});
 	</script>
+	<script type="text/javascript" src="./user_feedback.js"></script>
 </body>
 </html>
 

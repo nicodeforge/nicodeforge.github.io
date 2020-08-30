@@ -1,14 +1,15 @@
 <?php 
 
 include './db.inc.local.php';
-$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_database,$db_port);
+$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_database,);
 
 if($mysqli === false){
     die("ERROR: Could not connect. " . $mysqli->connect_error);
 }
  
+$mysqli->set_charset("utf8");
 // Attempt insert query execution
-$sql = "SELECT content FROM renfo_program WHERE slug ='".$_POST['variant']."'  ";
+$sql = "SELECT content FROM renfo_program WHERE slug = '".$_POST['variant']."'  ";
 
 if ($mysqli->connect_errno) {
     printf("Échec de la connexion : %s\n", $mysqli->connect_error);

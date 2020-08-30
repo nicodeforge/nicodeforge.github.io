@@ -1,6 +1,83 @@
 <?php
 session_start();
+//if ($_ENV['env']==='local'){
+	error_reporting(E_ALL);
+	ini_set('display_errors', TRUE);
+	ini_set('display_startup_errors', TRUE);	
+//}
 include 'functions/functions.php';
+include 'functions/db.inc.local.php';
+
+$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_database);
+
+if($mysqli === false){
+    die("ERROR: Could not connect. " . $mysqli->connect_error);
+}
+// Attempt query execution
+$mysqli->set_charset("utf8");
+$sql = "select type from renfo_exercise group by type;";
+$sql .= "select name,default_time,default_series,default_recup_time from renfo_exercise group by name;";
+
+
+if ($mysqli->connect_errno) {
+    printf("Échec de la connexion : %s\n", $mysqli->connect_error);
+    exit();
+}
+
+/* "Create table" ne retournera aucun jeu de résultats */
+
+/*
+if ($mysqli->multi_query($sql) === TRUE) {
+    printf("Requete succes.\n");
+}
+*/
+
+/* Requête "Select" retourne un jeu de résultats */
+$query_result = $mysqli->multi_query($sql);
+$i = 0;
+$type = array();
+$exercise = array();
+
+if ($query_result) {
+    do {
+    	
+        if ($result = $mysqli->store_result()) {
+            while ($row = $result->fetch_row()) {
+                //echo "<p>".$row[0]." - ".$i."</p>";
+                if ($i == 0) {
+                	//Store result of first query
+                	array_push($type, $row[0]);
+
+                }elseif ($i == 1) {
+                	//$exercise = $row[0];
+                	//array_push($exercise, );
+                	
+                	array_push($exercise, array('name' => $row[0] ,'time' => $row[1],'series' => $row[2],'recup' => $row[3]));
+                }
+
+                
+                //$i++;
+            }
+            $i++;
+            $result->free();
+        }
+        
+    } while ($mysqli->more_results() && $mysqli->next_result());
+}
+$mysqli->close();
+
+
+/*if ($result = $mysqli->query($sql)) {
+    if ($result -> num_rows > 0){
+    	while ($row = mysqli_fetch_assoc($result)) {
+    		echo "<p>".$row["type"]."</p>";
+      		  
+    	}
+    }
+    $result->close();
+    $mysqli->close();
+}*/
+
 ?>
 <!--Dashboard Spotify : https://developer.spotify.com/dashboard/applications/27d9073503b54f019e6524c72038b3d9-->
 <!--Documentation Web Playback SDK : https://developer.spotify.com/documentation/web-playback-sdk/quick-start/#-->
@@ -15,110 +92,132 @@ include 'functions/functions.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		.custom-control-input{
+			
+		}
+
+	</style>
 </head>
 <body>
 	<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
 		<?php
-			include 'includes/nav.php?active=creer-programme';
+			include './includes/nav.php';
 		?>
 	</div>
+	<?php include 'includes/user_feedback.php'; ?>
 	<div class="container">
 		<div class="row align-items-center">
-			<div class="col-2"></div>
+			<div class="col-1"></div>
 			<div class="col align-self-center">
 				<div class="card text-center">
 				  <div class="card-header bg-dark text-light">
 				    Créez votre programme !
 				  </div>
 				  <div class="card-body">
-				    <form method="POST" action="functions/LogInOldSchool.php">
+				    <form method="POST" action="functions/program_builder.php" class="form">
 				      <div class="form-group row">
-				        <label for="name" class="col-sm-4 col-form-label">Donnes lui un nom</label>
+				        <label for="progname" class="col-sm-4 col-form-label">Donnes lui un nom</label>
 				        <div class="col-sm-8">
-				          <input type="text" class="form-control" name="name" id="name">
+				          <input type="text" class="form-control" name="progname" id="progname">
 				        </div>
 				      </div>
 				      <div class="form-group row">
 				        <label for="type" class="col-sm-4 col-form-label">Quel types d'exercices ?</label>
 				        <div class="col-sm-8 ">
-				          <select class="form-control" id="type">
-				                <option>Renforcement & Cardio</option>
-				                <option>Full Cardio</option>
-				                <option>Musculation</option>
-				                <option>Poids de corps</option>
-				              </select>
+				        	<select class="form-control" id="type">
+				        		<?php
+				        			for ($i=0; $i < count($type); $i++) { 
+				        				echo "<option>".$type[$i]."</option>";
+				        			}
+				        		?>
+				    		</select>
 				        </div>
 				      </div>
+				      <div class="exercice-description container bg-light" style="padding: 10px;"> 
+						      <div class="form-group row">
+						        <label for="exercice1" class="col-sm-4 col-form-label">Exercice #1</label>
+						        <div class="col-sm-8 ">
+						          <select class="form-control exerciseType" id="exercice1" name="exercice1">
+						               <?php
+						               	for ($i=0; $i < count($exercise); $i++) { 
+						               		echo "<option>".$exercise[$i]["name"]."</option>";
+						               	}
+						               ?>
+						          </select>
+						        </div>
+						      </div>
+						      <div class="form-group row">
+						        <label for="series1" class="col-sm-4 col-form-label">Combien de séries ?</label>
+						        <div class="col-sm-8 ">
+						          <div class="col-sm-8">
+						          	<input type="number" class="form-control" name="series1" id="series1" value="">
+						          </div>
+						        </div>
+						      </div>
+						      <div class="form-group row">
+						        <label for="time1" class="col-sm-4 col-form-label">Combien de temps par série ?</label>
+						        <div class="col-sm-8 ">
+						          <div class="col-sm-8">
+						          	<input type="time" class="form-control" name="time1" id="time1">
+						          </div>
+						        </div>
+						      </div>
+						      <div class="form-group row">
+						        <label for="recup1" class="col-sm-4 col-form-label">Combien de temps de récup ?</label>
+						        <div class="col-sm-8 ">
+						          <div class="col-sm-8">
+						          	<input type="time" class="form-control" name="recup1" id="recup1">
+						          </div>
+						        </div>
+						      </div>
+					  </div>
+				      <div class="exercise-load">
+				      	<div></div>
+				      </div>
+					  <div class="container bg-light" style="padding: 10px;"> 
+					  	<p><a class="add-exercise"  href="#">Ajouter un exercice</a></p>		   
+					  </div>
+					  <div class="row"><p>&nbsp;</p></div>
+					  <div class="form-group row ">
+
+					  	<div class="col-sm-4 text-right">
+					  	<input class="form-check-input" type="checkbox" id="sharable" name="sharable" value="disabled">
+					  	</div>
+
+					    <div class="col-sm-6 text-left">
+					      <label class="form-check-label " for="sharable">Rendre mon programme dispo pour les autres utilisateurs</label>
+					    </div>
+					  </div>
+							  		
+							  		
+								  
 				      <div class=" form-group row">
-				      		<div class="col-4 align-self-center">
+				      		<div class="col-12 align-self-center">
 						      <div class="form-group row">
 						      	<div class="col align-self-center" >
-						      		<!--<button id="submit" class="btn btn-primary">Log In</button>-->
-						      		<input type="submit" class="btn btn-dark" value="Login">
+						      		<input type="number" class="form-control" style="visibility: hidden;" name="count" id="count" value="1">
+						      		<input type="submit" class="btn btn-dark" value="Créer">
 						      	</div>
 						      </div>
 						     </div>
 					  </div>
 				    </form>
 				  </div>
-				  <div class="card-footer text-muted bg-dark text-light">
-				    Vous n'avez pas de compte ? <a id="signup" data-toggle="modal" href="#signup-modal" class="text-info">Créez-en un</a> !
-				  </div>
-
 				</div>
 			</div>
-			<div class="col-2"></div>
+			<div class="col-1"></div>
 		</div>
 
-		<div id="signup-modal" class="modal" tabindex="-1">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title">Créez votre compte</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        
-		      
-					<form method="POST" action="functions/RegisterOldSchool.php">
-				      <div class="form-group row">
-				        <label for="login" class="col-sm-4 col-form-label">Login</label>
-				        <div class="col-sm-8">
-				          <input type="text" class="form-control" name="loginreg" id="loginreg">
-				        </div>
-				      </div>
-				      <div class="form-group row">
-				        <label for="email" class="col-sm-4 col-form-label">Email</label>
-				        <div class="col-sm-8">
-				          <input type="text" class="form-control" name="email" id="email">
-				        </div>
-				      </div>
-				      <div class="form-group row">
-				        <label for="password" class="col-sm-4 col-form-label">Password</label>
-				        <div class="col-sm-8 ">
-				          <input type="password" class="form-control" name="password" id="password">
-				        </div>
-				      </div>
-				      <div class="form-group row">
-				        <label for="access-key" class="col-sm-4 col-form-label">Clé d'accès</label>
-				        <div class="col-sm-8">
-				          <input type="text" class="form-control" name="access-key" id="access-key">
-				        </div>
-				      </div>
-				      <div class=" form-group row">
-				      		<div class="col-4 align-self-center">
-						      <div class="form-group row">
-						      	<div class="col align-self-center" >
-						      		<!--<button id="submit" class="btn btn-primary">Log In</button>-->
-						      		<input type="submit" class="btn btn-dark" value="S'inscrire">
-						      	</div>
-						      </div>
-						     </div>
-					  </div>
-			    </form>
-		</div>
+		<?php
+		//In order to display some default values, we're creating a JS object to output the content of exercise query
+		echo "<script>\n
+				var exerciseDefinition =";
+		$exerciseDefinition = json_encode($exercise,JSON_UNESCAPED_UNICODE);
+		echo $exerciseDefinition;
+		echo ";";
+		echo "</script>";
+		?>
 	    
 		    </div>
 		  </div>
@@ -126,8 +225,7 @@ include 'functions/functions.php';
 		</div>
 
 	</div>
-	
-	
+
 	<!--Bootstrap libraries-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -142,37 +240,79 @@ include 'functions/functions.php';
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+		var exerciseId=1;
+		$('#signup-modal').modal('hide');
+
+		$('.add-exercise').click(function(e){
+			//e.preventDefault();
+			exerciseId++;
+			$('#count')[0].value = exerciseId;
+			console.log("Exo ajouté");
+			$('.exercise-load:last').load("./includes/exercise_form.php",{"exercise_id":exerciseId});
+			updateDefaults();
+			updateDefaults2();
+		});
+
+		
+
+		var exercice1Value = $('#exercice1')[0].value;
+		
+		updateDefaults();
+
+
+		var exercisesValues = "";
+		var exercisesList = $(".exerciseType");
 			
+
+		$('#exercice1').change(function(){
+			updateDefaults();
+		});	
+
+
+
+		function updateDefaults ()	{
+
+			exercice1Value = $('#exercice1')[0].value;
+
+			$('#time1').attr("value",exerciseDefinition.find(getExo).time);
+			$('#series1').attr("value",exerciseDefinition.find(getExo).series);
+			$('#recup1').attr("value",exerciseDefinition.find(getExo).recup);
+
 			
-		$('#signup-modal').modal('hide');	
+		}
+
+		function updateDefaults2 ()	{
+
+			for (var i = 0; i<exercisesList.length;i++){
+				var time   =   "#time"+i,
+					series   =   "#series"+i,
+					recup   =   "#recup"+i;
+				//exercice1Value = $('#exercice1')[0].value;
+				exercisesValues = exercisesList[i].value;
+				$(time).attr("value",exerciseDefinition.find(getExo2).time);
+				$(series).attr("value",exerciseDefinition.find(getExo2).series);
+				$(recup1).attr("value",exerciseDefinition.find(getExo2).recup);
+			}
+
 			
-			
-			/*
-			$('#submit').click(function(){
-				//e.preventDefault;
-				$.ajax({
-				  method: "POST",
-				  url: "./functions/LogIn.php",
-				 
-				  data: { 
-				  	login: $('#login')[0].value,
-				  	password: $('#password')[0].value,
-				  	
-				  },
-				  success : function(data){
-				  	if (data === "success") {
-				  		$('.alert').alert();	
-				  	}
-				  	if (data === "failure") {
-				  		alert('Oops');	
-				  	}
-				  	
-				  }
-				});
-			});*/
+		}
+
+		
+
+		function getExo(exo) { 
+		  return exo.name === exercice1Value;
+		}
+		function getExo2(exo) { 
+			    return exo.name === exercisesValues;
+			    console.log(i+"-"+exercisesList[i].value);
+		}			
+		
+
+		
 
 		});
 	</script>
+	<script type="text/javascript" src="./user_feedback.js"></script>
 </body>
 </html>
 

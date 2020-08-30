@@ -11,6 +11,7 @@
 		$pwd = sha1($pass);
 		//echo "Pass ";
 		include "db.inc.local.php";
+		$mysqli->set_charset("utf8");
 		$sql = "SELECT * FROM renfo_user WHERE login = \"".$login."\"";
 
 		if ($mysqli->connect_errno) {
@@ -23,7 +24,7 @@
 		    if ($result -> num_rows == 1){
 		    	while ($row = mysqli_fetch_assoc($result)) {
 		   			if ($pwd == $row['password']) {
-		   				$_SESSION["user"] = $row['display_name'];
+		   				$_SESSION["user"] = $row['login'];
 		   				$_SESSION["userId"] = $row['id'];
 		   				header("Location: ../renforcement.php?q=login-success");
 		   			} else {
@@ -34,7 +35,7 @@
 		    	}
 		    }
 		    if ($result -> num_rows == 0){
-		    	header("Location: ../index.php?q=login-zero");
+		    	header("Location: ../index.php?q=unknown-user");
 		    }
 	            
 			

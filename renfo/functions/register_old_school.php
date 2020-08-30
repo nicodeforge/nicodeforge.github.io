@@ -18,6 +18,7 @@
 			
 			$username = strtolower($login);
 			$pwd = sha1($pass);
+			$activation = sha1($email);
 			
 			include 'db.inc.local.php';
 			$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_database);
@@ -30,18 +31,28 @@
 			 	# code...
 			  
 				// Attempt insert query execution
+				$mysqli->set_charset("utf8");
 				$sql = "INSERT INTO renfo_user (login,password,email,permission_level) VALUES ('".$login."', '".$pwd."', '".$email."','standard')";
 				if($mysqli->query($sql) === true){
 					//header('Location: http://www.daisylab.fr/dev/timekeeper/?q=success');
 					$_SESSION["user"] = $login;
-					session_destroy();
-					$_SESSION = array();
+					//$_SESSION["userId"] = $login;
+					//session_destroy();
+					//$_SESSION = array();
 					//$_SESSION["user"] = "Logout";
-					header("Location: ../renforcement.php?q=register-success");
+					$to      = $email;
+					$subject = 'Activez votre compte';
+					$message = 'Bonjour ! Cliquez ici pour activer : LIEN';
+					$headers = 'From: admin@carnets-de-route-moto.fr' . "\r\n" .
+					'Reply-To: nicodeforge@gmail.com' . "\r\n" .
+					'X-Mailer: PHP/' . phpversion();
+
+					mail($to, $subject, $message, $headers);
+					header("Location: ../index.php?q=register-success");
 					exit;
 				} else{
 				    echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
-				    header("Location: ../index.php?q=register-failure-mysql-request");
+				    header("Location: ../index.php?q=register-failure-on-request");
 				}
 			}
 			// Close connection

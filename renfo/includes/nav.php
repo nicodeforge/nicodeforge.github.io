@@ -1,5 +1,5 @@
 <?php
-if ($_ENV['env']=='local'){
+if (isset($_ENV['env']) && $_ENV['env'] =='local'){
   error_reporting(E_ALL);
   ini_set('display_errors', TRUE);
   ini_set('display_startup_errors', TRUE);
@@ -36,13 +36,13 @@ if ($_ENV['env']=='local'){
    ?>
     <span class="navbar-text">
       <?php 
-        /*
-        if ($username]) {
-          echo $username;
+        
+        if (isset($_SESSION["user"])) {
+          echo $_SESSION["user"];
         }else{
           echo "Howdy";
         }
-        */
+        
       ?>
     </span>
   </div>

@@ -29,8 +29,10 @@ Temporary Items
 #Custom
 .htaccess
 .db.inc.php
+db.inc.local.php
 functions/db.inc.local.php
 font-awesome-4.7.0
 local
 build-db.sql
 dump.sql
+*.sql

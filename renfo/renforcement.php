@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["user"])) {
+	header("Location: ./index.php?q=do-auth");
+}
 include 'functions/functions.php';
 ?>
 <!--Dashboard Spotify : https://developer.spotify.com/dashboard/applications/27d9073503b54f019e6524c72038b3d9-->
@@ -24,6 +27,11 @@ include 'functions/functions.php';
 		  position: absolute;
 		  top: -100000em;
 		}
+
+		.container{
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
 	</style>
 </head>
 <body>
@@ -32,60 +40,62 @@ include 'functions/functions.php';
 			include 'includes/nav.php';
 		?>
 	</div>
+	<?php include 'includes/user_feedback.php'; ?> 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm text-center">
-				
-				<p>&nbsp;</p>
-			</div>
-		</div>
-		<?php include "./includes/programs.php" ?> 
-		<div class="row">
-			<div class="col-sm text-center">
-				<p>&nbsp;</p>
+			<div class="col-sm-4 bg-light">
+				<form>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="checkbox" id="audio-preference" value="disabled">
+						  <label class="form-check-label" for="audio-preference" id="audio-preference-status">Audio désactivé</label>
+						</div>
+				</form>
 			</div>
 		</div>
 	</div>
-
-	<?php
-		include 'includes/ProgramContent.php';
-		
-	?>
-
 	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<button id="auth-spotify" class="btn btn-dark "><i class="fa fa-spotify" aria-hidden="true"></i> Autoriser Spotify</button>
+		<div class="container program-choice">
+			<div class="row">
+				<div class="col">
+					<div class="container">
+						<div class="row">
+							<div class="col-">
+								<h2>Voilà les programmes que tu as créé : </h2>
+								<?php include "./includes/user_programs.php"; ?> 
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<p>&nbsp;</p>
-		</div>
-		<div class="row">
-			<div class="col-12 align-self-center">
-				<p>En cours de lecture : <span class="currently-playing">rien du tout 🤷‍♂️</span></p>
-				<div class="btn-toolbar align-self-center" role="toolbar">
-					<div class="btn-group mr-2" role="group">
-						<button id="prev" type="button" class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg></button>
+			<div class="row">
+				<div class="col">
+					<div class="container">
+						<div class="row">
+							<div class="col-">
+								<h2>Voilà d'autres programmes créés par la communauté : </h2>
+								<?php include "./includes/community_programs.php"; ?> 
+							</div>
+						</div>
 					</div>
-					<div class="btn-group mr-2" role="group">
-						<button id="play" type="button" class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/></svg></button>
-					</div>
-
-					<div class="btn-group mr-2" role="group">
-						<button id="next" type="button" class="btn btn-dark"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/><path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/></svg></button>
-					</div>
-					
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm text-center">
+				<p>&nbsp;</p>
+			</div>
 		</div>
-				
+	</div>
+
+
+	<?php
+		include 'includes/program_content.php';
 		
+	?>
+
+	<div id="audio">
 		
 	</div>
-	<audio id="timer-beep">
-	  <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3"/>
-	  <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.ogg" />
-	</audio>
 	
 	<!--Bootstrap libraries-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -106,6 +116,25 @@ include 'functions/functions.php';
 
 		$(document).ready(function(){
 
+			$('#audio-preference').change(function(){
+				if ($('#audio-preference')[0].checked) {
+					//Audio is on
+					$('#audio-preference-status').text("Audio activé");
+					soundEffect.play();
+					soundEffect.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3';	
+					$('#audio').html(
+						"<audio id='timer-beep'><source src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3'/><source src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.ogg' /></audio>"
+						);
+
+				}else{
+					//Audio is off
+					$('#audio-preference-status').text("Audio désactivé");
+					$('#audio').html("");
+					soundEffect.src="";
+				}
+
+			});
+
 			//$('#program').hide();
 			//Functions for program
 
@@ -120,7 +149,7 @@ include 'functions/functions.php';
 
 				$.ajax({
 				  method: "POST",
-				  url: "functions/GetProgramContent.php",
+				  url: "functions/get_program_content.php",
 				  cache:false,
 				  dataType: "json",
 				  data: { 
@@ -141,8 +170,11 @@ include 'functions/functions.php';
 
 				//programUrl = "./program-content.json";
 				//getProgramContent(programUrl);
-				soundEffect.play();
-				soundEffect.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3';
+				if ($('#audio-preference')[0].checked) {
+					soundEffect.play();
+					soundEffect.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3';	
+				}
+				
 				
 				/*
 				if (programContent.length>0) {
@@ -212,7 +244,9 @@ include 'functions/functions.php';
 
 				    if (counter == 0) {
 				        // Display a login box
-				        soundEffect.play();
+				        if ($('#audio-preference')[0].checked) {
+				        	soundEffect.play();
+				        }
 				        clearInterval(interval);
 				        currentExerciseId++;
 				        displayProgram(currentExerciseId);
@@ -232,6 +266,7 @@ include 'functions/functions.php';
 
 		});
 	</script>
+	<script type="text/javascript" src="./user_feedback.js"></script>
 
 </body>
 </html>
