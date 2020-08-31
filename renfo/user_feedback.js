@@ -1,5 +1,6 @@
 //User feedback
 var message = $.url(window.location.href).param("q");
+var bug_message = $.url(window.location.href).param("m");
 	//console.log(message);
 switch (message){
 	case 'unknown-user' :
@@ -43,12 +44,43 @@ switch (message){
 		$(".user-feedback").addClass("alert-success show");
 		break;
 
+	case 'confirmation-success' : 
+		$('#message').html("<strong>On est bon 👊</strong> Ton compte est confirmé. Plus qu'à transpirer.");
+		$(".user-feedback").addClass("alert-success show");
+		break;
+
+	case 'confirmation-failed' : 
+		$('#message').html("<strong>Ooooops 😬</strong> Ton lien d'activation n'a pas fonctionné. Rééssaye. Si ça continue de bugger, appel au secours.");
+		$(".user-feedback").addClass("alert-warning show");
+		break;
+
+
+	case 'do-auth' : 
+		$('#message').html("<strong>Ooooops 🤓</strong>Ta session a expiré, il faut te reconnecter.");
+		$(".user-feedback").addClass("alert-warning show");
+		break;
+
 	case null:
 		break;
 
-	default : break;	
-	
-	
-	
+	default : break;		
 		
 }
+
+	switch (bug_message) {
+	case 'register-bug-success' : 
+		$('#message').html("<strong>Merci 😘</strong> Grâce à toi, je vais pouvoir améliorer cette app. C'est vraiment sympa.");
+		$(".user-feedback").addClass("alert-success show");
+		break;	
+
+	case 'register-bug-failure-upon-request' : 
+		$('#message').html("<strong>Ooooops 🤦‍♂️</strong> Le signalement de ton bug a... créé un bug. C'est moche. Merci quand même d'avoir essayé.");
+		$(".user-feedback").addClass("alert-warning show");
+		break;
+
+	case 'register-bug-failure' : 
+		$('#message').html("<strong>Ooooops 🤦‍♂️</strong> Le signalement de ton bug a... créé un bug. C'est moche. Merci quand même d'avoir essayé.");
+		$(".user-feedback").addClass("alert-warning show");
+		break;
+	default : break;
+	}

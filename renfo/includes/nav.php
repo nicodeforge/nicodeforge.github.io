@@ -8,42 +8,43 @@ if (isset($_ENV['env']) && $_ENV['env'] =='local'){
 //$username = isset($_SESSION['user']) ? $_SESSION['user'] : NULL;
 ?>
 <nav style="width:100%;" class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Let's get fit 💪</a>
+  <div class="col">
+  <a class="navbar-brand" href="#">Let's get fit <sup><span style="font-size:0.8em;" class="text-info">bêta</span></sup> 💪</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <?php
+  </div>
+  <div class="col-8"></div>
+  
+  <div class="collapse navbar-collapse right" >
     
-    //  if (isset $username) {
-       
-     echo "
-     <ul class=\"navbar-nav mr-auto\">\n
-       <li class=\"nav-item\">\n
-         <a class=\"nav-link\" href=\"renforcement.php\">Mes programmes <span class=\"sr-only\">(current)</span></a>\n
-       </li>\n
-       <li class=\"nav-item\">\n
-         <a class=\"nav-link\" href=\"creer-programme.php\">Créer</a>\n
-       </li>\n
-       <li class=\"nav-item\">\n
-         <a class=\"nav-link\" href=\"./deconnexion.php\">Déconnexion</a>\n
-       </li>\n
-     </ul>\n
-     ";
-    //}
-
-     
-   ?>
-    <span class="navbar-text">
-      <?php 
-        
-        if (isset($_SESSION["user"])) {
-          echo $_SESSION["user"];
-        }else{
-          echo "Howdy";
-        }
-        
-      ?>
-    </span>
+    <?php
+    if (isset($_SESSION["user"])) {
+    echo "\n
+    <ul class=\"navbar-nav\">\n
+      <li class=\"nav-item dropdown\">\n
+        <a class=\"nav-link text-white dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><i class=\"fa fa-user\" aria-hidden=\"true\"></i>&nbsp; \n".
+                      
+                      
+                        $_SESSION["user"]
+                      
+                      
+                      
+                      
+        ."</a>\n
+        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n
+          <a class=\"dropdown-item\" href=\"renforcement.php\">Mes programmes</a>\n
+          <a class=\"dropdown-item\" href=\"creer-programme.php\">Créer un nouveau programme</a>\n
+          <div class=\"dropdown-divider\"></div>\n
+            <a class=\"dropdown-item\" href=\"./deconnexion.php\">Déconnexion</a>\n
+        </div>\n
+      </li>\n
+    </ul>\n
+    ";
+  }
+  
+   
+  
+  ?>
   </div>
 </nav>

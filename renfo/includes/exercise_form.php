@@ -1,5 +1,5 @@
 <?php
-$userId = $_SESSION['userId'];
+$userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
 $exercise = array();
 $id = isset($_POST['exercise_id']) ? $_POST['exercise_id'] : NULL;
 include '../functions/db.inc.local.php';

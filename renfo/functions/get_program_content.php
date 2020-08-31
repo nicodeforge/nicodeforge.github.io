@@ -9,7 +9,7 @@ if($mysqli === false){
  
 $mysqli->set_charset("utf8");
 // Attempt insert query execution
-$sql = "SELECT content FROM renfo_program WHERE slug = '".$_POST['variant']."'  ";
+$sql = "SELECT name,content FROM renfo_program WHERE slug = '".$_POST['variant']."'  ";
 
 if ($mysqli->connect_errno) {
     printf("Échec de la connexion : %s\n", $mysqli->connect_error);

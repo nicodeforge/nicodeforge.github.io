@@ -2,8 +2,8 @@
 	<div class="row">
 		<div class="col-sm-12 text-center">
 			<div class="jumbotron">
-				<h2 class="program-name"></h2>
-				<p>&nbsp;</p>
+				<h2 id="program-name"></h2>
+				<p id="program-duration"></p>
 				<button id="start" class="btn btn-success">Démarrer</button>
 				<p class="test-counter"></p>
 				<p>&nbsp;</p>

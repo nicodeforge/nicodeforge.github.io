@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["user"])) {
+	header("Location: ./index.php?q=do-auth");
+}
 //if ($_ENV['env']==='local'){
 	error_reporting(E_ALL);
 	ini_set('display_errors', TRUE);
@@ -92,6 +95,10 @@ $mysqli->close();
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+	<link rel="manifest" href="favicon_io/site.webmanifest">
 	<style type="text/css">
 		.custom-control-input{
 			
@@ -106,13 +113,13 @@ $mysqli->close();
 		?>
 	</div>
 	<?php include 'includes/user_feedback.php'; ?>
-	<div class="container">
+	<div class="container" style="margin-bottom: 1em;">
 		<div class="row align-items-center">
-			<div class="col-1"></div>
+			
 			<div class="col align-self-center">
 				<div class="card text-center">
 				  <div class="card-header bg-dark text-light">
-				    Créez votre programme !
+				    Remplis ce formulaire pour créer ton programme ! Tu trouveras quelques conseils <a class="text-info" href="#conseils">juste ici</a> 👊
 				  </div>
 				  <div class="card-body">
 				    <form method="POST" action="functions/program_builder.php" class="form">
@@ -125,7 +132,7 @@ $mysqli->close();
 				      <div class="form-group row">
 				        <label for="type" class="col-sm-4 col-form-label">Quel types d'exercices ?</label>
 				        <div class="col-sm-8 ">
-				        	<select class="form-control" id="type">
+				        	<select class="form-control" id="type" name="type">
 				        		<?php
 				        			for ($i=0; $i < count($type); $i++) { 
 				        				echo "<option>".$type[$i]."</option>";
@@ -134,6 +141,18 @@ $mysqli->close();
 				    		</select>
 				        </div>
 				      </div>
+				        <div class="form-group row">
+				          <label for="type" class="col-sm-4 col-form-label">Quelle difficultée pour ce programme ?</label>
+				          <div class="col-sm-8 ">
+				          	<select class="form-control" id="difficulty">
+				          		<option>Facile</option>
+				          		<option>Moyen</option>
+				          		<option>Difficile</option>
+				          		<option>Hardcore</option>
+				          		
+				      		</select>
+				          </div>
+				        </div>
 				      <div class="exercice-description container bg-light" style="padding: 10px;"> 
 						      <div class="form-group row">
 						        <label for="exercice1" class="col-sm-4 col-form-label">Exercice #1</label>
@@ -157,17 +176,17 @@ $mysqli->close();
 						      </div>
 						      <div class="form-group row">
 						        <label for="time1" class="col-sm-4 col-form-label">Combien de temps par série ?</label>
-						        <div class="col-sm-8 ">
+						        <div class="col-sm-4 ">
 						          <div class="col-sm-8">
-						          	<input type="time" class="form-control" name="time1" id="time1">
+						          	<input type="text" class="form-control html-duration-picker"  data-duration="00:00:45" name="time1" id="time1">
 						          </div>
 						        </div>
 						      </div>
 						      <div class="form-group row">
 						        <label for="recup1" class="col-sm-4 col-form-label">Combien de temps de récup ?</label>
-						        <div class="col-sm-8 ">
+						        <div class="col-sm-4 ">
 						          <div class="col-sm-8">
-						          	<input type="time" class="form-control" name="recup1" id="recup1">
+						          	<input type="text" class="form-control html-duration-picker"  data-duration="00:00:45" name="recup1" id="recup1">
 						          </div>
 						        </div>
 						      </div>
@@ -181,12 +200,12 @@ $mysqli->close();
 					  <div class="row"><p>&nbsp;</p></div>
 					  <div class="form-group row ">
 
-					  	<div class="col-sm-4 text-right">
+					  	<div class="col-sm-5 text-right">
 					  	<input class="form-check-input" type="checkbox" id="sharable" name="sharable" value="disabled">
 					  	</div>
 
 					    <div class="col-sm-6 text-left">
-					      <label class="form-check-label " for="sharable">Rendre mon programme dispo pour les autres utilisateurs</label>
+					      <label class="form-check-label " for="sharable">Partager avec la communauté</label>
 					    </div>
 					  </div>
 							  		
@@ -206,7 +225,7 @@ $mysqli->close();
 				  </div>
 				</div>
 			</div>
-			<div class="col-1"></div>
+			
 		</div>
 
 		<?php
@@ -225,6 +244,35 @@ $mysqli->close();
 		</div>
 
 	</div>
+	<div class="container" id="conseils">
+		<div class="row">
+			<div class="col">
+				<h2>Conseils pour créer ton programme</h2>
+				<div class="alert show alert-warning user-feedback" role="alert">
+				  <p> <strong>Cette appli n'a pas pour vocation de remplacer un vrai coach sportif.</strong></p>
+				  <p>Si tu n'as aucune idée de ce que tu fais, c'est peut être mieux de te renseigner un peu avant ! Voilà quelques ressources qui pourrait t'aider</p>
+				  <ul>
+				  	<li><a href="https://www.google.com/aclk?sa=l&ai=DChcSEwiu2PW6iMXrAhUyGgYAHfQ6CwcYABAEGgJ3cw&sig=AOD64_004t5t8aPyffOjuK-bggkWaJdbQQ&ctype=5&q=&ved=2ahUKEwiW5O-6iMXrAhUFCRoKHcY6CK4Q9aACegQIDRBC&adurl=">Programme Lafay </a></li>
+				  	<li><a href="https://www.sport-passion.fr/conseils/comment-construire-un-programme-entrainement-musculation.php">Programme de musculation </a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h3>Comment ça marche ?</h3>
+				<p>Le formulaire va t'aider à construire ton programme, exercice par exercice. Commence par choisir un exercice, puis indiques le nombre de séries que tu souhaites faire.</p>
+				<p>Indiques ensuite la durée de l'exercice pour chaque série : combien de temps tu vas faire cet exercice.</p>
+				<p>Entre chaque série, tu auras un temps de récupération. Tu peux fixer la durée de cette pause dans le champ "Temps de récup".</p>
+				<p>Tu peux ensuite ajouter un exercice en cliquant sur "Ajouter un exercice".</p>
+				<p><strong>N'oublie pas de finir ton programme avec des étirements. C'est important les étirements.</strong></p>
+				<p>Tu peux choisir de rendre ton programme disponible pour les autres utilisateurs de l'appli en cochant la case "Partager avec la communauté"</p>
+				<p>Dès que tu as enregistré tous les exercices que tu souhaites, clic sur le bouton "Créer".</p>
+				<p>Tu seras alors redirigé vers la page de tes programmes, et celui que tu viens de créer s'affichera à l'écran.</p>
+			</div>
+		</div>
+	</div>
+	<?php include 'includes/bug-report.php' ?>
 
 	<!--Bootstrap libraries-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -241,16 +289,22 @@ $mysqli->close();
 	<script type="text/javascript">
 		$(document).ready(function(){
 		var exerciseId=1;
-		$('#signup-modal').modal('hide');
+		$('#bug-report-modal').modal('hide');
 
 		$('.add-exercise').click(function(e){
-			//e.preventDefault();
-			exerciseId++;
-			$('#count')[0].value = exerciseId;
-			console.log("Exo ajouté");
-			$('.exercise-load:last').load("./includes/exercise_form.php",{"exercise_id":exerciseId});
-			updateDefaults();
-			updateDefaults2();
+			e.preventDefault();
+			if (exerciseId > 9) {
+				$('.add-exercise').hide();
+				alert("Nombre max d'exercices atteint pour ce programme");
+			}else{
+				exerciseId++;
+				$('#count')[0].value = exerciseId;
+				console.log("Exo ajouté");
+				$('.exercise-load:last').load("./includes/exercise_form.php",{"exercise_id":exerciseId});
+				updateDefaults();
+				updateDefaults2();
+			}
+			
 		});
 
 		
@@ -313,6 +367,8 @@ $mysqli->close();
 		});
 	</script>
 	<script type="text/javascript" src="./user_feedback.js"></script>
+	<script src="html-duration-picker.min.js"></script>
+	<script type="text/javascript" src="custom.js"></script>
 </body>
 </html>
 

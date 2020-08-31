@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["user"])) {
+if (!isset($_SESSION["user_id"])) {
 	header("Location: ./index.php?q=do-auth");
 }
 include 'functions/functions.php';
@@ -18,7 +18,10 @@ include 'functions/functions.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
-	
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+	<link rel="manifest" href="favicon_io/site.webmanifest">
 	<style type="text/css">
 		.program-choice .card{
 			margin-right: 30px;
@@ -41,23 +44,12 @@ include 'functions/functions.php';
 		?>
 	</div>
 	<?php include 'includes/user_feedback.php'; ?> 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4 bg-light">
-				<form>
-						<div class="form-check form-check-inline">
-						  <input class="form-check-input" type="checkbox" id="audio-preference" value="disabled">
-						  <label class="form-check-label" for="audio-preference" id="audio-preference-status">Audio désactivé</label>
-						</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	
 	<div class="container">
 		<div class="container program-choice">
 			<div class="row">
 				<div class="col">
-					<div class="container">
+					<div class="container user-programs">
 						<div class="row">
 							<div class="col-">
 								<h2>Voilà les programmes que tu as créé : </h2>
@@ -69,7 +61,7 @@ include 'functions/functions.php';
 			</div>
 			<div class="row">
 				<div class="col">
-					<div class="container">
+					<div class="container community-programs">
 						<div class="row">
 							<div class="col-">
 								<h2>Voilà d'autres programmes créés par la communauté : </h2>
@@ -80,14 +72,21 @@ include 'functions/functions.php';
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="container" id="audio-preference-container">
 		<div class="row">
-			<div class="col-sm text-center">
-				<p>&nbsp;</p>
+			<div class="col text-right">
+				<form>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="checkbox" id="audio-preference" value="disabled">
+						  <label class="form-check-label align-middle" for="audio-preference" id="audio-preference-status">Audio désactivé</label>
+						</div>
+				</form>
+				
 			</div>
 		</div>
 	</div>
-
-
 	<?php
 		include 'includes/program_content.php';
 		
@@ -97,6 +96,7 @@ include 'functions/functions.php';
 		
 	</div>
 	
+	<?php include 'includes/bug-report.php'; ?>
 	<!--Bootstrap libraries-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -115,11 +115,12 @@ include 'functions/functions.php';
 			programUrl = "";
 
 		$(document).ready(function(){
-
+			$("#audio-preference-container").hide();
+			$('#audio-preference-status').html("<i class='fa fa-volume-off fa-2x align-middle' aria-hidden='true'></i> Bips sonores désactivés");
 			$('#audio-preference').change(function(){
 				if ($('#audio-preference')[0].checked) {
 					//Audio is on
-					$('#audio-preference-status').text("Audio activé");
+					$('#audio-preference-status').html("<i class='fa fa-volume-up fa-2x align-middle' aria-hidden='true'></i> Bips sonores activés");
 					soundEffect.play();
 					soundEffect.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3';	
 					$('#audio').html(
@@ -128,7 +129,7 @@ include 'functions/functions.php';
 
 				}else{
 					//Audio is off
-					$('#audio-preference-status').text("Audio désactivé");
+					$('#audio-preference-status').html("<i class='fa fa-volume-off fa-2x align-middle' aria-hidden='true'></i> Bips sonores désactivés");
 					$('#audio').html("");
 					soundEffect.src="";
 				}
@@ -140,10 +141,10 @@ include 'functions/functions.php';
 
 			//Display the current and next exercise
 			$('.program-selected').click(function(){
-				
+				$("#audio-preference-container").show();
 				var programVariant = $.url();
 				programVariant = $.url(this.href).attr('fragment');
-				//console.log(programVariant);
+				var programName = $(this)[0].dataset.program;
 
 				//document.cookie = "program="+programVariant; 
 
@@ -158,15 +159,16 @@ include 'functions/functions.php';
 				  },
 				  success : function(data){
 				  	programContent = data;
-				  	console.log("Data: "+data);
-				  	displayProgram(currentExerciseId);
+				  	//console.log("Data: "+data);
+				  	displayProgram(currentExerciseId,programName);
 				  }
 				});
 				
 				
 				
 
-				$('.program-choice').hide();
+				$('.user-programs').hide();
+				$('.community-programs').hide();
 
 				//programUrl = "./program-content.json";
 				//getProgramContent(programUrl);
@@ -190,9 +192,24 @@ include 'functions/functions.php';
 			}
 
 
-			function displayProgram (id){
+			function displayProgram (id,name){
 				$('#program-content').show();
-				console.log(programContent.length);
+				//console.log(name);
+				$('#program-name').text(name);
+				var duration = 0;
+				for (var i = programContent.length - 1; i >= 0; i--) {
+					
+					if (programContent[i]["name"]!="Pause") {
+						
+						duration += parseInt(programContent[i]["length"],10);
+
+					}
+				}
+				
+				var display_duration = new Date(duration * 1000).toISOString().substr(11, 8);
+				$('#program-duration').text("Durée du programme sans pause : "+display_duration);
+				//console.log(display_duration);
+				//console.log(programContent.length);
 				if (id < programContent.length){
 					$('.program-content .exercise-name').text(programContent[id].name);
 					$('.program-content .exercise-length').text(programContent[id].length);
@@ -267,6 +284,8 @@ include 'functions/functions.php';
 		});
 	</script>
 	<script type="text/javascript" src="./user_feedback.js"></script>
+	<script type="text/javascript" src="./functions/moment.js"></script>
+	<script type="text/javascript" src="./custom.js"></script>
 
 </body>
 </html>
