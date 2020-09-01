@@ -50,11 +50,13 @@ include 'functions/functions.php';
 			<div class="row">
 				<div class="col">
 					<div class="container user-seances">
-						<div class="row">
-							<div class="col-">
-								<h2>Voilà les séances que tu as créé : </h2>
-								<?php include "./includes/user_seances.php"; ?> 
-							</div>
+						<div class="row mb-2">
+							<h2>Voilà les séances que tu as créé : </h2>
+						</div>
+						<div class="row mb-2">
+							
+							<?php include "./includes/user_seances.php"; ?> 
+							
 						</div>
 					</div>
 				</div>
@@ -62,11 +64,13 @@ include 'functions/functions.php';
 			<div class="row">
 				<div class="col">
 					<div class="container community-seances">
-						<div class="row">
-							<div class="col-">
+						<div class="row mb-2">
 								<h2>Voilà d'autres séances créés par la communauté : </h2>
+						</div>
+						<div class="row mb-2">
 								<?php include "./includes/community_seances.php"; ?> 
-							</div>
+						</div>
+							
 						</div>
 					</div>
 				</div>
@@ -160,7 +164,7 @@ include 'functions/functions.php';
 				  success : function(data){
 				  	seance_content = data;
 				  	//console.log("Data: "+data);
-				  	displayProgram(currentExerciseId,seance_name);
+				  	displaySeance(currentExerciseId,seance_name);
 				  }
 				});
 				
@@ -180,7 +184,7 @@ include 'functions/functions.php';
 				
 				/*
 				if (seance_content.length>0) {
-					displayProgram(currentExerciseId);
+					displaySeance(currentExerciseId);
 					$('#seance-content').show('fade');
 				}*/
 				
@@ -192,7 +196,7 @@ include 'functions/functions.php';
 			}
 
 
-			function displayProgram (id,name){
+			function displaySeance (id,name){
 				$('#seance-content').show();
 				//console.log(name);
 				$('#seance-name').text(name);
@@ -207,7 +211,7 @@ include 'functions/functions.php';
 				}
 				
 				var display_duration = new Date(duration * 1000).toISOString().substr(11, 8);
-				$('#seance-duration').text("Durée du seanceme sans pause : "+display_duration);
+				$('#seance-duration').text("Durée de la séance sans pause : "+display_duration);
 				//console.log(display_duration);
 				//console.log(seance_content.length);
 				if (id < seance_content.length){
@@ -266,7 +270,7 @@ include 'functions/functions.php';
 				        }
 				        clearInterval(interval);
 				        currentExerciseId++;
-				        displayProgram(currentExerciseId);
+				        displaySeance(currentExerciseId);
 				        loadNextExercise();
 				    }
 				}, 1000);

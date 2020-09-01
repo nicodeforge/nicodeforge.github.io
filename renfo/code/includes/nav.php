@@ -13,7 +13,12 @@ if (isset($_ENV['env']) && $_ENV['env'] =='local'){
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  
+
+  <?php
+    if (isset($_ENV['env']) && $_ENV['env']==='local') {
+      echo  "<a href=\"debug.php\">go to debug</a>";
+    }
+  ?>
   
   
   <div class="collapse navbar-collapse"  id="navbarText">
@@ -33,7 +38,10 @@ if (isset($_ENV['env']) && $_ENV['env'] =='local'){
                       
         ."</a>\n
         <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n
-          <a class=\"dropdown-item\" href=\"renforcement.php\">Mes séances</a>\n
+          <a class=\"dropdown-item\" href=\"programme.php\">Mes programmes</a>\n
+          <a class=\"dropdown-item\" href=\"creer-programme.php\">Créer un nouveau programme</a>\n
+          <div class=\"dropdown-divider\"></div>\n
+          <a class=\"dropdown-item\" href=\"seance.php\">Mes séances</a>\n
           <a class=\"dropdown-item\" href=\"creer-seance.php\">Créer une nouvelle séance</a>\n
           <div class=\"dropdown-divider\"></div>\n
             <a class=\"dropdown-item\" href=\"./deconnexion.php\">Déconnexion</a>\n

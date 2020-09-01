@@ -13,19 +13,11 @@
 	$type = isset($_POST['type']) ? $_POST['type'] : NULL;
 	$count = isset($_POST['count']) ? $_POST['count'] : 1;
 	$difficulty = isset($_POST['difficulty']) ? $_POST['difficulty'] : "Facile";
-	$sharable = isset($_POST['sharable']) ? $_POST['sharable'] : 0;
-
-	if ($sharable == "on") {
-		$sharable = 1;
-	}else{
-		$sharable = 0;
-	}
-
 	$seanceContent = array();
 
 	$entries = 0;
 	$overall_timing_seconds=0;
-
+	
 	for ($i=1; $i <= $count; $i++) { 
 
 		$exercice = "exercice".$i;
@@ -58,42 +50,9 @@
 
 	$seanceContent = json_encode($seanceContent,JSON_UNESCAPED_UNICODE);
 
-	$overall_timing_seconds = round($overall_timing_seconds);
-	$overal_timing_formated =   sprintf('%02d:%02d:%02d', ($overall_timing_seconds/ 3600),($overall_timing_seconds/ 60 % 60), $overall_timing_seconds% 60);
-
-
-	//echo $seanceContent;
-
-	include './db.inc.local.php';
-	$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_database);
-
-	// Check connection
-	if($mysqli === false){
-	    die("ERROR: Could not connect. " . $mysqli->connect_error);
-	}
-	if (isset($seance_name) && $seance_name != "" && isset($seanceContent) && $seanceContent != "" && $seanceContent != "unset") {
-	 	# code...
-	  
-		// Attempt insert query execution
-		$mysqli->set_charset("utf8");
-		$sql = "INSERT INTO renfo_seance (user_id,name,slug,length,type,content,difficulty,sharable) VALUES ('".$user."', '".$seance_name."', '".$slug."','".$overal_timing_formated."', '".$type."', '".$seanceContent."','".$difficulty."', ".$sharable.");";
-		if($mysqli->query($sql) === true){
-			//header('Location: http://www.daisylab.fr/dev/timekeeper/?q=success');
-			//$_SESSION["user"] = $login;
-			//session_destroy();
-			//$_SESSION = array();
-			//$_SESSION["user"] = "Logout";
-			header("Location: ../seance.php?q=add-success");
-			exit;
-		} else{
-		    echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
-		    header("Location: ../creer-seance.php?q=register-seance-failure-on-request");
-		    exit;
-		}
-	}
-
-	header("Location: ../creer-seance.php?q=register-seance-empty-request");
-	// Close connection
-	$mysqli->close();
+	echo $overall_timing_seconds;
+	//$sql = "INSERT INTO renfo_seance (user_id,name,slug,type,content,difficulty) VALUES ('".$user."', '".$seance_name."', '".$slug."', '".$type."', '".$seanceContent."','".$difficulty."')";
+		
+	//echo $sql;
 			
 ?>

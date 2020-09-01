@@ -39,7 +39,7 @@ $query_result = $mysqli->multi_query($sql);
                   $_SESSION["user_id"] = $user_id;
                   $_SESSION["username"] = $display_name;
 
-                  header("Location: ../renforcement.php?q=confirmation-success");
+                  header("Location: ../seance.php?q=confirmation-success");
                   exit;  
 
                 }

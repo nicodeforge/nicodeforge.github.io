@@ -70,6 +70,27 @@ switch (message){
 		$(".user-feedback").addClass("alert-success show");
 		break;
 
+	case 'add-program-success' :
+
+		$('#message').html("<strong>Champion 👊</strong> Ton programme a été ajoutée, tu le retrouve juste en dessous :");
+		$(".user-feedback").addClass("alert-success show");
+		break;
+
+	case 'register-program-failure-on-request' :
+
+		$('#message').html("<strong>Hooouula...</strong> Ça, ça n'arrive pas souvent. Il va falloir que tu recommence :/ Si tu vois ce message plusieurs fois, essaye de te déconnecter et de te reconnecter.");
+		$(".user-feedback").addClass("alert-warning show");
+		break;
+
+	case 'register-program-empty-request' :
+
+		$('#message').html("<strong>Hooouula...</strong> Ça, ça n'arrive pas souvent. Il va falloir que tu recommence :/ Si tu vois ce message plusieurs fois, essaye de te déconnecter et de te reconnecter.");
+		$(".user-feedback").addClass("alert-warning show");
+		break;
+	
+	
+	
+
 	case null:
 		break;
 

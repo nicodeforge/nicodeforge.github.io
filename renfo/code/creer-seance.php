@@ -202,7 +202,7 @@ $mysqli->close();
 					  <div class="form-group row ">
 
 					  	<div class="col-sm-5 text-right">
-					  	<input class="form-check-input" type="checkbox" id="sharable" name="sharable" value="disabled">
+					  	<input class="form-check-input" type="checkbox" id="sharable" name="sharable">
 					  	</div>
 
 					    <div class="col-sm-6 text-left">

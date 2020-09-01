@@ -5,6 +5,9 @@ if (isset($_ENV['env']) && $_ENV['env'] ==='local'){
 	ini_set('display_errors', TRUE);
 	ini_set('display_startup_errors', TRUE);	
 }
+if (isset($_SESSION['user_id'])){
+	header("Location: ./seance.php");
+}else{
 include 'functions/functions.php';
 ?>
 <!--Dashboard Spotify : https://developer.spotify.com/dashboard/applications/27d9073503b54f019e6524c72038b3d9-->
@@ -199,3 +202,4 @@ include 'functions/functions.php';
 </html>
 
 
+<?php } ?>

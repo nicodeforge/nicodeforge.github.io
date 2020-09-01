@@ -216,7 +216,7 @@
 					//session_destroy();
 					//$_SESSION = array();
 					//$_SESSION["user"] = "Logout";
-					header("Location: ../renforcement.php?q=add-success");
+					header("Location: ../seance.php?q=add-success");
 					exit;
 				} else{
 				    echo "ERROR: Could not able to execute $sql. " . $mysqli->error;

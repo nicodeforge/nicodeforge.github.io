@@ -53,13 +53,16 @@ if ($result = $mysqli->query($sql)) {
               $difficulty_indicator = "";
         }
 
-   		echo "<div class=\"card col- \">\n
+   		echo "<div class=\"card col\">\n
      		  		<div class=\"card-body\">\n
      		    		<h5 class=\"card-title\">".$row['name']." ".$difficulty_indicator."</h5>\n
-     		    		<h6 class=\"card-subtitle mb-2 text-muted\">".$row['length']."</h6>\n
+     		    		<h6 class=\"card-subtitle mb-2 text-muted\">Durée de la séance > ".$row['length']."</h6>\n
                 <p class=\"card-text\">Séance créé par tes soins</p>\n
      		   			<a id=\"".$row['slug']."\" href=\"#".$row['slug']."\" data-seance=\"".$row['name']."\" class=\"seance-selected card-link btn btn-link\">Commencer <i class=\"fa fa-rocket\" aria-hidden=\"true\"></i></a>\n
      		  		</div>\n
+              <div class=\"card-body\">\n
+                <p class=\"card-text text-muted\">ID : ".$row['id']."</p>\n
+              </div>\n
             </div>";
 
         //$_SESSION["userId"]=$row["user_id"];

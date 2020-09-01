@@ -41,7 +41,7 @@ $query_result = $mysqli->multi_query($sql);
                   $_SESSION["user_id"] = $user_id;
                   
 
-                  header("Location: ../renforcement.php?q=reset-success");
+                  header("Location: ../seance.php?q=reset-success");
                   exit;  
 
                 }

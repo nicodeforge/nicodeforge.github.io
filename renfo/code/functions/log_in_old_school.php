@@ -26,7 +26,7 @@
 		   			if ($pwd == $row['password']) {
 		   				$_SESSION["user"] = $row['firstname'];
 		   				$_SESSION["user_id"] = $row['id'];
-		   				header("Location: ../renforcement.php?q=login-success");
+		   				header("Location: ../seance.php?q=login-success");
 		   			} else {
 		   				header("Location: ../index.php?q=login-wpass");
 		   			}

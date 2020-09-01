@@ -1,0 +1,46 @@
+[
+{
+	"id" : 1,
+	"name" : "Mon programme d'entrainement personalisé",
+	"nb_seance" : 3,
+	"duration" : 1,
+	"progression": 10,
+	"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac arcu in tortor maximus consectetur. Mauris maximus, nisl eget pretium pretium, lorem metus volutpat velit, eget fermentum tellus risus ac lacus. Donec maximus dolor sed diam fringilla, sed ullamcorper ipsum tempor.",
+	"contents" : {
+
+		"1" : {
+			"difficulty" : "Facile",
+			"status" :"Terminé le 01/09/2020"
+		},
+		"2" : {
+			"difficulty" : "Facile",
+			"status" :"Pas commencé"
+		},
+		"3" : {
+			"difficulty" : "Moyen",
+			"status" :"Pas commencé"
+		}
+		
+	}
+},
+{
+	"id" : 2,
+	"name" : "Mon programme d'entrainement personalisé 2",
+	"nb_seance" : 2,
+	"duration" : 1,
+	"progression": 0,
+	"description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac arcu in tortor maximus consectetur. Mauris maximus, nisl eget pretium pretium, lorem metus volutpat velit, eget fermentum tellus risus ac lacus. Donec maximus dolor sed diam fringilla, sed ullamcorper ipsum tempor.",
+	"contents" : {
+
+		"1" : {
+			"difficulty" : "Facile",
+			"status" :"Pas commencé"
+		},
+		"2" : {
+			"difficulty" : "Facile",
+			"status" :"Pas commencé"
+		}
+		
+	}
+}
+]
