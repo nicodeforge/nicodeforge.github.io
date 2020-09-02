@@ -31,114 +31,67 @@ include 'functions/functions.php';
 		.error{
 			color: #dc3545;	
 		}
+		.text-spacer{
+			/*margin-top: 1em;*/
+			margin-bottom: 2em;
+		}
 	</style>
 
 </head>
 <body>
 	<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
 		<?php
-			include 'includes/nav.php';
+			//include 'includes/nav.php';
 		?>
 	</div>
-	<?php include 'includes/user_feedback.php'; ?>
-	
-	<div class="container">
-		<div class="row align-items-center">
-			
-			<div class="col align-self-center">
-				<div class="card text-center">
-				  <div class="card-header bg-dark text-light">
-				    Connectes-toi pour commencer
-				  </div>
-				  <div class="card-body">
-				    <form method="POST" action="functions/log_in_old_school.php">
-				      <div class="form-group row">
-				        <label for="email_login" class="col-sm-4 col-form-label">Email</label>
-				        <div class="col-sm-8">
-				          <input type="text" class="form-control" name="email_login" id="email_login">
-				        </div>
-				      </div>
-				      <div class="form-group row">
-				        <label for="password" class="col-sm-4 col-form-label">Mot de passe</label>
-				        <div class="col-sm-8 ">
-				          <input type="password" class="form-control" name="password" id="password-reg">
-				        </div>
-				      </div>
-				      <div class=" form-group row">
-				      		<div class="col-12 align-self-center">
-						      <div class="form-group row">
-						      	<div class="col align-self-center" >
-						      		<!--<button id="submit" class="btn btn-primary">Log In</button>-->
-						      		<input type="submit" class="btn btn-dark" value="Login">
-						      	</div>
-						      </div>
-						     </div>
-					  </div>
-				    </form>
-				  </div>
-				  <div class="card-footer text-muted bg-dark text-light">
-				    Tu n'as pas de compte ? <a id="signup" data-toggle="modal" href="#signup-modal" class="text-info">Crées-en un</a> !
-				  </div>
-
-				</div>
+	<?php //include 'includes/user_feedback.php'; ?>
+	<div class="bg-dark  text-light container-fluid text-spacer" id="intro">
+		<div class="row">
+			<div class="col col-md-6 d-none d-sm-block" style="padding: 0px;">
+				<img class="img-fluid" src="images/photo-signup.jpg" height="100%" width="100%">		
 			</div>
-			
+			<div class="col col-md-6 m-auto text-center" style="padding: 1em;">
+				<h1 class="text-spacer">C'est le grand moment</h1>
+				<p class="text-spacer">Remplis ces quelques infos pour démarrer 👇</p>
+						<form method="POST" name="register" action="functions/register_old_school.php">
+					      <div class="form-group row">
+					        <label for="firstname" required class="col-sm-4 col-form-label">Prénom</label>
+					        <div class="col-sm-8">
+					          <input type="text" class="form-control" name="firstname" id="firstname">
+					        </div>
+					      </div>
+					      <div class="form-group row">
+					        <label for="email" class="col-sm-4 col-form-label">Email</label>
+					        <div class="col-sm-8">
+					          <input type="text" required class="form-control" name="email" id="email">
+					        </div>
+					      </div>
+					      <div class="form-group row">
+					        <label for="password" class="col-sm-4 col-form-label">Mot de passe</label>
+					        <div class="col-sm-8 ">
+					          <input type="password"required class="form-control" name="password" id="password">
+					        </div>
+					      </div>
+					      <div class="form-group row">
+					        <label for="access-key" class="col-sm-4 col-form-label">Clé d'accès</label>
+					        <div class="col-sm-8">
+					          <input type="text" required class="form-control" name="access-key" id="access-key">
+					        </div>
+					      </div>
+					      <div class=" form-group row">
+					      		<div class="col-4 align-self-center">
+							      <div class="form-group row">
+							      	<div class="col m-auto" >
+							      		<!--<button id="submit" class="btn btn-primary">Log In</button>-->
+							      		<input type="submit" class="btn btn-light" value="S'inscrire">
+							      	</div>
+							      </div>
+							     </div>
+						  </div>
+				    </form>		
+								
+			</div>
 		</div>
-		<div id="signup-modal" class="modal" tabindex="-1">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title">Créez votre compte</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        
-		      
-					<form method="POST" name="register" action="functions/register_old_school.php">
-				      <div class="form-group row">
-				        <label for="firstname" required class="col-sm-4 col-form-label">Prénom</label>
-				        <div class="col-sm-8">
-				          <input type="text" class="form-control" name="firstname" id="firstname">
-				        </div>
-				      </div>
-				      <div class="form-group row">
-				        <label for="email" class="col-sm-4 col-form-label">Email</label>
-				        <div class="col-sm-8">
-				          <input type="text" required class="form-control" name="email" id="email">
-				        </div>
-				      </div>
-				      <div class="form-group row">
-				        <label for="password" class="col-sm-4 col-form-label">Mot de passe</label>
-				        <div class="col-sm-8 ">
-				          <input type="password"required class="form-control" name="password" id="password">
-				        </div>
-				      </div>
-				      <div class="form-group row">
-				        <label for="access-key" class="col-sm-4 col-form-label">Clé d'accès</label>
-				        <div class="col-sm-8">
-				          <input type="text" required class="form-control" name="access-key" id="access-key">
-				        </div>
-				      </div>
-				      <div class=" form-group row">
-				      		<div class="col-4 align-self-center">
-						      <div class="form-group row">
-						      	<div class="col align-self-center" >
-						      		<!--<button id="submit" class="btn btn-primary">Log In</button>-->
-						      		<input type="submit" class="btn btn-dark" value="S'inscrire">
-						      	</div>
-						      </div>
-						     </div>
-					  </div>
-			    </form>
-		</div>
-	    
-		    </div>
-		  </div>
-		
-		</div>
-
 	</div>
 	
 	
