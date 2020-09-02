@@ -49,7 +49,7 @@
 						$headers[] = 'Content-type: text/html; charset=utf-8';
 
 						// En-têtes additionnels
-						$headers[] = 'To: <'.$email.'>';
+						$headers[] = 'To: '.$email.;
 						$headers[] = 'From: Let\'s get fit 💪 <admin@carnets-de-route-moto.fr>';
 						$headers[] = 'Reply-To: nicodeforge@gmail.com';
 

@@ -53,7 +53,7 @@ if ($result = $mysqli->query($sql)) {
               $difficulty_indicator = "";
         }
 
-   		echo "<div class=\"card col\">\n
+   		echo "<div class=\"card mb-4 col-md-4 col-sm-12\">\n
      		  		<div class=\"card-body\">\n
      		    		<h5 class=\"card-title\">".$row['name']." ".$difficulty_indicator."</h5>\n
      		    		<h6 class=\"card-subtitle mb-2 text-muted\">Durée de la séance > ".$row['length']."</h6>\n
@@ -68,8 +68,19 @@ if ($result = $mysqli->query($sql)) {
         //$_SESSION["userId"]=$row["user_id"];
 
     	}
-    }else echo "Hmmm, c'est un peu vide ! Si ça te dis, tu peux en crééer une ici : <a href=\"./creer-seance.php\">juste ici</a> 🤓";
+          echo "<div class=\"card mb-4 col-md-4 col-sm-12 bg-light\">\n
+                  <div class=\"card-body\">\n
+                    <p class=\"text-center m-5 p-5 align-middle m-auto\" ><a href=\"./creer-seance.php\"><i class=\"fa fa-3x text-muted fa-plus\" aria-hidden=\"true\"></i></a></p>\n
+                 </div>\n
+               </div>";
+    }else {echo "<p>Hmmm, c'est un peu vide ! Si ça te dis, tu peux contribuer en cliquant sur le + juste en dessous : 🤓</p>";
+   echo "<div class=\"card mb-4 col-md-4 col-sm-12 bg-light\">\n
+                  <div class=\"card-body\">\n
+                    <p class=\"text-center m-5 p-5 align-middle m-auto\" ><a href=\"./creer-seance.php\"><i class=\"fa fa-3x text-muted fa-plus\" aria-hidden=\"true\"></i></a></p>\n
+                 </div>\n
+               </div>";
     $result->close();
     $mysqli->close();
+  }
 }
 ?>

@@ -14,7 +14,7 @@ if($mysqli === false){
  
 // Attempt insert query execution
 $mysqli->set_charset("utf8");
-$sql = "UPDATE renfo_user SET password = '".$pwd."' WHERE token = '".$token."';";
+$sql = "UPDATE renfo_user SET password = '".$pass."' WHERE token = '".$token."';";
 $sql .= "SELECT * FROM renfo_user WHERE token ='".$token."';";
 
 

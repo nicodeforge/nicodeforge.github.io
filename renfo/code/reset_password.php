@@ -2,13 +2,6 @@
 session_start();
 $token = $_GET["token"];
 
-include 'functions/db.inc.local.php';
-$mysqli = new mysqli($db_host, $db_user, $db_pass, $db_database);
-
-if($mysqli === false){
-    die("ERROR: Could not connect. " . $mysqli->connect_error);
-}
-
 
 ?>
 
@@ -57,7 +50,7 @@ if($mysqli === false){
 				      </div>
 				      <div class="form-group row">
 				        <div class="col-sm-8">
-				          <input type="text" hidden class="form-control" name="token" id="token" value="<?php echo $token; ?>">
+				          <input type="text" style="display: none;" class="form-control" name="token" id="token" value="<?php echo $token; ?>">
 				        </div>
 				      </div>
 			            <div class=" form-group row">
